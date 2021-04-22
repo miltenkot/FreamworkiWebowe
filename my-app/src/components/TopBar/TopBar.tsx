@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import { SearchBox } from "./SearchBox";
 import LogoImage from "../../media/icons/logo.png";
 import HouseImage from "../../media/icons/house.svg";
@@ -44,7 +44,7 @@ const CustomImg = styled.img`
     margin:10px;
 `;
 
-const ImgBackground = styled.div<{showBG: boolean}>`
+const ImgBackground = styled.div<{ showBG: boolean }>`
   ${props => props.showBG && css`
     background: ${Colors.Gray};
     border-radius: 60%;
@@ -70,28 +70,28 @@ const ExpandedMenuContainer = styled.div`
 `;
 
 export const TopBar: FC = () => {
-    return (
-        <MainContainer>
-          <InnerWrapper>
-            <Logo src={LogoImage} />
-            <ExpandedMenuContainer>
-        <ExpandedMenu />
-      </ExpandedMenuContainer>
-            <SearchBoxContainer>
-                <SearchBox />
-            </SearchBoxContainer>
-            <RightSite>
-                <CustomImg src={HouseImage} />
-                <ImgBackground showBG>
-                <CustomImg src={CommentsImage} />
-                </ImgBackground>
-                <ImgBackground showBG>
-                <CustomImg src={BellImage} />
-                </ImgBackground>
-            </RightSite>
-            </InnerWrapper>
-        </MainContainer>
-    );
+  return (
+    <MainContainer>
+      <InnerWrapper>
+        <Logo src={LogoImage} />
+        <ExpandedMenuContainer>
+          <ExpandedMenu />
+        </ExpandedMenuContainer>
+        <SearchBoxContainer>
+          <SearchBox />
+        </SearchBoxContainer>
+        <RightSite>
+          <CustomImg src={HouseImage} />
+          <ImgBackground showBG>
+            <CustomImg src={CommentsImage} />
+          </ImgBackground>
+          <ImgBackground showBG>
+            <CustomImg src={BellImage} />
+          </ImgBackground>
+        </RightSite>
+      </InnerWrapper>
+    </MainContainer>
+  );
 }
 
 export default TopBar;

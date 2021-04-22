@@ -53,9 +53,9 @@ export const SearchBox: FC = () => {
       <SearchQuery>
         <Gap />
         <Search>
-          <Input 
-            type="text" 
-            placeholder="Search Legalcluster" 
+          <Input
+            type="text"
+            placeholder="Search Legalcluster"
           />
         </Search>
         <CustomImg src={SearchImage} />
