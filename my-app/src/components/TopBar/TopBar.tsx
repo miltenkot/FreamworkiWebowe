@@ -1,51 +1,96 @@
 import { FC } from 'react';
-import styled from 'styled-components';
-import { Wrapper } from '../../styledHelpers/Components';
+import styled, {css} from 'styled-components';
 import { SearchBox } from "./SearchBox";
+import LogoImage from "../../media/icons/logo.png";
+import HouseImage from "../../media/icons/house.svg";
+import CommentsImage from "../../media/icons/comments.png";
+import BellImage from "../../media/icons/bell.png";
+import { ExpandedMenu } from "./ExpandedMenu";
+import { Wrapper } from "../../styledHelpers/Components";
+import { Colors } from '../../styledHelpers/Colors';
 
-const Wrapper2 = styled(Wrapper)`
-box-sizing:border-box;
-padding-top:10px;
-padding-bottom:10px;
-height:60px;
-background-color:white;
-box-shadow: 0 0 10px 1px #b6b6b6;
-display:flex;
-justify-content:space-between;
+const MainContainer = styled(Wrapper)`
+display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background: #ffffff;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+`;
+
+const InnerWrapper = styled.div`
+  width: 100%;
+  padding: 5px 20px;
+  background: ${Colors.white};
+  display: flex;
+  justyfy-content: space-between;
+  align-items: center;
+`
+
+const Logo = styled.img`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 30px;
+  height: 30px;
+  margin: 3px;
+  padding-right: 20px;
 `;
 
 const CustomImg = styled.img`
-    margin:5px;
+    margin:10px;
 `;
 
-const LeftSite = styled.div`
-`;
+const ImgBackground = styled.div<{showBG: boolean}>`
+  ${props => props.showBG && css`
+    background: ${Colors.Gray};
+    border-radius: 60%;
+   margin-left: 15px;
+    width: 40px;
+    height: 40px;
+  `}
+`
 
 const RightSite = styled.div`
+  display: inline-flexbox;
+  justify-content: center;
+  align-items: center;
+  padding-left: 400px;
 `;
 
 const SearchBoxContainer = styled.div`
-  width: 40%;
+  width: 30%;
+`;
+
+const ExpandedMenuContainer = styled.div`
+  width: 30%;
 `;
 
 export const TopBar: FC = () => {
     return (
-        <Wrapper2>
-            <LeftSite>
-                <CustomImg src="./media/icons/logo.png" />
-                <CustomImg src="./media/icons/house2.png" />
-                Home
-                <CustomImg src="./media/icons/arrow-down.png" />
-            </LeftSite>
+        <MainContainer>
+          <InnerWrapper>
+            <Logo src={LogoImage} />
+            <ExpandedMenuContainer>
+        <ExpandedMenu />
+      </ExpandedMenuContainer>
             <SearchBoxContainer>
                 <SearchBox />
             </SearchBoxContainer>
             <RightSite>
-                <CustomImg src="./media/icons/house.png" />
-                <CustomImg src="./media/icons/comments.png" />
-                <CustomImg src="./media/icons/bell.png" />
+                <CustomImg src={HouseImage} />
+                <ImgBackground showBG>
+                <CustomImg src={CommentsImage} />
+                </ImgBackground>
+                <ImgBackground showBG>
+                <CustomImg src={BellImage} />
+                </ImgBackground>
             </RightSite>
-        </Wrapper2>
+            </InnerWrapper>
+        </MainContainer>
     );
 }
 

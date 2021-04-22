@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors";
+import SearchImage from "../../media/icons/search.png";
 
 const SearchBoxContainer = styled.div`
   flex-direction: row;
@@ -29,8 +30,8 @@ const Search = styled.div`
   display: flex;`
 
 const Input = styled.input`
-  text-align: center;
-  justify-content: center;
+  text-align: left;
+  justify-content: left;
   border: none;
   border-radius: 3px;
   ::placeholder {
@@ -54,10 +55,10 @@ export const SearchBox: FC = () => {
         <Search>
           <Input 
             type="text" 
-            placeholder="Search" 
+            placeholder="Search Legalcluster" 
           />
         </Search>
-        <CustomImg src="./media/icons/search.png"/>
+        <CustomImg src={SearchImage} />
       </SearchQuery>
     </SearchBoxContainer>
   );
