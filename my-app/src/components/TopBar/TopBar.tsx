@@ -14,7 +14,7 @@ display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background: #ffffff;
+  background: ${Colors.white};
   width: 100%;
   height: 40px;
   display: flex;
@@ -48,7 +48,7 @@ const ImgBackground = styled.div<{ showBG: boolean }>`
   ${props => props.showBG && css`
     background: ${Colors.Gray};
     border-radius: 60%;
-   margin-left: 15px;
+    margin-left: 15px;
     width: 40px;
     height: 40px;
   `}

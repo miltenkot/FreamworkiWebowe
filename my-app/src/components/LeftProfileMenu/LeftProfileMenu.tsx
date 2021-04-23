@@ -6,17 +6,19 @@ import UserPlusImage from "../../media/icons/user-plus.png";
 import PlusImage from "../../media/icons/plus.png";
 import EcosystemImage from "../../media/icons/ecosystem.png";
 import EntitiesImage from "../../media/icons/entities2.png";
+import { Colors } from '../../styledHelpers/Colors';
 
 const LeftProfileMenuView = styled.div`
     padding: 10px;
     width:200px;
     height:auto;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
 `;
 
 const ProfileAvatarContainer = styled.div`
     width:200px;
-    height:250px;
+    height:200px;
     margin:auto;
     padding-top:8px;
     box-shadow: 0 0 10px 0px #dfdfdf;
@@ -36,30 +38,65 @@ const NameLabel = styled.div`
 margin:auto;
 margin-top:8px;
 width:120px;
+display: flex;
+ align-items: center;
+ justify-content: center;
 `;
 
 const JobLabel = styled.div`
 margin:auto;
 margin-top:8px;
 width:120px;
+display: flex;
+ align-items: center;
+ justify-content: center;
 `;
 
 const CustomImg = styled.img`
-    margin:5px;
-    padding: 5px;
-    margin-right: 21px;
+padding: 2px;
+
+`;
+
+const CustomImgLeft = styled.img`
+margin-left: 2px;
+
+`;
+
+const CustomImgRightBorder = styled.div`
+display: flex;
+ align-items: center;
+ justify-content: center;
+border: 1.5px solid ${Colors.black};
+width: 30px;
+height: 20px;
+border-radius: 10%;
+
+
+`;
+const CustomImgRight = styled.img`
+
 `;
 
 const MainPhotoBoxBottom = styled.div`
 `;
 
-const MainPhotoBoxBottomList = styled.ul`
+const MainPhotoBoxBottomList = styled.div`
+    padding: 5px;
 `;
 
-const MainPhotoBoxBottomContent = styled.li`
-    list-style-type: none;
-    padding-bottom:10px;
-    text-align:left;
+const ContentTitleLabel = styled.div`
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    text-align: left;
+`;
+
+const MainPhotoBoxBottomContent = styled.div`
+display: inline-flexbox;
+padding-left: 10px;
+padding: 5px;
+align-items: left;
+
 `;
 
 const BottomList = styled.ul`
@@ -82,14 +119,18 @@ function LeftProfileMenu() {
                 <MainPhotoBoxBottom>
                     <MainPhotoBoxBottomList>
                         <MainPhotoBoxBottomContent>
-                            <CustomImg src={NetworkImage} />
-                            Your Network
-                            <CustomImg src={UserPlusImage} />
+                            <CustomImgLeft src={NetworkImage} />
+                            <ContentTitleLabel>Your Network</ContentTitleLabel>
+                            <CustomImgRightBorder>
+                                <CustomImgRight src={UserPlusImage} />
+                            </CustomImgRightBorder>
                         </MainPhotoBoxBottomContent>
                         <MainPhotoBoxBottomContent>
-                            <CustomImg src={PublicationImage} />
-                            Your Publications
-                            <CustomImg src={PlusImage} />
+                            <CustomImgLeft src={PublicationImage} />
+                            <ContentTitleLabel>Your Publications</ContentTitleLabel>
+                            <CustomImgRightBorder>
+                                <CustomImgRight src={PlusImage} />
+                            </CustomImgRightBorder>
                         </MainPhotoBoxBottomContent>
                     </MainPhotoBoxBottomList>
                 </MainPhotoBoxBottom>

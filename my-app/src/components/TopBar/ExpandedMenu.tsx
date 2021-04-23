@@ -10,9 +10,7 @@ const ExpandedMenuContainer = styled.div`
   width: 50%;
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   align-items: center;
-  /* border: 1px solid; */
   border-color: ${Colors.LightGray};
   border-radius: 3px;
   padding-right: 3px;
@@ -101,7 +99,7 @@ export const ExpandedMenu: FC = () => {
       {
         dropDownOpen &&
         <Dropdown>
-          <Filter type="text" placeholder="Filter..." />
+          <Filter type="text" placeholder="Filter" />
           <Container>
             <Nav>
               <li>Home</li>
@@ -110,7 +108,7 @@ export const ExpandedMenu: FC = () => {
               <li>Entities</li>
               <li> Administration</li>
             </Nav>
-            <li> Workspaces</li>
+             Workspaces
             <Nav>
               <li>Client contracts</li>
               <li> Supplier contract</li>
