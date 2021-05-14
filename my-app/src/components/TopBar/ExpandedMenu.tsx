@@ -1,17 +1,17 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors";
-import HomeIconPhoto from "../../media/icons/house.svg";
+import HomeIconPhoto from "../../media/icons/house2.svg";
 import ArrowDownIconPhoto from "../../media/icons/arrow-down.svg";
 import useDropdown from "react-dropdown-hook";
 
 const ExpandedMenuContainer = styled.div`
   height: 27px;
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-color: ${Colors.LightGray};
+  border-color: ${Colors.lightGray};
   border-radius: 3px;
   padding-right: 3px;
   cursor: pointer;
@@ -93,7 +93,6 @@ export const ExpandedMenu: FC = () => {
         <Menu>
           <CategoryName>Home</CategoryName>
         </Menu>
-
         <ArrowDown src={ArrowDownIconPhoto} />
       </MenuWrapper>
       {

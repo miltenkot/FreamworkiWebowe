@@ -7,7 +7,7 @@ const SearchBoxContainer = styled.div`
   flex-direction: row;
   align-items: center;
   border: 1px solid;
-  border-color: ${Colors.Gray};
+  border-color: ${Colors.gray};
   border-radius: 3px;
   margin: 3px;
 `;
@@ -18,7 +18,7 @@ const SearchQuery = styled.div`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  color: ${Colors.LightGray};
+  color: ${Colors.lightGray};
   margin: 3px;
 `;
 
@@ -35,7 +35,7 @@ const Input = styled.input`
   border: none;
   border-radius: 3px;
   ::placeholder {
-    color: ${Colors.LightGray};
+    color: ${Colors.lightGray};
   }
   &:focus {
         outline: none;

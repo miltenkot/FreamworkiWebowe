@@ -2,15 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import NetworkImage from "../../media/icons/network.png";
 import PublicationImage from "../../media/icons/publications.png";
-import UserPlusImage from "../../media/icons/user-plus.png";
-import PlusImage from "../../media/icons/plus.png";
+import UserPlusImage from "../../media/icons/user-plus.svg";
+import PlusImage from "../../media/icons/plus.svg";
 import EcosystemImage from "../../media/icons/ecosystem.png";
 import EntitiesImage from "../../media/icons/entities2.png";
+import AvatarImage from "../../media/icons/avatarImage.jpeg";
 import { Colors } from '../../styledHelpers/Colors';
 
 const LeftProfileMenuView = styled.div`
-    padding: 10px;
     width:200px;
+    padding-right: 10px;
     height:auto;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 14px;
@@ -23,9 +24,10 @@ const ProfileAvatarContainer = styled.div`
     padding-top:8px;
     box-shadow: 0 0 10px 0px #dfdfdf;
     border-radius:5px;
+    text-align: center
 `;
 
-const ProfileAvatarImage = styled.div`
+const ProfileAvatarImage = styled.img`
     width:60px;
     height:60px;
     margin:auto;
@@ -39,6 +41,7 @@ margin:auto;
 margin-top:8px;
 width:120px;
 display: flex;
+color: ${Colors.electronBlue};
  align-items: center;
  justify-content: center;
 `;
@@ -46,14 +49,16 @@ display: flex;
 const JobLabel = styled.div`
 margin:auto;
 margin-top:8px;
-width:120px;
+width:150px;
 display: flex;
  align-items: center;
+ color: ${Colors.lightGray};
+ font-size: 12px;
  justify-content: center;
 `;
 
 const CustomImg = styled.img`
-padding: 2px;
+padding-right: 15px;
 
 `;
 
@@ -66,10 +71,10 @@ const CustomImgRightBorder = styled.div`
 display: flex;
  align-items: center;
  justify-content: center;
-border: 1.5px solid ${Colors.black};
+border: 1.0px solid ${Colors.black};
 width: 30px;
 height: 20px;
-border-radius: 10%;
+border-radius: 15%;
 
 
 `;
@@ -78,6 +83,8 @@ const CustomImgRight = styled.img`
 `;
 
 const MainPhotoBoxBottom = styled.div`
+border-top: 1.0px solid ${Colors.lightGray};
+margin-top: 10px;
 `;
 
 const MainPhotoBoxBottomList = styled.div`
@@ -86,36 +93,39 @@ const MainPhotoBoxBottomList = styled.div`
 
 const ContentTitleLabel = styled.div`
     padding-left: 8px;
-    padding-right: 8px;
     padding-top: 5px;
     text-align: left;
+    width: 120px;
 `;
 
 const MainPhotoBoxBottomContent = styled.div`
-display: inline-flexbox;
-padding-left: 10px;
+display: flex;
 padding: 5px;
-align-items: left;
+align-items: center;
+justify-content: space-between;
+
 
 `;
 
 const BottomList = styled.ul`
 `;
 
-const BottomListContent = styled.li`
+const BottomListContent = styled.div`
+    display: flex;
     list-style-type: none;
     padding:5px;
     text-align:left;
+    justify-content: flex-start;
+    padding-top: 20px;
 `;
 
 function LeftProfileMenu() {
     return (
         <LeftProfileMenuView>
             <ProfileAvatarContainer>
-                <ProfileAvatarImage>
-                </ProfileAvatarImage>
+                <ProfileAvatarImage src={AvatarImage}/>
                 <NameLabel>Andrzej Andrzej</NameLabel>
-                <JobLabel>Metrics Metrics</JobLabel>
+                <JobLabel>Job title - Company</JobLabel>
                 <MainPhotoBoxBottom>
                     <MainPhotoBoxBottomList>
                         <MainPhotoBoxBottomContent>
@@ -138,7 +148,7 @@ function LeftProfileMenu() {
             <BottomList>
                 <BottomListContent>
                     <CustomImg src={PublicationImage} />
-                     Publications
+                      Publications
                 </BottomListContent>
                 <BottomListContent>
                     <CustomImg src={EcosystemImage} />

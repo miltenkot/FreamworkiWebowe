@@ -14,20 +14,23 @@ display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background: ${Colors.white};
   width: 100%;
   height: 40px;
   display: flex;
-  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+  background: white;
+  border-bottom: 1px solid ${Colors.lightGray};
+
+  
 `;
 
 const InnerWrapper = styled.div`
   width: 100%;
-  padding: 5px 20px;
+  height: 100%;
   background: ${Colors.white};
   display: flex;
   justyfy-content: space-between;
   align-items: center;
+  
 `
 
 const Logo = styled.img`
@@ -38,15 +41,17 @@ const Logo = styled.img`
   height: 30px;
   margin: 3px;
   padding-right: 20px;
+  
 `;
 
 const CustomImg = styled.img`
     margin:10px;
+    
 `;
 
 const ImgBackground = styled.div<{ showBG: boolean }>`
   ${props => props.showBG && css`
-    background: ${Colors.Gray};
+    background: ${Colors.gray};
     border-radius: 60%;
     margin-left: 15px;
     width: 40px;
@@ -62,11 +67,12 @@ const RightSite = styled.div`
 `;
 
 const SearchBoxContainer = styled.div`
-  width: 30%;
+  width: 40%;
 `;
 
 const ExpandedMenuContainer = styled.div`
-  width: 30%;
+  width: 15%;
+  margin-right: 50px;
 `;
 
 export const TopBar: FC = () => {
