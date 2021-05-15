@@ -8,6 +8,8 @@ import PublicationsImage from "../../media/icons/publications.svg";
 import PeopleImage from "../../media/icons/people.svg";
 import EntitiesImage from "../../media/icons/entities.svg";
 import AdministrationImage from "../../media/icons/administration.svg";
+import PrivacyImage from "../../media/icons/privacy.svg";
+import SettingsImage from "../../media/icons/settings.svg";
 
 const ExpandedMenuContainer = styled.div`
 font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -87,15 +89,25 @@ const Category = styled.div`
 `;
 
 const DropDownItem = styled.div`
-    display: flex;
-    list-style-type: none;
-    padding: 5px;
-    justify-content: start;
-    text-align: center;
+padding: 5px;
+justyfy-content: space-between;
+align-items: center;
+
+    img {
+      vertical-align: bottom;
+    }
+
+    span {
+      margin-left: 10px;
+      margin-bottom: 5px;
+      vertical-align: center;
+      width: 200px;
+    }
+
 `;
 
 const ListImage = styled.img`
-    padding-right: 5px;
+
 `;
 
 
@@ -119,20 +131,26 @@ export const ExpandedMenu: FC = () => {
             <Category>Platform</Category>
             <Nav>
 
-              <DropDownItem><ListImage src={HomeIconPhoto} alt="HomeIconPhoto"/>Home</DropDownItem>
-              <DropDownItem><ListImage src={PublicationsImage} alt="PublicationsImage"/>Publications</DropDownItem>
-              <DropDownItem><ListImage src={PeopleImage} alt="PeopleImage"/>People</DropDownItem>
-              <DropDownItem><ListImage src={EntitiesImage} alt="EntitiesImage"/>Entities</DropDownItem>
-              <DropDownItem><ListImage src={AdministrationImage} alt="AdministrationImage"/>Administration</DropDownItem>
+              <DropDownItem><ListImage src={HomeIconPhoto} alt="HomeIconPhoto"/><span>Home</span></DropDownItem>
+              <DropDownItem><ListImage src={PublicationsImage} alt="PublicationsImage"/><span>Publications</span></DropDownItem>
+              <DropDownItem><ListImage src={PeopleImage} alt="PeopleImage"/><span>People</span></DropDownItem>
+              <DropDownItem><ListImage src={EntitiesImage} alt="EntitiesImage"/><span>Entities</span></DropDownItem>
+              <DropDownItem><ListImage src={AdministrationImage} alt="AdministrationImage"/><span>Administration</span></DropDownItem>
             </Nav>
             <Category>Workspaces</Category>
             <Nav>
-              <DropDownItem><ListImage src={HomeIconPhoto} alt="HomeIconPhoto"/>Client contracts</DropDownItem>
-              <DropDownItem><ListImage src={PublicationsImage} alt="PublicationsImage"/>Supplier contract</DropDownItem>
-              <DropDownItem><ListImage src={PeopleImage} alt="PeopleImage"/>Corporate</DropDownItem>
-              <DropDownItem><ListImage src={EntitiesImage} alt="EntitiesImage"/> Group norms</DropDownItem>
-              <DropDownItem><ListImage src={AdministrationImage} alt="AdministrationImage"/>Real estate contracts</DropDownItem>
+              <DropDownItem><ListImage src={HomeIconPhoto} alt="HomeIconPhoto"/><span>Client contracts</span></DropDownItem>
+              <DropDownItem><ListImage src={PublicationsImage} alt="PublicationsImage"/><span>Supplier contract</span></DropDownItem>
+              <DropDownItem><ListImage src={PeopleImage} alt="PeopleImage"/><span>Corporate</span></DropDownItem>
+              <DropDownItem><ListImage src={EntitiesImage} alt="EntitiesImage"/><span>Group norms</span></DropDownItem>
+              <DropDownItem><ListImage src={AdministrationImage} alt="AdministrationImage"/><span>Real estate contracts</span></DropDownItem>
             </Nav>
+            <Category>Account</Category>
+            <Nav>
+              <DropDownItem><ListImage src={HomeIconPhoto} alt="HomeIconPhoto"/><span>Client contracts</span></DropDownItem>
+              <DropDownItem><ListImage src={PrivacyImage} alt="PrivacyImage"/><span>Privacy</span></DropDownItem>
+              <DropDownItem><ListImage src={SettingsImage} alt="SettingsImage"/><span>Settings</span></DropDownItem>
+              </Nav>
           </Container>
         </Dropdown>
 
