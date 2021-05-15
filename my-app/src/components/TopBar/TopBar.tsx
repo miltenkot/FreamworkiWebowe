@@ -71,7 +71,7 @@ const SearchBoxContainer = styled.div`
 `;
 
 const ExpandedMenuContainer = styled.div`
-  width: 15%;
+  width: 200px;
   margin-right: 50px;
 `;
 

@@ -4,15 +4,19 @@ import { Colors } from "../../styledHelpers/Colors";
 import HomeIconPhoto from "../../media/icons/house2.svg";
 import ArrowDownIconPhoto from "../../media/icons/arrow-down.svg";
 import useDropdown from "react-dropdown-hook";
+import PublicationsImage from "../../media/icons/publications.svg";
+import PeopleImage from "../../media/icons/people.svg";
+import EntitiesImage from "../../media/icons/entities.svg";
+import AdministrationImage from "../../media/icons/administration.svg";
 
 const ExpandedMenuContainer = styled.div`
+font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+font-size: 85%;
   height: 27px;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-color: ${Colors.lightGray};
-  border-radius: 3px;
   padding-right: 3px;
   cursor: pointer;
 `;
@@ -49,20 +53,16 @@ const Dropdown = styled.div`
     position: absolute;
     top: 40px;
     background-color: ${Colors.white};
-    width: 13%;
+    width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: ${Colors.black} solid 1px;
-    border-top: 0;
-    border-radius: 6px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-radius: 3px;
 `;
 
 const Filter = styled.input`
     background-color: ${Colors.white};
-    border: ${Colors.black} solid 1px;
+    border: ${Colors.lightGray} solid 1px;
     border-radius: 3px;
     margin: .5em;
     padding: 6px 3px;
@@ -81,6 +81,22 @@ const Nav = styled.ul`
     display: flex;
     flex-direction: column;
 `;
+const Category = styled.div`
+  color: ${Colors.lightGray};
+  font-weight:bold;
+`;
+
+const DropDownItem = styled.div`
+    display: flex;
+    list-style-type: none;
+    padding: 5px;
+    justify-content: start;
+    text-align: center;
+`;
+
+const ListImage = styled.img`
+    padding-right: 5px;
+`;
 
 
 export const ExpandedMenu: FC = () => {
@@ -98,22 +114,24 @@ export const ExpandedMenu: FC = () => {
       {
         dropDownOpen &&
         <Dropdown>
-          <Filter type="text" placeholder="Filter" />
+          <Filter type="text" placeholder="Filter..." />
           <Container>
+            <Category>Platform</Category>
             <Nav>
-              <li>Home</li>
-              <li>Publications</li>
-              <li>People</li>
-              <li>Entities</li>
-              <li> Administration</li>
+
+              <DropDownItem><ListImage src={HomeIconPhoto} alt="HomeIconPhoto"/>Home</DropDownItem>
+              <DropDownItem><ListImage src={PublicationsImage} alt="PublicationsImage"/>Publications</DropDownItem>
+              <DropDownItem><ListImage src={PeopleImage} alt="PeopleImage"/>People</DropDownItem>
+              <DropDownItem><ListImage src={EntitiesImage} alt="EntitiesImage"/>Entities</DropDownItem>
+              <DropDownItem><ListImage src={AdministrationImage} alt="AdministrationImage"/>Administration</DropDownItem>
             </Nav>
-             Workspaces
+            <Category>Workspaces</Category>
             <Nav>
-              <li>Client contracts</li>
-              <li> Supplier contract</li>
-              <li> Corporate</li>
-              <li> Group norms</li>
-              <li> Real estate contracts</li>
+              <DropDownItem><ListImage src={HomeIconPhoto} alt="HomeIconPhoto"/>Client contracts</DropDownItem>
+              <DropDownItem><ListImage src={PublicationsImage} alt="PublicationsImage"/>Supplier contract</DropDownItem>
+              <DropDownItem><ListImage src={PeopleImage} alt="PeopleImage"/>Corporate</DropDownItem>
+              <DropDownItem><ListImage src={EntitiesImage} alt="EntitiesImage"/> Group norms</DropDownItem>
+              <DropDownItem><ListImage src={AdministrationImage} alt="AdministrationImage"/>Real estate contracts</DropDownItem>
             </Nav>
           </Container>
         </Dropdown>

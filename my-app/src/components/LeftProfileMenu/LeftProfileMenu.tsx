@@ -74,7 +74,7 @@ display: flex;
 border: 1.0px solid ${Colors.black};
 width: 30px;
 height: 20px;
-border-radius: 15%;
+border-radius: 10%;
 
 
 `;
