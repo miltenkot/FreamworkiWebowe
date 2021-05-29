@@ -4,10 +4,11 @@ import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import styles from "./DropdownMenu.module.scss";
 import cx from 'classnames';
 import { ImHome } from 'react-icons/im';
-import { IoNewspaperOutline } from 'react-icons/io5';
-import { BsPeople } from 'react-icons/bs';
-import { FaBuilding, FaCrown, FaFileContract, FaRegBuilding, FaUserLock } from 'react-icons/fa';
-import { BiBook } from 'react-icons/bi';
+import { FaNewspaper } from 'react-icons/fa';
+import { BsFillPeopleFill } from 'react-icons/bs';
+import { FaBuilding, FaFileContract, FaUserLock } from 'react-icons/fa';
+import { RiAdminFill } from 'react-icons/ri';
+import { FiBook } from 'react-icons/fi';
 import { RiUserSettingsFill } from 'react-icons/ri';
 import Img from '../../common/Img/Img';
 import { VscQuestion } from 'react-icons/vsc';
@@ -19,6 +20,7 @@ import { FiLogOut } from 'react-icons/fi';
 import { IStore } from '../../../store';
 import { connect } from 'react-redux';
 import { usersFetchData } from '../../../actions/UserActions';
+import LogoImage from "../../../assets/image.jpeg";
 
 interface IMenuItem {
     title: string,
@@ -131,19 +133,19 @@ class DropdownMenu extends Component<P, S>{
                 route: '/'
             }, {
                 name: 'Publications',
-                icon: <IoNewspaperOutline />,
+                icon: <FaNewspaper />,
                 route: '/publications'
             }, {
                 name: 'People',
-                icon: <BsPeople />,
+                icon: <BsFillPeopleFill />,
                 route: '/people'
             }, {
                 name: 'Entities',
-                icon: <FaRegBuilding />,
+                icon: <FaBuilding />,
                 route: '/entities'
             }, {
                 name: 'Administration',
-                icon: <FaCrown />,
+                icon: <RiAdminFill />,
                 route: '/admin'
             }]
         }, {
@@ -162,7 +164,7 @@ class DropdownMenu extends Component<P, S>{
                 route: '/corpo'
             }, {
                 name: 'Group norms',
-                icon: <BiBook />,
+                icon: <FiBook />,
                 route: '/groupnorms'
             }, {
                 name: 'Real Estate contracts',
@@ -173,9 +175,9 @@ class DropdownMenu extends Component<P, S>{
         const accountItems = {
             title: "Account",
             items: [{
-                name: user?.name || '',
+                name: 'Andrzej Andrzej',
                 description: 'See profile',
-                icon: <Img className={styles.DropdownMenuUserPhoto} src={user?.photo?.thumbnailUrl} />,
+                icon: <Img className={styles.DropdownMenuUserPhoto} src={LogoImage} />,
                 route: '/profile/1'
             }, {
                 name: 'Privacy',

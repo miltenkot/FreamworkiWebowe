@@ -11,6 +11,7 @@ import UserSignature from './../../common/UserSignature/UserSignature';
 import { connect } from 'react-redux';
 import { publicationsFetchData } from '../../../actions/PublicationsActions';
 import styles from "./Publications.module.scss";
+import logo from './../../assets/react-logo.png';
 
 interface StateProps {
     publications: PublicationsState['publications']
