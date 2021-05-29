@@ -12,12 +12,10 @@
     height: 2rem;
     padding: $spacing-01 $spacing-02;
     cursor: pointer;
-    transition: color 0.24s, border-color 0.24s;
     color: $active;
-    border: 2px solid transparent;
-    border-radius: 4px;
     outline: 0;
     background: transparent;
+    border: transparent;
     &Container {
         position: relative;
         margin-left: $spacing-04;
@@ -30,7 +28,6 @@
         right: 0;
         left: 0;
         color: $active;
-        border: 2px solid $border;
         border-top: 0;
         border-radius: 0 0 4px 4px;
         background: $bg-color-light;
@@ -46,7 +43,6 @@
         hr {
             margin: 0;
             border: 0;
-            border-bottom: 1px solid $border;
         }
     }
 

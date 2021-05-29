@@ -15,6 +15,8 @@ import cx from 'classnames';
 import styles from "./UserCard.module.scss";
 import { usersFetchData } from './../../../actions/UserActions';
 
+import LogoImage from "../../../assets/image.jpeg";
+
 const USER_ID = 1;
 
 interface StateProps {
@@ -44,9 +46,9 @@ class UserCard extends Component<P> {
             <>
                 <div className={styles.UserCard}>
                     <Link to="/profile/1" className={styles.UserCardLink}>
-                        <Img skeletonize className={styles.UserCardPic} src={user?.photo?.url} alt="Profile pic" />
-                        <h3 className={cx('header-3', styles.UserCardName)}>{user?.name}</h3>
-                        <h4 className={cx('header-4', styles.UserCardPosition)}>Intern - {user?.company.name}</h4>
+                        <Img skeletonize className={styles.UserCardPic} src={LogoImage} alt="Profile pic" />
+                        <h3 className={cx('header-3', styles.UserCardName)}>{'Andrzej Andrzej'}</h3>
+                        <h4 className={cx('header-4', styles.UserCardPosition)}>Job title - {'Company'}</h4>
                     </Link >
                     <hr className={styles.UserCardHr} />
                     <div className={styles.UserCardButtons}>

@@ -1,4 +1,5 @@
 import { applyMiddleware, createStore } from 'redux';
+
 import { NotificationState } from './reducers/NotificationReducer';
 import { FullscreenState } from './reducers/FullscreenReducer';
 import { WorksState } from './reducers/WorksReducer';
