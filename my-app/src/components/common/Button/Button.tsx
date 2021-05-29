@@ -1,5 +1,8 @@
 import React, { Component, RefObject } from 'react';
+
 import { IconType } from 'react-icons';
+import { LightenDarkenColor } from '../../../utils/colorUtils';
+import cx from 'classnames';
 import styles from "./Button.module.scss";
 
 type P = {
@@ -13,7 +16,7 @@ type P = {
     theme?: string
 }
 
-class Button extends Component<P, {}>  {
+class Button extends Component<P, {}> {
     ripple: RefObject<HTMLSpanElement> = React.createRef();
 
     static defaultProps: P = {
@@ -40,6 +43,33 @@ class Button extends Component<P, {}>  {
         }
 
         this.props.onClick(ev);
+    }
+
+    render() {
+        const { label, icon, iconOnly, className, disabled, border, theme } = this.props;
+        const Icon = icon;
+        let colors = {
+            backgroundColor: '',
+            color: '',
+            borderColor: ''
+        };
+        if (theme) {
+            colors = {
+                backgroundColor: theme,
+                color: LightenDarkenColor(theme, -90),
+                borderColor: border ? LightenDarkenColor(theme, -90) : ''
+            }    
+        }
+
+        return (
+            <div className={cx(styles.ButtonContainer, className)} >
+                <button style={colors} disabled={disabled} aria-label={label} type="button" className={cx(styles.Button, iconOnly ? styles.ButtonIcon : null, border ? styles.ButtonBorder : null)} onClick={(ev) => this.onClick(ev)}>
+                    {Icon ? <Icon style={{color: colors.color}} /> : null}
+                    {label && <p style={{color: colors.color}}>{label}</p>}
+                    <span ref={this.ripple} className={styles.ripple}></span>
+                </button>
+            </div>
+        );
     }
 }
 
