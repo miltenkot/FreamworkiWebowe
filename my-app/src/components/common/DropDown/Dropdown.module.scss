@@ -1,0 +1,104 @@
+@import './../../../variables';
+
+.Dropdown {
+    font-size: 0.85rem;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 8rem;
+    height: 2rem;
+    padding: $spacing-01 $spacing-02;
+    cursor: pointer;
+    transition: color 0.24s, border-color 0.24s;
+    color: $active;
+    border: 0;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    outline: 0;
+    background: transparent;
+    &Container {
+        position: relative;
+    }
+
+    &Values {
+        font-size: 0.85rem;
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        left: 0;
+        color: $active;
+        border: 2px solid;
+        border-top: 0;
+        border-radius: 0 0 4px 4px;
+        background: rgb(243, 245, 252);
+
+        backdrop-filter: blur(4px);
+    }
+
+    &Item {
+        padding: $spacing-01 $spacing-02;
+        cursor: pointer;
+        &:hover {
+            background: rgba($active, 0.2);
+        }
+    }
+
+    &:disabled {
+        background: $bg-color;
+    }
+
+    >
+    svg {
+        font-size: $icon-size-02;
+        flex-shrink: 0;
+        flex-shrink: 0;
+        margin-left: $spacing-01;
+    }
+
+    &:hover,
+    &:focus,
+    &.open {
+        background: rgba($active, 0.1);
+    }
+
+    &.open {
+        border-bottom: 2x solid;
+        border-radius: 4px 4px 0 0;
+    }
+
+    &:focus {
+        border-color: $active;
+        outline: 0;
+    }
+
+    &:disabled {
+        color: $fontColorLight;
+        background: $border;
+    }
+
+    .ripple {
+        position: absolute;
+        transform: scale(0);
+        animation: ripple 600ms linear;
+        border-radius: 50%;
+        background-color: rgba($active, 0.25);
+    }
+
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+
+    &Icon {
+        width: 2rem;
+        border-radius: 50%;
+        svg {
+            margin: 0;
+        }
+    }
+}
+

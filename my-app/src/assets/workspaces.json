@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "title": "Super Corp.",
+        "type": "Contract",
+        "users": 25,
+        "lastUpdate": "2021-03-18",
+        "background": "https://media.istockphoto.com/photos/millennial-black-businesswoman-addressing-colleagues-at-a-corporate-picture-id1146472948"
+    },
+    {
+        "id": 2,
+        "title": "New investigation",
+        "type": "Contract",
+        "users": 50,
+        "lastUpdate": "2021-03-17",
+        "background": "https://media.istockphoto.com/photos/young-adult-business-people-with-laptop-picture-id1248609129"
+    },
+    {
+        "id": 3,
+        "title": "Interviews",
+        "type": "Corporate",
+        "users": 5,
+        "lastUpdate": "2021-03-16",
+        "background": "https://media.istockphoto.com/photos/group-of-businesspeople-meeting-around-boardroom-table-picture-id509561581"
+    },
+    {
+        "id": 4,
+        "title": "Mailing issues",
+        "type": "Norms",
+        "users": 100,
+        "lastUpdate": "2021-03-15",
+        "background": "https://media.istockphoto.com/photos/working-together-picture-id173380928"
+    },
+    {
+        "id": 5,
+        "title": "Frameworks",
+        "type": "Contract",
+        "users": 20,
+        "lastUpdate": "2021-03-14",
+        "background": "https://media.istockphoto.com/photos/multiethnic-group-of-office-workers-talking-picture-id488915594"
+    }
+]

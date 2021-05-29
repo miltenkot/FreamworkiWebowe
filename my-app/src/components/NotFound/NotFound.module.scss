@@ -1,0 +1,25 @@
+@import './../../variables.scss';
+
+.NotFound {
+    position: relative;
+    display: flex;
+    overflow-x: hidden;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+
+    p {
+        margin: 0;
+    }
+    .BgText {
+        font-size: 30rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: rgba($fontColor, 0.1);
+    }
+}
