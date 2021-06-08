@@ -1,5 +1,3 @@
-import { BiBookAlt, BiBuildings } from 'react-icons/bi';
-import { FcBusiness, FcFlowChart, FcSurvey } from "react-icons/fc";
 import React, { Component, RefObject } from 'react';
 import { formatDate, newMomentDate } from '../../../utils/dateUtils';
 
@@ -7,7 +5,7 @@ import { FiUsers } from "react-icons/fi";
 import { IWorkspace } from '../../../utils/Rest';
 import { Link } from 'react-router-dom';
 import RestService from '../../../utils/RestService';
-import { RiNewspaperLine } from "react-icons/ri";
+import { FaFileContract } from 'react-icons/fa';
 import styles from "./WorkspacesSlider.module.scss";
 
 type S = {
@@ -87,10 +85,10 @@ class WorkspacesSlider extends Component<{}, S> {
     getLogo(type: IWorkspace['type']) {
         let Icon;
         switch (type) {
-            case 'Contarct': Icon = FcSurvey; break;
-            case 'Corporate': Icon = FcBusiness; break;
-            case 'Norms': Icon = FcFlowChart; break;
-            default: Icon = FcSurvey; break;
+            case 'Contract': Icon = FaFileContract; break;
+            case 'Corporate': Icon = FaFileContract; break;
+            case 'Norms': Icon = FaFileContract; break;
+            default: Icon = FaFileContract; break;
         }
         return Icon && <Icon className={styles.tileLogo} />;
     }
@@ -98,10 +96,10 @@ class WorkspacesSlider extends Component<{}, S> {
     getIcon(type: IWorkspace['type']) {
         let Icon;
         switch (type) {
-            case 'Contarct': Icon = RiNewspaperLine; break;
-            case 'Corporate': Icon = BiBuildings; break;
-            case 'Norms': Icon = BiBookAlt; break;
-            default: Icon = RiNewspaperLine; break;
+            case 'Contract': Icon = FaFileContract; break;
+            case 'Corporate': Icon = FaFileContract; break;
+            case 'Norms': Icon = FaFileContract; break;
+            default: Icon = FaFileContract; break;
         }
         return Icon && <Icon />;
     }
@@ -113,7 +111,7 @@ class WorkspacesSlider extends Component<{}, S> {
             <div className={styles.tileContent}>
                 <div className={styles.tileTitle}>
                     {this.getLogo(work.type)}
-                    <h3>{work.title}</h3>
+                    <h4>{work.title}</h4>
                 </div>
                 <div className={styles.tileInfo}>
                     {this.getIcon(work.type)}

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 import { IconType } from 'react-icons';
-import cx from 'classnames';
-import styles from "./ActionButton.module.scss";
+import styled from 'styled-components';
+import { Colors } from '../../../styledHelpers/Colors';
+import { FontSize } from '../../../styledHelpers/FontSizes';
 
 type P = {
     className: string,
@@ -12,6 +13,27 @@ type P = {
     actions: number,
     onClick: Function
 }
+
+const ActionButtonStyled = styled.button`
+font-size: ${FontSize.icon_rem1_25};
+display: flex;
+align-items: center;
+justify-content: center;
+width: 2rem;
+height: 2rem;
+cursor: pointer;
+transition: color 0.24s;
+color: rgba(${Colors.black}, 0.5);
+border: 0;
+border-radius: 50%;
+outline: 0;
+background: rgba(${Colors.black}, 0.15);
+
+&:disabled {
+    background: transparent; 
+    color: ${Colors.black};
+}
+`;
 
 class ActionButton extends Component<P, {}> {
     static defaultProps: P = {
@@ -24,19 +46,13 @@ class ActionButton extends Component<P, {}> {
     }
 
     render() {
-        const { icon, className, onClick, actions, disabled } = this.props;
+        const { icon, onClick, disabled } = this.props;
         const Icon = icon;
-        const label = actions === 0 ? 'No notifications' : `You have ${actions} notifications`;
         return (
-            <div className={cx(className, styles.ActionButtonContainer)} >
-                {actions > 0 && <div className={styles.ActionButtonCount}>
-                    {actions}
-                </div>}
-                <button aria-label={label} type="button" disabled={disabled} className={styles.ActionButton} onClick={(ev) => onClick(ev)}>
+                <ActionButtonStyled type="button" disabled={disabled} onClick={(ev) => onClick(ev)}>
                     {this.props.text}
                     {Icon ? <Icon /> : null}
-                </button>
-            </div>
+                </ActionButtonStyled>
         );
     }
 }

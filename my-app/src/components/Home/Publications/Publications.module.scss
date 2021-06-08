@@ -8,6 +8,12 @@
     background: $bg-color-light;
     box-shadow: $shadow-02;
 
+    h3 {
+        font-size: 0.8rem;
+            color: $fontColor;
+            font-weight: 500;
+    }
+
     &Tile {
         position: relative;
         display: flex;
@@ -61,8 +67,8 @@
         align-items: flex-start;
         margin-bottom: $spacing-03;
         &Image {
-            width: 3rem;
-            height: 3rem;
+            width: 60px;
+            height: 60px;
             margin-right: $spacing-02;
         }
 
@@ -76,14 +82,19 @@
     }
 
     &Container {
-        padding: $spacing-02 0;
-        width: 100%;
-        margin-right: $spacing-04;
-    }
+            padding: $spacing-02 0;
+            width: 100%;
+            margin-right: $spacing-04;
+            text-align: left;
+            align-items: left;
+            justify-content: left;
+            margin-left: 0px;
 
-    &More {
-        text-decoration: none;
-        color: $info;
-        font-size: $font-size-03;
+            Button {
+                margin-left: 0px;
+                margin-right: 660px; 
+                font-weight: 500;
+                font-size: 12px;
+            }
     }
 }

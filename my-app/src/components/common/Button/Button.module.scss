@@ -20,9 +20,6 @@
     >
     svg {
         font-size: $icon-size-02;
-        flex-shrink: 0;
-        margin-right: $spacing-02;
-        transition: transform 0.24s;
     }
 
     > p {
@@ -76,7 +73,7 @@
         width: 2rem;
         border-radius: 50%;
         svg {
-            margin: 0;
+            width: 20rem;  
         }
     }
 }

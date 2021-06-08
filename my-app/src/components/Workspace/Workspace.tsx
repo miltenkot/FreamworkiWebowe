@@ -77,7 +77,7 @@ class Workspace extends Component<RouteComponentProps, S> {
             title: <>Explore your <b>entities</b></>,
             description: 'Take a few minutes to look at the most important elements and specificities of your entities',
             icon: FaRegBuilding,
-            route: '/entities'
+            route: '/404'
         }, {
             title: <>Structure the <b>ownership</b></>,
             description: 'Get a clear view of the ownership by looking at the realations between individuals and entities',

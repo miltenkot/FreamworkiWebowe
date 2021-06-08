@@ -4,6 +4,9 @@ import { IconType } from 'react-icons';
 import { LightenDarkenColor } from '../../../utils/colorUtils';
 import cx from 'classnames';
 import styles from "./Button.module.scss";
+import styled , { keyframes } from 'styled-components';
+import { Colors } from '../../../styledHelpers/Colors';
+import { Sizes } from '../../../styledHelpers/Sizes';
 
 type P = {
     label: string,
@@ -15,6 +18,84 @@ type P = {
     className: string,
     theme?: string
 }
+
+const ripple = keyframes`
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+`;
+
+const ButtonStyles = styled.div`
+position: relative;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    cursor: pointer;
+    transition: color 0.24s, border-color 0.24s;
+    color: ${Colors.black};
+    border: 1;
+    border-radius: 3px;
+    outline: 0;
+    border: 1px solid transparent;
+    animation: ${ripple};
+
+    >
+    svg {
+        font-size: ${Sizes.iconSize2}};
+    }
+
+    > p {
+        margin: 0;
+    }
+
+    &:hover {
+        background: rgba(${Colors.black}, 0.1);
+    }
+
+    &:focus {
+        border-color: ${Colors.black};
+        outline: 0;
+    }
+
+    &:disabled {
+        color: ${Colors.black};
+        background: ${Colors.black};
+    }
+
+    .ripple {
+        position: absolute;
+        transform: scale(0);
+        animation: ripple 600ms linear;
+        border-radius: 50%;
+        background-color: rgba(${Colors.black}, 0.25);
+    }
+
+    &.ButtonBorder {
+        border: 1px solid ${Colors.black};
+        height: 1.5rem;
+
+        &:focus {
+            border-color: ${Colors.black};
+            outline: 0;
+        }
+
+        &.ButtonIcon {
+            border-radius: 4px;
+        }
+    }
+
+    &Icon {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        svg {
+            margin: 0;
+        }
+    }
+`;
 
 class Button extends Component<P, {}> {
     ripple: RefObject<HTMLSpanElement> = React.createRef();
@@ -62,13 +143,13 @@ class Button extends Component<P, {}> {
         }
 
         return (
-            <div className={cx(styles.ButtonContainer, className)} >
+            <ButtonStyles>
                 <button style={colors} disabled={disabled} aria-label={label} type="button" className={cx(styles.Button, iconOnly ? styles.ButtonIcon : null, border ? styles.ButtonBorder : null)} onClick={(ev) => this.onClick(ev)}>
                     {Icon ? <Icon style={{color: colors.color}} /> : null}
                     {label && <p style={{color: colors.color}}>{label}</p>}
                     <span ref={this.ripple} className={styles.ripple}></span>
                 </button>
-            </div>
+            </ButtonStyles>
         );
     }
 }

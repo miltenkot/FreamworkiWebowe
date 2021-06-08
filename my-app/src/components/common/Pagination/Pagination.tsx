@@ -1,8 +1,46 @@
 import React, { Component } from 'react';
 import { formatDate, getRandomDate } from '../../../utils/dateUtils';
+import styled from 'styled-components';
+import { Colors } from '../../../styledHelpers/Colors';
+import { FontSize } from '../../../styledHelpers/FontSizes';
+import { Sizes } from '../../../styledHelpers/Sizes';
 
-import cx from 'classnames';
-import styles from "./Pagination.module.scss";
+const PaginationContainer = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+
+.Button {
+    background: none;
+    border: 0;
+    color: $info;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0 ${Sizes.spacing2};
+    font-size: ${FontSize.icon_rem0_75};   
+    transition: 0.24s border;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: ${Sizes.spacing1} ${Sizes.spacing2};
+    &:focus {
+        outline: 0;
+        border: 2px solid ${Colors.black};
+    }
+
+    .Numeric {
+        margin: 0 ${Sizes.spacing1};
+        margin: 0 ${Sizes.spacing1};
+        padding: ${Sizes.spacing1} 0;
+        width: 1.5rem;
+    }
+
+    &[disabled] {
+        color: ${Colors.black};
+    }
+ }
+
+`;
 
 type P = {
     pageSize: number,
@@ -24,7 +62,7 @@ class Pagination extends Component<P, {}> {
     getButton(index: number) {
         return <button key={`pagin_${index}`}
             disabled={this.props.currentPage === index}
-            className={cx(styles.PaginationButton, styles.PaginationButtonNumeric)}
+            className={PaginationContainer}
             onClick={() => this.props.onChange(index)}>
             {index + 1}
         </button>;
@@ -65,11 +103,11 @@ class Pagination extends Component<P, {}> {
         const pageCount = Math.ceil(itemsCount / pageSize);
 
         return (
-            <div className={styles.Pagination}>
-                <button disabled={currentPage === 0} className={styles.PaginationButton} onClick={() => onChange(currentPage - 1)}>Previous</button>
+            <PaginationContainer>
+                <button disabled={currentPage === 0} className="Button" onClick={() => onChange(currentPage - 1)}>Previous</button>
                 {this.getLayoutType(pageCount)}
-                <button disabled={pageCount - 1 === currentPage} className={styles.PaginationButton} onClick={() => onChange(currentPage + 1)}>Next</button>
-            </div>
+                <button disabled={pageCount - 1 === currentPage} className="Button" onClick={() => onChange(currentPage + 1)}>Next</button>
+            </PaginationContainer>
         );
     }
 }

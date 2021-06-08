@@ -11,7 +11,7 @@
     .tile {
         z-index: 1;
         flex-shrink: 0;
-        width: 300px;
+        width: 250px;
         >
         div {
             position: relative;
@@ -54,10 +54,11 @@
             height: auto;
             margin-top: 3rem;
             padding: $spacing-02;
+            color: gray;
 
             >
             time {
-                font-size: 0.85rem;
+                font-size: 0.70rem;
                 color: $fontColorLight;
             }
         }
@@ -67,8 +68,7 @@
             align-items: center;
 
             >
-            h3 {
-                font-size: $font-size-01;
+            h4 {
                 color: $fontColor;
             }
         }
@@ -82,7 +82,7 @@
             color: $fontColorLight;
             >
             svg {
-                margin-right: $spacing-01;
+                margin-right: $spacing-02;
             }
             .separator {
                 width: 4px;

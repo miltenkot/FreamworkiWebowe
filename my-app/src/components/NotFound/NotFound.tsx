@@ -15,10 +15,8 @@ class NotFound extends Component<P> {
     render() {
         return (
             <div className={styles.NotFound}>
-                <span className={styles.BgText}>404</span>
-                <p>This is a mock page</p>
-                <p>Go away</p>
-                <Button label="Go back home" onClick={() => this.goHome()}/>
+                <span>Site Not Found</span>
+                <Button label="return" onClick={() => this.goHome()}/>
             </div>
         );
     }

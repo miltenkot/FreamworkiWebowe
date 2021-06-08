@@ -130,46 +130,46 @@ class DropdownMenu extends Component<P, S>{
             items: [{
                 name: 'Home',
                 icon: <ImHome />,
-                route: '/'
+                route: '/404'
             }, {
                 name: 'Publications',
                 icon: <FaNewspaper />,
-                route: '/publications'
+                route: '/404'
             }, {
                 name: 'People',
                 icon: <BsFillPeopleFill />,
-                route: '/people'
+                route: '/404'
             }, {
                 name: 'Entities',
                 icon: <FaBuilding />,
-                route: '/entities'
+                route: '/404'
             }, {
                 name: 'Administration',
                 icon: <RiAdminFill />,
-                route: '/admin'
+                route: '/404'
             }]
         }, {
             title: "Workspaces",
             items: [{
                 name: 'Client contract',
                 icon: <FaFileContract />,
-                route: '/clientcontract'
+                route: '/404'
             }, {
                 name: 'Supplier contract',
                 icon: <FaFileContract />,
-                route: '/supplier'
+                route: '/404'
             }, {
                 name: 'Corporate',
                 icon: <FaBuilding />,
-                route: '/corpo'
+                route: '/404'
             }, {
                 name: 'Group norms',
                 icon: <FiBook />,
-                route: '/groupnorms'
+                route: '/404'
             }, {
                 name: 'Real Estate contracts',
                 icon: <FaFileContract />,
-                route: '/realestate'
+                route: '/404'
             }]
         }];
         const accountItems = {
@@ -178,15 +178,15 @@ class DropdownMenu extends Component<P, S>{
                 name: 'Andrzej Andrzej',
                 description: 'See profile',
                 icon: <Img className={styles.DropdownMenuUserPhoto} src={LogoImage} />,
-                route: '/profile/1'
+                route: '/404'
             }, {
                 name: 'Privacy',
                 icon: <FaUserLock />,
-                route: '/privacy'
+                route: '/404'
             }, {
                 name: 'Settings',
                 icon: <RiUserSettingsFill />,
-                route: '/settings'
+                route: '/404'
             }]
         };
 
@@ -207,8 +207,8 @@ class DropdownMenu extends Component<P, S>{
         </>;
 
         const activeItem = [...menuItems, accountItems].map(v => v.items).flat().find(v => v.route === this.props.location.pathname) || {
-            name: 'Unknown',
-            icon: <VscQuestion />,
+            name: 'Default',
+            icon: null,
             route: '/404'
         };
 
