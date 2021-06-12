@@ -100,6 +100,7 @@ button {
   padding-left: 0px;
   padding-right: 0px;
 }
+
 `;
 
 const UserTransparentContainerMain = styled.div`
@@ -113,7 +114,6 @@ const UserTransparentContainer = styled.div`
     button {
         color: ${Colors.black};
         width: 100%;
-         
     }
 `;
 
@@ -142,7 +142,7 @@ class UserCard extends Component<P> {
                     <hr/>
                     <UserCardButtonsContainer>
                         <Button icon={IoIosPeople}/>
-                        <Button label="Your network" onClick={() => this.goTo('/404')} />
+                        <Button label="Your network"  onClick={() => this.goTo('/404')} />
                         <Button iconOnly icon={IoMdPersonAdd} border/>
                     </UserCardButtonsContainer>
                     <UserCardButtonsContainer>

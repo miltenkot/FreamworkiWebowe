@@ -35,8 +35,9 @@ const WorkContainer = styled.div`
     }
     .buttons {
         display: flex;
-        justify-content: flex-start;
+        justify-content: flex;
         margin-bottom: ${Sizes.spacing2};
+        padding-right: 20px;
         gap: ${Sizes.spacing2};
     }
     .dropdown {
@@ -127,7 +128,7 @@ class Work extends Component<P, S> {
                 <WorkTile key={`work_${work.id}`} work={work} />)
             : works.length === 0 && filteredWorks.length === 0
                 ? <Skeleton type="work" count={10} />
-                : <h4 className={'header-2 header-indent'}>No matches</h4>);
+                : <h4>No matches</h4>);
     }
 
     render() {
@@ -154,14 +155,14 @@ class Work extends Component<P, S> {
                 </div>
                 {this.props.uselessButtons &&
                     <div className="buttons">
-                        <Button label="All" />
-                        <Button label="SAS" icon={BiBuildings} theme="#d5efd5" />
-                        <Button label="SARL" icon={BiBuildings} theme="#e1fffe" />
-                        <Button label="Secondary business" icon={BiBuildings} theme="#fff596" />
-                        <Button label="Communities" icon={MdPeopleOutline} theme="#c3c3c3" />
-                        <Button label="POA" icon={IoMdPaper} theme="#e4e4e4" />
-                        <Button label="Survey" icon={RiSurveyLine} />
-                        <Button label="..." />
+                        <Button label="All" theme="#b2bec3"/>
+                        <Button label="SAS" icon={BiBuildings} theme="#6c5ce7" />
+                        <Button label="SARL" icon={BiBuildings} theme="#00cec9" />
+                        <Button label="Secondary business" icon={BiBuildings} theme="#ffeaa7" />
+                        <Button label="Communities" icon={MdPeopleOutline} theme="#ff7675" />
+                        <Button label="POA" icon={IoMdPaper} theme="#d63031" />
+                        <Button label="Survey" icon={RiSurveyLine} theme="#fdcb6e"/>
+                        <Button label="..." theme="#b2bec3"/>
                     </div>
                 }
                 <div >

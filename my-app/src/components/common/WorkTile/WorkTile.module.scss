@@ -3,6 +3,8 @@
 
 .WorkTile {
     margin-bottom: $spacing-02;
+    margin-right: 50px;
+    height: 80px;
     padding: $spacing-02 $spacing-03;
     border-radius: 4px;
     background: $bg-color-light;
@@ -15,7 +17,6 @@
     }
 
     &Body {
-        margin: 0 0 $spacing-02;
         font-size: $font-size-03;
         color: $fontColor;
     }
