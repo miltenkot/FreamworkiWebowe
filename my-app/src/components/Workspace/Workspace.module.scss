@@ -11,6 +11,7 @@
             border-radius: 4px;
             background: $bg-color-light;
             box-shadow: $shadow-02;
+
             .banerImage {
                 width: 100%;
                 height: 200px;
@@ -24,21 +25,30 @@
                 display: flex;
                 align-items: center;
                 padding: $spacing-03;
-                &Button {
-                    position: absolute;
-                    top: $spacing-04;
-                    right: $spacing-04;
-                }
+
                 .tileLogo {
                     font-size: 5rem;
                     margin-right: $spacing-02;
+                    color: gray;
                 }
                 &Content {
                     p {
                         font-size: $font-size-02;
                         margin-top: $spacing-02;
-                        margin-bottom: 0;
+                        margin-bottom: 10;
                         color: $fontColorLight;
+                    }
+
+                    h2 {
+                        color: grey;
+                        justify-content: space-between;
+                        display: flex;
+                        align-items: center;
+
+                        Button {
+                            color: grey;
+                            justify-content: space-between;
+                        }
                     }
                 }
             }

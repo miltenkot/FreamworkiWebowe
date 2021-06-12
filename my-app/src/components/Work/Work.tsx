@@ -146,7 +146,7 @@ class Work extends Component<P, S> {
         return (
             <WorkContainer>
                 <div className="header">
-                    <h2>Resume your work</h2>
+                    <h2>Latest updates</h2>
                     <div className="actions">
                         <Search placeholder="Filter by title..." onChange={this.changeSearch} />
                         <Dropdown items={dropdownItems} value={dropdownValue} onChange={this.onDropdownChange} />

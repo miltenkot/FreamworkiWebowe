@@ -5,7 +5,7 @@ import { FiUsers } from "react-icons/fi";
 import { IWorkspace } from '../../../utils/Rest';
 import { Link } from 'react-router-dom';
 import RestService from '../../../utils/RestService';
-import { FaFileContract } from 'react-icons/fa';
+import { FaFileContract, FaFileArchive, FaFileCode } from 'react-icons/fa';
 import styles from "./WorkspacesSlider.module.scss";
 
 type S = {
@@ -86,22 +86,22 @@ class WorkspacesSlider extends Component<{}, S> {
         let Icon;
         switch (type) {
             case 'Contract': Icon = FaFileContract; break;
-            case 'Corporate': Icon = FaFileContract; break;
-            case 'Norms': Icon = FaFileContract; break;
-            default: Icon = FaFileContract; break;
+            case 'Corporate': Icon = FaFileArchive; break;
+            case 'Norms': Icon = FaFileCode; break;
+            default: Icon = FaFileArchive; break;
         }
-        return Icon && <Icon className={styles.tileLogo} />;
+        return FaFileContract && <Icon className={styles.tileLogo} />;
     }
 
     getIcon(type: IWorkspace['type']) {
         let Icon;
         switch (type) {
             case 'Contract': Icon = FaFileContract; break;
-            case 'Corporate': Icon = FaFileContract; break;
-            case 'Norms': Icon = FaFileContract; break;
-            default: Icon = FaFileContract; break;
+            case 'Corporate': Icon = FaFileArchive; break;
+            case 'Norms': Icon = FaFileCode; break;
+            default: Icon = FaFileArchive; break;
         }
-        return Icon && <Icon />;
+        return FaFileContract && <Icon />;
     }
 
     getWorkspaceTile(work: IWorkspace) {

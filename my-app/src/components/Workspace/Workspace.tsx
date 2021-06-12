@@ -13,6 +13,7 @@ import Work from '../Work/Work';
 import cx from "classnames";
 import styles from "./Workspace.module.scss";
 import styled from "styled-components";
+import { FaFileContract, FaFileArchive, FaFileCode } from 'react-icons/fa';
 
 interface WorkspaceParams {
     id: number;
@@ -21,7 +22,6 @@ type S = {
     workspace: IWorkspace | null
     sectionHidden: boolean
 }
-
 class Workspace extends Component<RouteComponentProps, S> {
     service = new RestService();
 
@@ -48,10 +48,10 @@ class Workspace extends Component<RouteComponentProps, S> {
     getLogo(type: IWorkspace['type'] | undefined) {
         let Icon;
         switch (type) {
-            case 'Contract': Icon = FcSurvey; break;
-            case 'Corporate': Icon = FcBusiness; break;
-            case 'Norms': Icon = FcFlowChart; break;
-            default: Icon = FcSurvey; break;
+            case 'Contract': Icon = FaFileContract; break;
+            case 'Corporate': Icon = FaFileArchive; break;
+            case 'Norms': Icon = FaFileCode; break;
+            default: Icon = FaFileContract; break;
         }
         return Icon && <Icon className={styles.tileLogo} />;
     }
@@ -110,11 +110,10 @@ class Workspace extends Component<RouteComponentProps, S> {
                 <section className={cx(styles.WorkspaceSection, styles.head)}>
                     <Img src={workspace?.background} className={styles.banerImage} />
                     <div className={styles.headInfo}>
-                        <Button className={styles.headInfoButton} iconOnly icon={RiSettings3Line} />
                         {this.getLogo(workspace?.type)}
                         <div className={styles.headInfoContent}>
-                            <h2 className="header-2">{workspace?.title}</h2>
-                            <p>Y’know, me too. That’s another thing we have in common. I hate it when you’ve got someone in your face, you try to give someone a hint and they won’t leave, and then there’s that big awkward silence…</p>
+                            <h2 className="header-2">{workspace?.title} <Button icon={RiSettings3Line} /></h2>
+                            <p>Worckspace purpose and a bit of context. This much needed description is here to remind people where they are, if they are new or have poor memory.</p>  
                         </div>
                     </div>
                 </section>
