@@ -89,6 +89,7 @@ overflow: hidden;
 width: 100%;
 border-radius: 4px;
 background: ${Colors.white};
+margin-bottom: 15px;
 `;
 
 class Publications extends Component<P> {

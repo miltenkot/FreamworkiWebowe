@@ -129,7 +129,7 @@ class WorkspacesSlider extends Component<{}, S> {
     render() {
         const { workspaces } = this.state;
         return (<>
-            <h2 className={'header-2 header-indent'}>Workspaces</h2>
+            <h2 className={'header-2'}>Workspaces</h2>
             <section className={styles.Workspaces} ref={this.slider}>
                 {workspaces?.map((ws) => this.getWorkspaceTile(ws))}
             </section>
