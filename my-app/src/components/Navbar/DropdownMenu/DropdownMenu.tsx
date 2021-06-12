@@ -175,9 +175,9 @@ class DropdownMenu extends Component<P, S>{
         const accountItems = {
             title: "Account",
             items: [{
-                name: 'Andrzej Andrzej',
+                name: user?.name || '',
                 description: 'See profile',
-                icon: <Img className={styles.DropdownMenuUserPhoto} src={LogoImage} />,
+                icon: <Img className={styles.DropdownMenuUserPhoto} src={user?.photo?.thumbnailUrl} />,
                 route: '/404'
             }, {
                 name: 'Privacy',
@@ -207,8 +207,8 @@ class DropdownMenu extends Component<P, S>{
         </>;
 
         const activeItem = [...menuItems, accountItems].map(v => v.items).flat().find(v => v.route === this.props.location.pathname) || {
-            name: 'Default',
-            icon: null,
+            name: 'Home',
+            icon: <ImHome />,
             route: '/404'
         };
 

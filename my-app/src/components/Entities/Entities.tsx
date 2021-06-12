@@ -185,14 +185,14 @@ class Entities extends Component<P, S> {
             icon: BsList
         }];
         const dropdownItems: IDropdownItem[] = [{
-            label: <div className={styles.dropdownItem}><VscFeedback /> My items</div>,
+            label: <div className={styles.dropdownItem}>My items</div>,
             value: true
         }, {
-            label: <div className={styles.dropdownItem}><VscRss /> All items</div>,
+            label: <div className={styles.dropdownItem}>All items</div>,
             value: false
         }];
         const fakeDropdown = {
-            label: <div className={styles.dropdownItem}><VscFeedback /> All </div>,
+            label: <div className={styles.dropdownItem}> All </div>,
             value: true
         }
         const dropdownValue = dropdownItems[dropdownItems.findIndex((v) => v.value === onlyMyEntities)];

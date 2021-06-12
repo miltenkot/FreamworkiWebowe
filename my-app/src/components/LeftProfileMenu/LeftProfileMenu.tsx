@@ -13,7 +13,7 @@ const LeftProfileMenuView = styled.div`
     width:200px;
     padding-right: 10px;
     height:auto;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
 `;
 

@@ -24,7 +24,7 @@ const FieldContainer = styled.div`
     overflow: hidden;
     input,
     select {
-        font-family: inherit;
+        font-family: Arial, Helvetica, sans-serif;
         font-size: ${FontSize.icon_rem1_00};
         box-sizing: border-box;
         width: 100%;

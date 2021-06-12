@@ -68,14 +68,14 @@ const UserCardContainer = styled.div`
         margin-top: ${Sizes.spacing1};
         color: ${Colors.electronBlue}};
         font-weight: normal;
-        font-family: sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
         font-size: 14px;
     }
 
     h4 {
         margin: 0 0 ${Sizes.spacing1};
         color: ${Colors.gray};
-        font-family: sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
         font-size: 12px;
     }
 
@@ -135,9 +135,9 @@ class UserCard extends Component<P> {
             <>
                 <UserCardContainer>
                     <Link to="/profile/1">
-                        <Img skeletonize src={LogoImage} className="Picture" alt="Profile pic" />
-                        <h3 className="Name">{'Andrzej Andrzej'}</h3>
-                        <h4 className="Position">Job title - {'Company'}</h4>
+                        <Img skeletonize src={user?.photo?.url} className="Picture" alt="Profile pic" />
+                        <h3 className="Name">{user?.name}</h3>
+                        <h4 className="Position">Job title - {user?.company?.name}</h4>
                     </Link >
                     <hr/>
                     <UserCardButtonsContainer>

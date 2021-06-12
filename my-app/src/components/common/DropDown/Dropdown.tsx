@@ -2,6 +2,29 @@ import React, { Component, RefObject } from 'react';
 import { MdArrowDropDown } from 'react-icons/md';
 import cx from 'classnames';
 import styles from "./Dropdown.module.scss";
+import styled from 'styled-components';
+import { Sizes } from '../../../styledHelpers/Sizes';
+import { Colors } from '../../../styledHelpers/Colors';
+
+const DropDownContainer = styled.div`
+font-size: 0.85rem;
+position: relative;
+display: flex;
+overflow: hidden;
+align-items: center;
+justify-content: space-between;
+min-width: 8rem;
+height: 2rem;
+padding: $spacing-01 ${Sizes.spacing2};
+cursor: pointer;
+transition: color 0.24s, border-color 0.24s;
+color: ${Colors.electronBlue};
+border: 0;
+border: 2px solid transparent;
+border-radius: 4px;
+outline: 0;
+background: transparent;
+`;
 
 export interface IDropdownItem {
     label: String | React.ReactNode,
