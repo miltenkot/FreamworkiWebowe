@@ -14,7 +14,6 @@ import { UsersState } from '../../../reducers/UsersReducer';
 import { connect } from 'react-redux';
 import { usersFetchData } from './../../../actions/UserActions';
 
-import LogoImage from "../../../assets/image.jpeg";
 import { Colors } from '../../../styledHelpers/Colors';
 import { Sizes } from '../../../styledHelpers/Sizes';
 
