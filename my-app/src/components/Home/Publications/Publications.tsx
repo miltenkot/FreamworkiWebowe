@@ -158,7 +158,7 @@ class Publications extends Component<P> {
         const post = this.props.publications[0];
 
         return (post ? <CustomArticle className={styles.PublicationsTile} >
-            <Img skeletonize className={styles.bgImage} src={post.photo?.url} alt={post.photo?.title} />
+            <Img className={styles.bgImage} src={post.photo?.url} alt={post.photo?.title} />
             <div className={styles.PublicationsTileContent}>
                 <h2 className={'header-3'}>{post.title}</h2>
                 <UserSignature userId={post.userId} />
