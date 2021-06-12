@@ -4,7 +4,7 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 import React, { Component } from 'react';
 
 import Button from '../common/Button/Button';
-import { GoGitMerge } from 'react-icons/go';
+import { VscSymbolStructure } from 'react-icons/all';
 import { IWorkspace } from '../../utils/Rest';
 import Img from '../common/Img/Img';
 import RestService from '../../utils/RestService';
@@ -12,6 +12,7 @@ import { RiSettings3Line } from 'react-icons/ri';
 import Work from '../Work/Work';
 import cx from "classnames";
 import styles from "./Workspace.module.scss";
+import styled from "styled-components";
 
 interface WorkspaceParams {
     id: number;
@@ -20,6 +21,7 @@ type S = {
     workspace: IWorkspace | null
     sectionHidden: boolean
 }
+
 class Workspace extends Component<RouteComponentProps, S> {
     service = new RestService();
 
@@ -46,7 +48,7 @@ class Workspace extends Component<RouteComponentProps, S> {
     getLogo(type: IWorkspace['type'] | undefined) {
         let Icon;
         switch (type) {
-            case 'Contarct': Icon = FcSurvey; break;
+            case 'Contract': Icon = FcSurvey; break;
             case 'Corporate': Icon = FcBusiness; break;
             case 'Norms': Icon = FcFlowChart; break;
             default: Icon = FcSurvey; break;
@@ -81,7 +83,7 @@ class Workspace extends Component<RouteComponentProps, S> {
         }, {
             title: <>Structure the <b>ownership</b></>,
             description: 'Get a clear view of the ownership by looking at the realations between individuals and entities',
-            icon: GoGitMerge,
+            icon: VscSymbolStructure,
             route: '/404'
         }, {
             title: <>Define the <b>calendar</b></>,
@@ -94,7 +96,6 @@ class Workspace extends Component<RouteComponentProps, S> {
             const Ico = tile.icon;
             const content = <>
                 <Ico className={styles.tileIcon} />
-                <Ico className={styles.tileIconBg} />
                 <h2 className={styles.tileTitle}>{tile.title}</h2>
                 <p className={styles.tileDesc}>{tile.description}</p>
             </>;
@@ -118,8 +119,7 @@ class Workspace extends Component<RouteComponentProps, S> {
                     </div>
                 </section>
                 <section className={styles.WorkspaceSection} >
-                    <h3 className={'header-3'}>Start working on what corporate matters</h3>
-                    <Button className={styles.hideBtn} label={sectionHidden ? 'Show' : 'Hide'} onClick={() => this.hideSection()} />
+                    <h3 className={'header-3'}>Start working on what corporate matters <Button className={styles.hideBtn} label={sectionHidden ? 'Show' : 'Hide'} onClick={() => this.hideSection()} /></h3>
                     <div className={styles.tiles} hidden={sectionHidden}>
                         {this.getTiles()}
                     </div>

@@ -14,14 +14,12 @@ const MenuContainer = styled.div`
     padding-top: ${Sizes.spacing3};
 `;
 
-class Menu extends Component {
-    render() {
+const Menu = () =>  {
         return (
             <MenuContainer>
                 <UserCard />
             </MenuContainer>
         );
-    }
 }
 
 export default Menu;

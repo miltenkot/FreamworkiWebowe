@@ -3,8 +3,7 @@
 .Workspace {
     &Section {
         position: relative;
-        margin-bottom: $spacing-05;
-        padding: $spacing-02 $spacing-03;
+        padding-top: $spacing-03;
         color: $fontColor;
         &.head {
             overflow: hidden;
@@ -14,7 +13,7 @@
             box-shadow: $shadow-02;
             .banerImage {
                 width: 100%;
-                height: 220px;
+                height: 200px;
                 margin-bottom: $spacing-02;
 
                 object-fit: cover;
@@ -46,14 +45,27 @@
         }
         >
         h3 {
-            margin-bottom: $spacing-04;
+            display: flex;
+            justify-content: space-between;
+            color: gray;
+            font-weight: bold;
+            margin-top: 10px;
+
+            Button {
+                color: gray;
+                font-weight: bold;
+                font-size: 12px;
+            }
+
+            .hideBtn {
+                position: absolute;
+                top: 0;
+
+                right: $spacing-03;
+            }
         }
 
-        .hideBtn {
-            position: absolute;
-            top: 0;
-            right: $spacing-03;
-        }
+        
     }
     .tiles {
         display: grid;
