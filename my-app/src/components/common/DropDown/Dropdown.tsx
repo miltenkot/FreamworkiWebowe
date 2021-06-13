@@ -1,12 +1,14 @@
 import React, { Component, RefObject } from 'react';
 import { MdArrowDropDown } from 'react-icons/md';
-import cx from 'classnames';
-import styles from "./Dropdown.module.scss";
 import styled from 'styled-components';
 import { Sizes } from '../../../styledHelpers/Sizes';
 import { Colors } from '../../../styledHelpers/Colors';
 
 const DropDownContainer = styled.div`
+    position: relative;
+`;
+
+const Button = styled.button`
 font-size: 0.85rem;
 position: relative;
 display: flex;
@@ -15,15 +17,47 @@ align-items: center;
 justify-content: space-between;
 min-width: 8rem;
 height: 2rem;
-padding: $spacing-01 ${Sizes.spacing2};
+padding: ${Sizes.spacing1} ${Sizes.spacing2};
 cursor: pointer;
 transition: color 0.24s, border-color 0.24s;
 color: ${Colors.electronBlue};
-border: 0;
-border: 2px solid transparent;
-border-radius: 4px;
+border: 1px solid transparent;
 outline: 0;
 background: transparent;
+background: rgba(${Colors.electronBlue}, 0.1);
+border-bottom: 2x solid;
+
+    svg {
+        font-size: 20px;
+        flex-shrink: 0;
+        flex-shrink: 0;
+        margin-left: ${Sizes.spacing1};
+    }
+
+    &:hover,
+    &:focus {
+        border: 1 solid;
+        border-radius: 4px; 
+        border-color:  ${Colors.infoBlue};
+    }
+`;
+
+const Value = styled.div`
+    font-size: 0.85rem;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    left: 0;
+    color: ${Colors.electronBlue};
+    border-radius: 0 0 4px 4px;
+    background: rgb(243, 245, 252);
+
+    backdrop-filter: blur(4px);
+`;
+
+const Item = styled.div`
+    padding: ${Sizes.spacing1} ${Sizes.spacing2};
+    cursor: pointer;
 `;
 
 export interface IDropdownItem {
@@ -75,17 +109,6 @@ class Dropdown extends Component<P, S> {
     }
 
     onClick(ev: React.MouseEvent) {
-        const button = ev.currentTarget as HTMLButtonElement;
-        const ripple = this.ripple.current;
-        const diameter = Math.max(button.clientWidth, button.clientHeight);
-        const radius = diameter / 2;
-        if (ripple) {
-            ripple.style.width = ripple.style.height = `${diameter}px`;
-            ripple.style.left = `${ev.clientX - button.offsetLeft - radius}px`;
-            ripple.style.top = `${ev.clientY - button.offsetTop - radius}px`;
-            ripple.className = styles.ripple;
-            button.appendChild(ripple);
-        }
         this.setState((prevState) => {
             return {
                 isListOpen: !prevState.isListOpen
@@ -107,22 +130,21 @@ class Dropdown extends Component<P, S> {
     }
 
     render() {
-        const { className, disabled, items, value } = this.props;
+        const { disabled, items, value } = this.props;
 
         return (
-            <div className={cx(styles.DropdownContainer, className)} >
-                <button disabled={disabled} type="button" className={cx(styles.Dropdown, this.state.isListOpen ? styles.open : null)} onClick={(ev) => this.onClick(ev)}>
+            <DropDownContainer  >
+                <Button disabled={disabled} type="button" onClick={(ev) => this.onClick(ev)}>
                     {value?.label} <MdArrowDropDown />
-                    <span ref={this.ripple} className={styles.ripple}></span>
-                </button>
+                </Button>
                 {this.state.isListOpen &&
-                    <div className={styles.DropdownValues} >
-                        {items.map((v, i) => <div key={`dropOpt_${i}`} className={styles.DropdownItem} onClick={() => this.onChange(v.value)}>
+                    <Value >
+                        {items.map((v, i) => <Item key={`dropOpt_${i}`} onClick={() => this.onChange(v.value)}>
                             {v.label}
-                        </div>)}
-                    </div>
+                        </Item>)}
+                    </Value>
                 }
-            </div>
+            </DropDownContainer>
         );
     }  
 

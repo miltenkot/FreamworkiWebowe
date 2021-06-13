@@ -11,7 +11,6 @@ import { RiAdminFill } from 'react-icons/ri';
 import { FiBook } from 'react-icons/fi';
 import { RiUserSettingsFill } from 'react-icons/ri';
 import Img from '../../common/Img/Img';
-import { VscQuestion } from 'react-icons/vsc';
 import { MdArrowDropDown } from 'react-icons/md';
 import { AnyAction, Dispatch } from 'redux';
 import Search from '../../common/Search/Search';
@@ -20,7 +19,6 @@ import { FiLogOut } from 'react-icons/fi';
 import { IStore } from '../../../store';
 import { connect } from 'react-redux';
 import { usersFetchData } from '../../../actions/UserActions';
-import LogoImage from "../../../assets/image.jpeg";
 
 interface IMenuItem {
     title: string,
@@ -130,46 +128,46 @@ class DropdownMenu extends Component<P, S>{
             items: [{
                 name: 'Home',
                 icon: <ImHome />,
-                route: '/404'
+                route: '/'
             }, {
                 name: 'Publications',
                 icon: <FaNewspaper />,
-                route: '/404'
+                route: '/publications'
             }, {
                 name: 'People',
                 icon: <BsFillPeopleFill />,
-                route: '/404'
+                route: '/people'
             }, {
                 name: 'Entities',
                 icon: <FaBuilding />,
-                route: '/404'
+                route: '/entities'
             }, {
                 name: 'Administration',
                 icon: <RiAdminFill />,
-                route: '/404'
+                route: '/admin'
             }]
         }, {
             title: "Workspaces",
             items: [{
                 name: 'Client contract',
                 icon: <FaFileContract />,
-                route: '/404'
+                route: '/clientcontract'
             }, {
                 name: 'Supplier contract',
                 icon: <FaFileContract />,
-                route: '/404'
+                route: '/supplier'
             }, {
                 name: 'Corporate',
                 icon: <FaBuilding />,
-                route: '/404'
+                route: '/corpo'
             }, {
                 name: 'Group norms',
                 icon: <FiBook />,
-                route: '/404'
+                route: '/groupnorms'
             }, {
                 name: 'Real Estate contracts',
                 icon: <FaFileContract />,
-                route: '/404'
+                route: '/realestate'
             }]
         }];
         const accountItems = {
@@ -178,15 +176,15 @@ class DropdownMenu extends Component<P, S>{
                 name: user?.name || '',
                 description: 'See profile',
                 icon: <Img className={styles.DropdownMenuUserPhoto} src={user?.photo?.thumbnailUrl} />,
-                route: '/404'
+                route: '/profile/1'
             }, {
                 name: 'Privacy',
                 icon: <FaUserLock />,
-                route: '/404'
+                route: '/privacy'
             }, {
                 name: 'Settings',
                 icon: <RiUserSettingsFill />,
-                route: '/404'
+                route: '/settings'
             }]
         };
 
