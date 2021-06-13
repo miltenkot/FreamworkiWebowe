@@ -102,6 +102,24 @@ button {
 
 `;
 
+const CenterButton = styled.button`
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    cursor: pointer;
+    transition: color 0.24s, border-color 0.24s;
+    color: $active;
+    border: 0;
+    border-radius: 4px;
+    outline: 0;
+    background: transparent;
+    border: 2px solid transparent;
+    width: 100px;
+`;
+
 const UserTransparentContainerMain = styled.div`
 margin-left: -70px;
 `;
@@ -141,12 +159,12 @@ class UserCard extends Component<P> {
                     <hr/>
                     <UserCardButtonsContainer>
                         <Button icon={IoIosPeople}/>
-                        <Button label="Your network"  onClick={() => this.goTo('/404')} />
+                        <CenterButton onClick={() => this.goTo('/404')}>Your network</CenterButton>
                         <Button iconOnly icon={IoMdPersonAdd} border/>
                     </UserCardButtonsContainer>
                     <UserCardButtonsContainer>
                         <Button icon={IoNewspaperOutline} />
-                        <Button label="Your publications" onClick={() => this.goTo('/404')} />
+                        <CenterButton onClick={() => this.goTo('/404')}>Your publications</CenterButton>
                         <Button iconOnly icon={IoAdd} border/>
                     </UserCardButtonsContainer>
                 </UserCardContainer>

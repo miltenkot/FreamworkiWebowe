@@ -79,7 +79,7 @@ Button {
     margin-left: 0px;
     margin-right: 660px; 
     font-weight: 500;
-    font-size: 12px;
+    font-size: 13px;
 }
 `;
 
