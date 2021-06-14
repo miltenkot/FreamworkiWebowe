@@ -10,9 +10,8 @@ import { Link } from 'react-router-dom';
 import { RiNewspaperLine } from "react-icons/ri";
 import { UsersState } from '../../../reducers/UsersReducer';
 import { connect } from 'react-redux';
-import cx from 'classnames';
-import styles from "./UserSignature.module.scss";
 import { usersFetchData } from './../../../actions/UserActions';
+import styled from 'styled-components';
 
 interface StateProps {
     users: UsersState['users']
@@ -28,6 +27,46 @@ type P = {
     userId: number,
     type: 'user' | 'company'
 } & StateProps & DispatchProps
+
+const UserSignatureCont = styled.div`
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    `;
+
+const CompanyCont = styled.div`
+    display: flex;
+    align-items: center;
+
+    svg {
+        margin-right: 0.25rem;
+    }
+`;
+
+const LinkCont = styled(Link)`
+display: flex;
+align-items: center;
+border-radius: 3px;
+padding-right: 0.25rem;
+margin: 0 0.25rem;
+.UserAvatar {
+    margin: 0 0.25rem;
+}
+
+&:hover {
+    background: rgba(red, 0.25);
+}
+`;
+
+const UserAvatarCont = styled(Img)`
+width: 15px;
+height: 15px;
+margin: 0 0.5rem;
+border-radius: 50%;
+
+object-fit: cover;
+`;
 
 class UserSignature extends Component<P, {}> {
 
@@ -54,17 +93,17 @@ class UserSignature extends Component<P, {}> {
     renderComType() {
         if (this.isCompany) {
             return <>
-                <div className={styles.Company}>
+                <CompanyCont >
                     <BiBuilding />
                     <span>Company</span>
-                </div>
+                </CompanyCont>
             </>
         }
 
-        return <div className={styles.Company}>
+        return <CompanyCont >
             <RiNewspaperLine />
             <span>Contractor</span>
-        </div>
+        </CompanyCont>
     }
 
     contentSwitch() {
@@ -76,21 +115,19 @@ class UserSignature extends Component<P, {}> {
                 case 'user':
                     return <>
                         <time>{formatDate(this.randomDate)}</time>
-                        <Link to={`/profile/${userId}`} className={styles.userLink}>
-                            <Img skeletonize className={styles.UserAvatar} src={user.photo.thumbnailUrl} alt={`${user.name} avatar`} />
+                        <LinkCont to={`/profile/${userId}`}>
+                            <UserAvatarCont skeletonize src={user.photo.thumbnailUrl} alt={`${user.name} avatar`} />
                             <p>{user.name}</p>
-                        </Link>
+                        </LinkCont>
                     </>;
                 case 'company':
                     return <>
-                        <Img skeletonize className={styles.UserAvatar} src={user.photo.thumbnailUrl} alt={`${user.company.name} logo`} />
+                        <UserAvatarCont skeletonize src={user.photo.thumbnailUrl} alt={`${user.company.name} logo`} />
                         <p>{user.company.name}</p>
-                        <div className={styles.separator}></div>
                         {this.renderComType()}
-                        <div className={styles.separator}></div>
-                        <Link to={`/profile/${userId}`} className={styles.userLink}>
+                        <LinkCont to={`/profile/${userId}`}>
                             <time>Updated {formatDate(this.randomDate, true)} by {user.name}</time>
-                        </Link>
+                        </LinkCont>
                     </>;
             }
         }
@@ -103,9 +140,9 @@ class UserSignature extends Component<P, {}> {
         const { className, onWhiteBg } = this.props;
 
         return (
-            <div className={cx(className, styles.UserSignature, onWhiteBg ? styles.UserSignatureDark : null)}>
+            <UserSignatureCont >
                 {this.contentSwitch()}
-            </div>
+            </UserSignatureCont>
         );
     }
 }

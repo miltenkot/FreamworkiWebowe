@@ -19,6 +19,7 @@ import { FiLogOut } from 'react-icons/fi';
 import { IStore } from '../../../store';
 import { connect } from 'react-redux';
 import { usersFetchData } from '../../../actions/UserActions';
+import styled from "styled-components";
 
 interface IMenuItem {
     title: string,
@@ -44,6 +45,11 @@ type S = {
     isListOpen: boolean,
     searchValue: string
 }
+
+const LogoutButton = styled.button`
+    color: grey;
+    width: 100%;
+`;
 
 class DropdownMenu extends Component<P, S>{
     ripple: RefObject<HTMLSpanElement> = React.createRef();
