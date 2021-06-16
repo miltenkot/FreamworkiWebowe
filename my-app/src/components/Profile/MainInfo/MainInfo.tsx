@@ -5,16 +5,19 @@ import { VscClose, VscEdit, VscSave } from "react-icons/vsc";
 
 import Button from './../../common/Button/Button';
 import Field from './../../common/Field/Field';
-import { INotification } from '../../../reducers/NotificationReducer';
 import { IUserLocal } from './../../../utils/Rest';
 import Img from './../../common/Img/Img';
 import RestService from './../../../utils/RestService';
-import { addNotification } from '../../../actions/NotificationsActions';
 import { connect } from 'react-redux';
 import parentStyles from "./../Profile.module.scss";
 import { set } from 'lodash';
 import { setUser } from './../../../actions/UserActions';
 import styles from "./MainInfo.module.scss";
+import styled from 'styled-components';
+
+const ProfileButton = styled(Button)`
+    height: 1rem;
+`;
 
 interface IField {
     label: string | undefined;
@@ -25,8 +28,7 @@ interface IField {
 }
 
 interface DispatchProps {
-    setUser: (id: IUserLocal) => void,
-    addNotification: (notif: INotification) => void
+    setUser: (id: IUserLocal) => void
 }
 
 type P = {
@@ -75,10 +77,6 @@ class MainInfo extends Component<P, S> {
             profileBasicEditMode: false
         }, () => {
             if (this.state.profile) {
-                this.props.addNotification({
-                    title:`Profile of ${this.state.profile.name} was updated`,
-                    user: this.state.profile
-                });
                 this.props.setUser(this.state.profile)
                 this.props.changeState({ profile: this.state.profile });
                 this.validTemp = {};
@@ -162,10 +160,10 @@ class MainInfo extends Component<P, S> {
                 <div className={parentStyles.editHeader}>
                     {this.state.profileBasicEditMode
                         ? <>
-                            <Button iconOnly className={parentStyles.editButton} disabled={isSomeInvalid} icon={VscSave} onClick={() => this.saveBasics()} />
-                            <Button iconOnly className={parentStyles.editButton} icon={VscClose} onClick={this.cancelEdit} />
+                            <Button iconOnly disabled={isSomeInvalid} icon={VscSave} onClick={() => this.saveBasics()} />
+                            <Button iconOnly icon={VscClose} onClick={this.cancelEdit} />
                         </>
-                        : <Button iconOnly className={parentStyles.editButton} icon={VscEdit} onClick={this.editBasics} />}
+                        : <Button iconOnly  icon={VscEdit} onClick={this.editBasics} />}
                 </div>
                 <div className={styles.MainInfoPhoto}>
                     <div className={styles.MainInfoPhotoCont}>
@@ -176,7 +174,7 @@ class MainInfo extends Component<P, S> {
                                 : <RiBriefcase4Line />}
                         </div>
                     </div>
-                    <Button className={styles.SeeProfile} label={"See profile"} />
+                    <ProfileButton label={"See profile"} />
                 </div>
                 <div className={styles.MainInfoData}>
                     {this.createForm(this.state.profileBasicEditMode, basic1)}
@@ -192,8 +190,7 @@ class MainInfo extends Component<P, S> {
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     return {
-        setUser: (user: IUserLocal) => dispatch(setUser(user) as unknown as AnyAction),
-        addNotification: (notif: INotification) => dispatch(addNotification(notif) as unknown as AnyAction)
+        setUser: (user: IUserLocal) => dispatch(setUser(user) as unknown as AnyAction)
     };
 };
 

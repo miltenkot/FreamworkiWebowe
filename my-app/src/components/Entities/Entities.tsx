@@ -10,14 +10,12 @@ import { VscFeedback, VscFilter, VscRss } from 'react-icons/vsc';
 import Button from '../common/Button/Button';
 import EntitiesFilters from './EntitiesFilters/EntitiesFilters';
 import { IFakeCompany } from '../../utils/Rest';
-import { INotification } from '../../reducers/NotificationReducer';
 import { IStore } from '../../store';
 import Img from '../common/Img/Img';
 import RestService from '../../utils/RestService';
 import { RiSettings3Line } from 'react-icons/ri'
 import Search from '../common/Search/Search';
 import Skeleton from '../common/Skeleton/Skeleton';
-import { addNotification } from '../../actions/NotificationsActions';
 import { connect } from 'react-redux';
 import cx from "classnames";
 import { sortBy } from 'lodash';
@@ -39,7 +37,6 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    addNotification: (notif: INotification) => void,
     switchFullscreen: () => void
 }
 
@@ -145,9 +142,6 @@ class Entities extends Component<P, S> {
 
     share() {
         navigator.clipboard.writeText(window.location.href);
-        this.props.addNotification({
-            title: `${window.location.href} coppied to clipboard`
-        });
     }
 
     toggleFilters() {
@@ -234,17 +228,10 @@ class Entities extends Component<P, S> {
     }
 }
 
-const mapStateToProps = (state: IStore) => {
-    return {
-        isFullscreen: state.FullscreenReducer.isFullscreen
-    }
-};
-
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     return {
-        switchFullscreen: () => dispatch(switchFullscreen() as unknown as AnyAction),
-        addNotification: (notif: INotification) => dispatch(addNotification(notif) as unknown as AnyAction)
+        switchFullscreen: () => dispatch(switchFullscreen() as unknown as AnyAction)
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Entities);
+export default connect(mapDispatchToProps)(Entities);

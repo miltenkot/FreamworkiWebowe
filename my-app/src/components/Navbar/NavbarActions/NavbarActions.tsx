@@ -1,5 +1,5 @@
 import { ImBell, ImBubbles, ImHome } from "react-icons/im";
-import React, { Component } from 'react';
+import React from 'react';
 
 import ActionButton from '../../common/ActionButton/ActionButton';
 import styled from "styled-components";
@@ -12,8 +12,7 @@ justify-content: center;
 }
 `;
 
-class NavbarActions extends Component {
-    render() {
+const NavbarActions = () => {
         return (
             <>
                 <NavbarAction>
@@ -23,7 +22,6 @@ class NavbarActions extends Component {
                 </NavbarAction>
             </>
         );
-    }
 }
 
 export default NavbarActions;

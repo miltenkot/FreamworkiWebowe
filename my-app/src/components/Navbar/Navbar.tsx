@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { FullscreenState } from '../../reducers/FullscreenReducer';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import logo from './../../assets/react-logo.png';

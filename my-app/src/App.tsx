@@ -12,12 +12,9 @@ import Menu from './components/Menu/Menu';
 import Navbar from './components/Navbar/Navbar';
 import NotFound from "./components/NotFound/NotFound";
 import Profile from "./components/Profile/Profile";
-import { Provider } from 'react-redux';
 import React from 'react';
 import Workspace from "./components/Workspace/Workspace";
-import configureStore from './store';
 
-const store = configureStore();
 const routes = [
   {
     exact: true,
@@ -45,7 +42,6 @@ const routes = [
 
 function App() {
   return (
-    <Provider store={store}>
       <Router>
         <div className="app">
           <Navbar />
@@ -61,7 +57,6 @@ function App() {
           </div>
         </div>
       </Router>
-    </Provider>
   )
 }
 

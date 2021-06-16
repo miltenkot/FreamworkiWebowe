@@ -5,10 +5,18 @@ import Button from './../../common/Button/Button';
 import Field from './../../common/Field/Field';
 import { IProfile } from '../../../utils/Rest';
 import parentStyles from "./../Profile.module.scss";
-import styles from "./Fees.module.scss";
 import { v4 as uuid } from "uuid";
+import styled from 'styled-components';
 
 type _keys = 'id' | 'year' | 'costCenter' | 'totalAmount' | 'firm';
+
+const FeesContainer = styled.div`
+padding: 0.5rem 0;
+`;
+
+const ContentContainer = styled.div`
+ padding-left: 1rem;
+`;
 
 interface ITable {
     columnName: string | undefined;
@@ -157,12 +165,12 @@ class Fees extends Component<P, S> {
         }];
 
         return (
-            <div className={styles.Reviews}>
+            <FeesContainer>
                 <h3 className="header-3">Amount of fees</h3>
-                <div className={styles.ReviewsData}>
+                <ContentContainer>
                     {this.createTable(this.props.formActive, table)}
-                </div>
-            </div>
+                </ContentContainer>
+            </FeesContainer>
         );
     }
 }
