@@ -6,7 +6,7 @@ import { Dispatch } from "redux";
 import { IStore } from "../store";
 import { UsersState } from "../reducers/UsersReducer";
 
-export function worksFetchDataSuccess(works: IComment[]) {
+export const worksFetchDataSuccess = (works: IComment[]) => {
     return {
         type: WorksActions.GET,
         works
@@ -21,7 +21,7 @@ async function getPost(id: number, state: IStore) {
     return post;
 }
 
-export function worksFetchData(limit?: number) {
+export const worksFetchData = (limit?: number) => {
     const args = {
         '_limit': limit
     };
@@ -41,12 +41,6 @@ export function worksFetchData(limit?: number) {
             return dispatch(worksFetchDataSuccess(works));
         }
         fetch(`${API}/comments${argString}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-                return response;
-            })
             .then((response) => response.json())
             .then(async (worksFetch: IComment[]) => {
                 return Promise.all(worksFetch.map(async (work) => {

@@ -4,23 +4,12 @@ import { IconType } from 'react-icons';
 import { LightenDarkenColor } from '../../../utils/colorUtils';
 import cx from 'classnames';
 import styles from "./Button.module.scss";
-import styled , { keyframes } from 'styled-components';
+import styled , { keyframes, css } from 'styled-components';
 import { Colors } from '../../../styledHelpers/Colors';
 import { Sizes } from '../../../styledHelpers/Sizes';
 
-type P = {
-    label: string,
-    onClick: Function,
-    icon: IconType,
-    iconOnly: boolean,
-    disabled: boolean,
-    border: boolean,
-    className: string,
-    theme?: string
-}
-
-const ButtonStyles = styled.div`
-position: relative;
+const ButtonContainer = styled.div`
+    position: relative;
     display: flex;
     overflow: hidden;
     align-items: center;
@@ -35,8 +24,39 @@ position: relative;
     border: 1px solid transparent;
 `;
 
-class Button extends Component<P, {}> {
-    static defaultProps: P = {
+const DefaultButton = styled.button`
+    
+`;
+
+const Button = (props: any) => {
+    const Icon = props.icon
+
+    let colors = {
+        backgroundColor: '',
+        color: '',
+        borderColor: ''
+    };
+
+
+
+    if (props.theme) {
+        colors = {
+            backgroundColor: props.theme,
+            color: LightenDarkenColor(props.theme, -90),
+            borderColor: props.border ? LightenDarkenColor(props.theme, -90) : ''
+        }    
+    }
+//className={cx(styles.Button, props.iconOnly ? styles.ButtonIcon : null, props.border ? styles.ButtonBorder : null)} 
+    return (
+    <ButtonContainer>
+     <DefaultButton className={cx(styles.Button, props.iconOnly ? styles.ButtonIcon : null, props.border ? styles.ButtonBorder : null)} style={colors} disabled={props.disabled} aria-label={props.label}  onClick={(ev) => props.onClick(ev)}>
+        {props.icon ? <Icon style={{color: colors.color}} /> : null}
+        {props.label && <p style={{color: colors.color}}>{props.label}</p>}
+     </DefaultButton>
+    </ButtonContainer>);
+};
+
+  Button.defaultProps = {
         label: null,
         icon: null,
         iconOnly: false,
@@ -44,37 +64,6 @@ class Button extends Component<P, {}> {
         disabled: false,
         border: false,
         onClick: () => null as Function
-    }
-
-    onClick(ev: React.MouseEvent) {
-        this.props.onClick(ev);
-    }
-
-    render() {
-        const { label, icon, iconOnly, disabled, border, theme } = this.props;
-        const Icon = icon;
-        let colors = {
-            backgroundColor: '',
-            color: '',
-            borderColor: ''
-        };
-        if (theme) {
-            colors = {
-                backgroundColor: theme,
-                color: LightenDarkenColor(theme, -90),
-                borderColor: border ? LightenDarkenColor(theme, -90) : ''
-            }    
-        }
-
-        return (
-            <ButtonStyles>
-                <button style={colors} disabled={disabled} aria-label={label} type="button" className={cx(styles.Button, iconOnly ? styles.ButtonIcon : null, border ? styles.ButtonBorder : null)} onClick={(ev) => this.onClick(ev)}>
-                    {Icon ? <Icon style={{color: colors.color}} /> : null}
-                    {label && <p style={{color: colors.color}}>{label}</p>}
-                </button>
-            </ButtonStyles>
-        );
-    }
-}
-
-export default Button;
+  }
+  
+  export default Button;

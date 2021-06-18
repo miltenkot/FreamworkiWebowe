@@ -10,17 +10,14 @@ import { VscFeedback, VscFilter, VscRss } from 'react-icons/vsc';
 import Button from '../common/Button/Button';
 import EntitiesFilters from './EntitiesFilters/EntitiesFilters';
 import { IFakeCompany } from '../../utils/Rest';
-import { IStore } from '../../store';
 import Img from '../common/Img/Img';
 import RestService from '../../utils/RestService';
 import { RiSettings3Line } from 'react-icons/ri'
 import Search from '../common/Search/Search';
 import Skeleton from '../common/Skeleton/Skeleton';
-import { connect } from 'react-redux';
 import cx from "classnames";
 import { sortBy } from 'lodash';
 import styles from "./Entities.module.scss";
-import { switchFullscreen } from './../../actions/FullscreenActions';
 
 type S = {
     listMode: boolean,
@@ -36,16 +33,10 @@ interface StateProps {
     isFullscreen: boolean
 }
 
-interface DispatchProps {
-    switchFullscreen: () => void
-}
-
-type P = DispatchProps & StateProps;
-
-class Entities extends Component<P, S> {
+class Entities extends Component<StateProps, S> {
     service;
 
-    constructor(props: P) {
+    constructor(props: StateProps) {
         super(props);
         this.service = new RestService();
         this.state = {
@@ -152,10 +143,6 @@ class Entities extends Component<P, S> {
         })
     }
 
-    switchFullscreen() {
-        this.props.switchFullscreen();
-    }
-
     getEntitiesUI(entities: IFakeCompany[]) {
 
         return entities.map((ent, i) => <div key={`entity_${ent.id}`} className={styles.Entity}>
@@ -207,7 +194,7 @@ class Entities extends Component<P, S> {
                         <Button icon={MdMoreHoriz} iconOnly />
                         <Button icon={sort === 2 ? FaSortAlphaUpAlt : FaSortAlphaUp} className={sort > 0 ? styles.optionsButtonActive : ''} label="Sort" onClick={() => this.changeSort()} />
                         <Button icon={VscFilter} label="Filters" onClick={() => this.toggleFilters()} className={showFilters ? styles.optionsButtonActive : ''} />
-                        <Button icon={!this.props.isFullscreen ? BsArrowsAngleExpand : BsArrowsAngleContract} iconOnly onClick={() => this.switchFullscreen()} />
+                        <Button icon={ BsArrowsAngleExpand } iconOnly />
                         <Button icon={MdShare} label="Share" onClick={() => this.share()} />
                     </div>
                     <div className={styles.EntitiesOptionsRight}>
@@ -228,10 +215,4 @@ class Entities extends Component<P, S> {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
-    return {
-        switchFullscreen: () => dispatch(switchFullscreen() as unknown as AnyAction)
-    };
-};
-
-export default connect(mapDispatchToProps)(Entities);
+export default Entities;

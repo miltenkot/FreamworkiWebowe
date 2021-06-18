@@ -5,26 +5,26 @@ import { Dispatch } from "redux";
 import { IStore } from "../store";
 import { IUserLocal } from "../utils/Rest";
 
-export function usersFetchDataSuccess(users: IUserLocal) {
+export const usersFetchDataSuccess = (users: IUserLocal) => {
     return {
         type: UsersActions.GET,
         users
     };
 }
 
-export function usersSetData(user: IUserLocal) {
+export const usersSetData = (user: IUserLocal) => {
     return {
         type: UsersActions.SET,
         user
     };
 }
 
-function getUserPhoto(id: number): Promise<any> {
+const getUserPhoto = (id: number): Promise<any> => {
     return fetch(`${API}/photos/${id}`)
         .then(response => response.json())
 }
 
-export function usersFetchData(id: number) {
+export const usersFetchData = (id: number) => {
     return (dispatch: Dispatch, stateF: any) => {
         const state = stateF() as IStore;
         let user: IUserLocal = null;
@@ -35,12 +35,6 @@ export function usersFetchData(id: number) {
         }
 
         fetch(`${API}/users/${id}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-                return response;
-            })
             .then((response) => response.json())
             .then((userFetch: IUserLocal) => {
                 user = userFetch;

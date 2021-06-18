@@ -5,14 +5,20 @@ export interface WorksState {
     works: IComment[]
 };
 
+const defaultState = (): WorksState => ({
+    works: []
+});
+
 export enum WorksActions {
     'GET' = 'GET_WORKS',
 }
 
-export function works(state: WorksState = { works: [] }, action: AnyAction) {
+
+export default (state = defaultState(), action: any) => {
     switch (action.type) {
         case WorksActions.GET: {
             return {
+                ...state,
                 works: action.works
             };
         }

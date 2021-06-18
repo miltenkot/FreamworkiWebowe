@@ -6,19 +6,19 @@ import { IPost } from "../utils/Rest";
 import { IStore } from "../store";
 import { UsersState } from "../reducers/UsersReducer";
 
-export function publicationsFetchDataSuccess(publications: IPost[]) {
+export const publicationsFetchDataSuccess = (publications: IPost[]) => {
     return {
         type: PublicationsActions.GET,
         publications
     };
 }
 
-function getPhoto(id: number): Promise<any> {
+const getPhoto = (id: number): Promise<any> => {
     return fetch(`${API}/photos/${id}`)
         .then(response => response.json())
 }
 
-export function publicationsFetchData(limit?: number) {
+export const publicationsFetchData = (limit?: number) => {
     const args = {
         '_limit': limit
     };
@@ -37,12 +37,6 @@ export function publicationsFetchData(limit?: number) {
             return dispatch(publicationsFetchDataSuccess(pubs));
         }
         fetch(`${API}/posts${argString}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-                return response;
-            })
             .then((response) => response.json())
             .then((publicationsFetch: IPost[]) => {
                 return Promise.all(publicationsFetch.map(async (publ) => {

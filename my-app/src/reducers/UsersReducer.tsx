@@ -8,12 +8,16 @@ export interface UsersState {
     }[]
 };
 
+const defaultState = (): UsersState => ({
+    users: []
+});
+
 export enum UsersActions {
     'SET' = 'SET_USER',
     'GET' = 'GET_USER',
 }
 
-export function users(state: UsersState = { users: [] }, action: AnyAction) {
+export default (state = defaultState(), action: any) => {
     switch (action.type) {
         case UsersActions.SET: {
             let find = state.users.find(v => v.id === action.user.id);
@@ -38,5 +42,3 @@ export function users(state: UsersState = { users: [] }, action: AnyAction) {
             return state;
     }
 }
-
-export {}

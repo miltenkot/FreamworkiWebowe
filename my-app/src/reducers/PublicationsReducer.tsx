@@ -2,17 +2,22 @@ import { AnyAction } from "redux";
 import { IPost } from "../utils/Rest";
 
 export interface PublicationsState {
-    publications: IPost[]
-};
+    publications: IPost[];
+}
+
+const defaultState = (): PublicationsState => ({
+    publications: []
+});
 
 export enum PublicationsActions {
     'GET' = 'GET_PUBLICATIONS',
 }
 
-export function publications(state: PublicationsState = { publications: [] }, action: AnyAction) {
+export default (state = defaultState(), action: any) => {
     switch (action.type) {
         case PublicationsActions.GET: {
             return {
+                ...state,
                 publications: action.publications
             };
         }

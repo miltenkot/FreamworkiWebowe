@@ -78,8 +78,6 @@ type P = {
 }
 
 class Dropdown extends Component<P, S> {
-    ripple: RefObject<HTMLSpanElement> = React.createRef();
-
     static defaultProps: P = {
         disabled: false,
         className: null,
