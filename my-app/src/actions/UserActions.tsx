@@ -30,7 +30,7 @@ export const usersFetchData = (id: number) => {
         let user: IUserLocal = null;
         const usersLocal = state.users as UsersState;
         const userById = usersLocal.users.find(v => v.id === id);
-        if (userById) {            
+        if (userById) {
             return dispatch(usersFetchDataSuccess(userById.user));
         }
 

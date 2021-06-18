@@ -93,7 +93,7 @@ margin-bottom: 15px;
 `;
 
 class Publications extends Component<P> {
-    
+
     componentDidMount() {
         this.props.fetchData(4);
     }

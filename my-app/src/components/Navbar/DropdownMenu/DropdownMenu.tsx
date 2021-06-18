@@ -1,8 +1,6 @@
 import React, { Component, ReactElement, RefObject } from "react";
 import { UsersState } from "../../../reducers/UsersReducer";
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
-import styles from "./DropdownMenu.module.scss";
-import cx from 'classnames';
 import { ImHome } from 'react-icons/im';
 import { FaNewspaper } from 'react-icons/fa';
 import { BsFillPeopleFill } from 'react-icons/bs';
@@ -19,7 +17,142 @@ import { FiLogOut } from 'react-icons/fi';
 import { IStore } from '../../../store';
 import { connect } from 'react-redux';
 import { usersFetchData } from '../../../actions/UserActions';
-import styled from "styled-components";
+import styled from 'styled-components';
+
+const DropDMenuBtn = styled.button`
+    font-size: 0.85rem;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 14rem;
+    height: 2rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    color: #31408a;
+    outline: 0;
+    background: transparent;
+    border: transparent;
+
+    
+    svg {
+        font-size: 1rem;
+        flex-shrink: 0;
+        flex-shrink: 0;
+        margin-left: 0.25rem;
+        color: black;
+    }
+
+    &.open {
+        border-color: black;
+        border-bottom-color: transparent;
+        border-radius: 4px 4px 0 0;
+    }
+`;
+
+const Container = styled.div`
+    position: relative;
+    margin-left: 1rem;;
+`;
+
+const LinkWithDisable = styled(Link)`
+    &.disabled {
+        background: #f2f2f2;
+    }
+
+    &.item {
+        display: flex;
+        align-items: center;
+        width: auto;
+        padding: 0.25rem;
+        cursor: pointer;
+        color: black;
+        border: 0;
+        border-radius: 4px;
+        background: none;
+        &:hover,
+        &:focus {
+            outline: 0;
+            background: rgba(#31408a, 0.1);
+        }
+       
+
+        &.disabled {
+            pointer-events: none;
+        }
+
+        >
+        div {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            
+        }
+    }
+`;
+
+const Description = styled.span`
+    font-size: 0.75rem;
+    color: #31408a;
+`;
+
+const ImageWithPhoto = styled(Img)`
+    width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.75rem;
+        border-radius: 50%;
+`;
+
+const Section = styled.div`
+    padding: 0.25rem;
+`;
+
+const Values = styled.div`
+        font-size: 1rem;
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        left: 0;
+        color: #31408a;
+        border-top: 0;
+        border-radius: 0 0 4px 4px;
+        background: #fff;
+
+        backdrop-filter: blur(4px);
+
+        :global {
+            .header-4 {
+                margin-bottom: 0;
+            }
+        }
+
+        hr {
+            margin: 0;
+            border: 0;
+        }
+`;
+
+const SearchStyled = styled(Search)`
+    margin: 0.25rem 0.25rem 0;
+`;
+
+const ValuesContainer = styled.div`
+        overflow-y: auto;
+        max-height: 16rem;
+`;
+
+const LogoutButton = styled(Button)`
+    color: grey;
+    width: 100%;
+`;
+
+const Seperator = styled.div`
+    padding-left: 20px;
+    justify-content: center;
+    text-align: right;
+`;
+
 
 interface IMenuItem {
     title: string,
@@ -45,11 +178,6 @@ type S = {
     isListOpen: boolean,
     searchValue: string
 }
-
-const LogoutButton = styled.button`
-    color: grey;
-    width: 100%;
-`;
 
 class DropdownMenu extends Component<P, S>{
     ripple: RefObject<HTMLSpanElement> = React.createRef();
@@ -77,17 +205,6 @@ class DropdownMenu extends Component<P, S>{
     }
 
     onClick(ev: React.MouseEvent) {
-        const button = ev.currentTarget as HTMLButtonElement;
-        const ripple = this.ripple.current;
-        const diameter = Math.max(button.clientWidth, button.clientHeight);
-        const radius = diameter / 2;
-        if (ripple) {
-            ripple.style.width = ripple.style.height = `${diameter}px`;
-            ripple.style.left = `${ev.clientX - button.offsetLeft - radius}px`;
-            ripple.style.top = `${ev.clientY - button.offsetTop - radius}px`;
-            ripple.className = styles.ripple;
-            button.appendChild(ripple);
-        }
         this.setState((prevState) => {
             return {
                 isListOpen: !prevState.isListOpen
@@ -104,14 +221,13 @@ class DropdownMenu extends Component<P, S>{
     getMenuItem(item: IMenuItem['items'][0] | null, disabled = false) {
         if (item) {
             const Icon = item.icon;
-
-            return <Link key={`item_${item.name}`} className={cx(disabled ? styles.disabled : null, styles.DropdownMenuItem)} to={disabled ? '#' : item.route} onClick={this.closeDropdown}>
+            return <LinkWithDisable key={`item_${item.name}`} className={`${disabled ? 'disabled' : null} ${'item'}`} to={disabled ? '#' : item.route} onClick={this.closeDropdown}>
                 {Icon}
-                <div>
+                <Seperator>
                     <span>{item.name}</span>
-                    {item.description && <span className={styles.DropdownMenuItemDesc}>{item.description}</span>}
-                </div>
-            </Link>;
+                    {item.description && <Description>{item.description}</Description>}
+                </Seperator>
+            </LinkWithDisable>;
         }
     }
 
@@ -181,7 +297,7 @@ class DropdownMenu extends Component<P, S>{
             items: [{
                 name: user?.name || '',
                 description: 'See profile',
-                icon: <Img className={styles.DropdownMenuUserPhoto} src={user?.photo?.thumbnailUrl} />,
+                icon: <ImageWithPhoto src={user?.photo?.thumbnailUrl} />,
                 route: '/profile/1'
             }, {
                 name: 'Privacy',
@@ -196,18 +312,18 @@ class DropdownMenu extends Component<P, S>{
 
         const items = this.filterEntities(menuItems).map((item, i) => <>
             <h4 key={`menuOpt_h_${i}`} className="header-4">{item.title}</h4>
-            <div key={`menuOpt_${i}`} className={styles.DropdownMenuItemsSection}>
+            <Section key={`menuOpt_${i}`}>
                 {item.items.length
                     ? item.items.map((el) => this.getMenuItem(el))
                     : <p className="header-4 header-indent">No matches</p>
                 }
-            </div></>);
+            </Section></>);
 
         const accItem = <>
             <h4 className="header-4">{accountItems.title}</h4>
-            <div key={`menuOpt_acc`} className={styles.DropdownMenuItemsSection}>
+            <Section key={`menuOpt_acc`}>
                 {accountItems.items.map((el) => this.getMenuItem(el))}
-            </div>
+            </Section>
         </>;
 
         const activeItem = [...menuItems, accountItems].map(v => v.items).flat().find(v => v.route === this.props.location.pathname) || {
@@ -217,27 +333,26 @@ class DropdownMenu extends Component<P, S>{
         };
 
         return (
-            <div className={cx(styles.DropdownMenuContainer)} >
-                <button type="button" className={cx(styles.DropdownMenu, this.state.isListOpen ? styles.open : null)} onClick={(ev) => this.onClick(ev)}>
+            <Container >
+                <DropDMenuBtn type="button" className={this.state.isListOpen ? 'open' : null} onClick={(ev) => this.onClick(ev)}>
                     {this.getMenuItem(activeItem, true)} <MdArrowDropDown />
-                    <span ref={this.ripple} className={styles.ripple}></span>
-                </button>
+                </DropDMenuBtn>
                 {this.state.isListOpen &&
-                    <div className={styles.DropdownMenuValues} >
-                        <Search customClass={styles.DropdownMenuSearch} placeholder="Filter..." onChange={this.changeSearch} />
-                        <div className={styles.DropdownMenuValuesContainer}>
+                    <Values>
+                        <SearchStyled placeholder="Filter..." onChange={this.changeSearch} />
+                        <ValuesContainer>
                             {items}
-                        </div>
+                        </ValuesContainer>
                         <hr />
                         {accItem}
                         <hr />
-                        <Button className={styles.DropdownMenuLogout} label="Logout" icon={FiLogOut} onClick={() => {
+                        <LogoutButton label="Logout" icon={FiLogOut} onClick={() => {
                             this.props.history.push('/404');
                             this.closeDropdown()
                         }} />
-                    </div>
+                    </Values>
                 }
-            </div>
+            </Container>
         );
     }
 }

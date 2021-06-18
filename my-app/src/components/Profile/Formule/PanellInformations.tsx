@@ -6,8 +6,8 @@ import Button from '../../common/Button/Button';
 import { FaUser } from 'react-icons/fa';
 import Field from '../../common/Field/Field';
 import { IProfile } from '../../../utils/Rest';
-import styles from "./PanellInformations.module.scss";
 import { v4 as uuid } from "uuid";
+import styled from 'styled-components';
 
 type _keys = 'hourlyFee' | 'terms' | 'correspondants';
 
@@ -19,6 +19,65 @@ type P = {
 type S = {
     data: IProfile['panelInformations']
 }
+
+const PanelCont = styled.div`
+    padding: 0.5rem 0;
+`;
+
+const PanelData = styled.div`
+    :global {
+            .header-5 {
+                font-size: 0.5rem;
+                margin-left: 0.5rem;
+            }
+        }
+`;
+
+const Value = styled.p`
+        margin-top: 0.25rem;
+        margin-left: 0.5rem;
+`;
+
+const FileField = styled(Field)`
+    margin-top: 0.25rem;
+        margin-bottom: 1rem;
+        margin-left: 0.5.rem;
+        padding: 0.5.rem;
+        border-radius: 4px;
+        background-color: rgba(#31408a, 0.1);
+        input {
+            background: none;
+            margin: 0;
+        }
+`;
+
+const FileFieldP = styled.p`
+    margin-top: 0.25rem;
+        margin-bottom: 1rem;
+        margin-left: 0.5.rem;
+        padding: 0.5.rem;
+        border-radius: 4px;
+        background-color: rgba(#31408a, 0.1);
+        input {
+            background: none;
+            margin: 0;
+        }
+`;
+
+const UserContainer = styled.div`
+        display: flex;
+        align-items: center;
+        margin: 0.25rem 0.5rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        background-color: rgba(#31408a, 0.1);
+        justify-content: space-between;
+        > div {
+            gap: 2rem;
+            display: flex;
+            align-items: center;
+        }
+`;
 
 class PanellInformations extends Component<P, S> {
 
@@ -78,7 +137,7 @@ class PanellInformations extends Component<P, S> {
             <p className="header-4 ">Hourly fee</p>
             {isActive
                 ? <Field label="Hourly fee" type="string" value={value} onChange={(val: { value: string, valid?: boolean }) => this.onInputChange(val, "hourlyFee")} />
-                : <p className={styles.value}>{value || '- no info -'}</p>
+                : <Value>{value || '- no info -'}</Value>
             }
         </div>;
     }
@@ -88,8 +147,8 @@ class PanellInformations extends Component<P, S> {
             <p className="header-4 ">Terms & conditions</p>
             <p className="header-sub ">Monthly 10k€ retainer - see with Jeanny Smith</p>
             {isActive
-                ? <Field customClass={styles.fileField} label="Terms file" type="file" value="" onChange={(val: { value: string, valid?: boolean }) => this.onInputChange(val, "terms")} />
-                : <p className={styles.fileField}>{value || '- no info -'}</p>
+                ? <FileField label="Terms file" type="file" value="" onChange={(val: { value: string, valid?: boolean }) => this.onInputChange(val, "terms")} />
+                : <FileFieldP>{value || '- no info -'}</FileFieldP>
             }
         </div>;
     }
@@ -103,23 +162,23 @@ class PanellInformations extends Component<P, S> {
     getCorrespondants(isActive: boolean) {
         const value = this.props.data.correspondants;
         const usersEdit = value.map((user, i) => {
-            return <div className={styles.user} key={user.id}>
+            return <UserContainer key={user.id}>
                 <div>
                     <Field label="User name" type="string" value={user.value} onChange={(val: { value: string, valid?: boolean }) => this.onInputChange(val, "correspondants", i)} />
                     <Button disabled label="Message" icon={BiMessage} />
                     <Button disabled label="Profile" icon={FaUser} />
                 </div>
                 <Button iconOnly icon={IoClose} onClick={() => this.removeRow(i)} />
-            </div>;
+            </UserContainer>;
         });
         const users = value.map((user) => {
-            return <div className={styles.user} key={user.id}>
+            return <UserContainer key={user.id}>
                 <div>
                     {user.value || '- no info -'}
                     <Button label="Message" icon={BiMessage} />
                     <Button label="Profile" icon={FaUser} />
                 </div><span />
-            </div>;
+            </UserContainer>;
         });
         return <div>
             <p className="header-5 ">Internal correspondants</p>
@@ -136,15 +195,15 @@ class PanellInformations extends Component<P, S> {
 
     render() {
         return (
-            <div className={styles.PanellInformations}>
+            <PanelCont>
                 <h3 className="header-3">Panel informations</h3>
-                <div className={styles.PanellInformationsData}>
+                <PanelData>
                     {this.getHourlyFee(this.props.formActive)}
                     {this.geTerms(this.props.formActive)}
                     {this.getSP()}
                     {this.getCorrespondants(this.props.formActive)}
-                </div>
-            </div>
+                </PanelData>
+            </PanelCont>
         );
     }
 }

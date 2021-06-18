@@ -22,7 +22,6 @@ interface DispatchProps {
 }
 
 type P = {
-    className: string,
     onWhiteBg: boolean,
     userId: number,
     type: 'user' | 'company'
@@ -83,7 +82,6 @@ class UserSignature extends Component<P, {}> {
 
     static defaultProps: P = {
         userId: null,
-        className: null,
         onWhiteBg: false,
         type: 'user',
         users: [],
@@ -137,8 +135,6 @@ class UserSignature extends Component<P, {}> {
 
 
     render() {
-        const { className, onWhiteBg } = this.props;
-
         return (
             <UserSignatureCont >
                 {this.contentSwitch()}

@@ -110,9 +110,9 @@ class Field extends Component<P, S> {
     }
 
     render() {
-        const { label, type, placeholder, customClass, required, values } = this.props;
+        const { label, type, placeholder, required, values } = this.props;
         let dropdownValues;
-        if(values) {
+        if (values) {
             dropdownValues = values.map((v, i) => <option key={`option_${i}`} value={v}>{v}</option>);
         }
 

@@ -31,7 +31,7 @@ class NotFound extends Component<P> {
         return (
             <EmptySiteContainer>
                 <span>Site Not Found</span>
-                <Button label="return" onClick={() => this.goHome()}/>
+                <Button label="return" onClick={() => this.goHome()} />
             </EmptySiteContainer>
         );
     }

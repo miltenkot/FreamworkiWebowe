@@ -1,4 +1,4 @@
-import React, { Component, RefObject } from 'react';
+import React, { Component } from 'react';
 import { MdArrowDropDown } from 'react-icons/md';
 import styled from 'styled-components';
 import { Sizes } from '../../../styledHelpers/Sizes';
@@ -91,7 +91,7 @@ class Dropdown extends Component<P, S> {
         }
         this.onClick = this.onClick.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.closeDropdown = this.closeDropdown.bind(this); 
+        this.closeDropdown = this.closeDropdown.bind(this);
     }
 
     componentDidUpdate(prevProps: P) {
@@ -116,7 +116,7 @@ class Dropdown extends Component<P, S> {
 
     onChange(value: any) {
         this.closeDropdown();
-        if(this.props.onChange) {
+        if (this.props.onChange) {
             this.props.onChange(value);
         }
     }
@@ -144,7 +144,7 @@ class Dropdown extends Component<P, S> {
                 }
             </DropDownContainer>
         );
-    }  
+    }
 
 }
 

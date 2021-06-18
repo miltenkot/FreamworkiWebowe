@@ -7,5 +7,4 @@ export const Colors = {
     infoBlue: '#31408a',
     shadow1: '0 2px 6px rgba(91,94,106,0.3)2',
     borderWhite: '#d3d3d3',
-
 }

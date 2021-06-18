@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
 import logo from './../../assets/react-logo.png';
 import Search from '../common/Search/Search';
 import NavbarActions from './NavbarActions/NavbarActions';

@@ -1,11 +1,11 @@
 import { IoAdd, IoClose } from 'react-icons/io5';
 import React, { Component } from 'react';
 
-import Button from './../../common/Button/Button';
-import Field from './../../common/Field/Field';
+import Button from '../../common/Button/Button';
+import Field from '../../common/Field/Field';
 import { IProfile } from '../../../utils/Rest';
-import styles from "./ProfileDetails.module.scss";
 import { v4 as uuid } from "uuid";
+import styled from 'styled-components';
 
 type _keys = 'expertise' | 'specialities' | 'admissions' | 'counties';
 
@@ -26,6 +26,57 @@ type P = {
 type S = {
     data: IProfile['details']
 }
+
+const ProfileDetailsContainer = styled.div`
+    padding: 0.5rem 0;
+`;
+
+const DataStyle = styled.div`
+        .Input {
+            &:not(:last-of-type) {
+                margin-bottom: 0.25rem;
+            }
+        }
+`;
+
+const ItemsStyle = styled.form`
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding: 0 0.5rem;
+
+        gap: 0.5rem;
+        row-gap: 0.25rem;
+        p {
+            margin: 0;
+            padding: 2px 0.25rem;
+            color: #7d91a1;
+            border-radius: 4px;
+            background-color: #e2f2ff;
+
+            &.empty {
+                background-color: #f7f7f7;
+            }
+        }
+`;
+
+const ItemStyle = styled.div`
+color: red;
+    display: flex;
+        input {
+            border-radius: 4px 0 0 4px;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            color: white;
+            border: 0;
+            border-radius: 0  4px  4px 0;
+            background-color: #ff5f5f;
+        }
+`;
 
 class ProfileDetails extends Component<P, S> {
     constructor(props: P) {
@@ -83,25 +134,25 @@ class ProfileDetails extends Component<P, S> {
         if (active) {
             return fields.map((field, index) => <div key={field.stateKey}>
                 <p className="header-4">{field.label}</p>
-                <form className={styles.ProfileDetailsItems} key={`form_${field.stateKey}_${index}`} >
+                <ItemsStyle key={`form_${field.stateKey}_${index}`} >
                     <>
-                        {field.values.map((item, i) => <div className={styles.ProfileDetailsItem} key={item.id}>
+                        {field.values.map((item, i) => <ItemStyle key={item.id}>
                             <Field key={`field_${field.stateKey}_${item.id}`} label={field.label} type="string" value={item.value} onChange={(e: { value: string, valid: boolean }) => this.onInputChange(e, field.stateKey, i)} />
                             <button type="button" onClick={() => this.removeItem(field.stateKey, item.id)}><IoClose /></button>
-                        </div>)}
+                        </ItemStyle>)}
                         <Button icon={IoAdd} iconOnly onClick={() => this.addItem(field.stateKey)} />
                     </>
-                </form>
+                </ItemsStyle>
             </div>)
         }
 
         return fields.map((field, i) => <div key={field.stateKey}>
             <p className="header-4" key={`staticField_${i}`} >{field.label}</p>
-            <div className={styles.ProfileDetailsItems} key={`staticVals_${i}`}>
+            <ItemsStyle key={`staticVals_${i}`}>
                 {field.values.length > 0
                     ? field.values.map((item) => item && <p key={`staticField_${i}_${item.id}`}>{item.value}</p>)
-                    : <p className={styles.empty}>No items</p>}
-            </div>
+                    : <p className="empty">No items</p>}
+            </ItemsStyle>
         </div>)
     }
 
@@ -127,11 +178,11 @@ class ProfileDetails extends Component<P, S> {
         }];
 
         return (
-            <div className={styles.ProfileDetails}>
-                <div className={styles.ProfileDetailsData}>
+            <ProfileDetailsContainer >
+                <DataStyle>
                     {this.createForm(this.props.formActive, fields)}
-                </div>
-            </div>
+                </DataStyle>
+            </ProfileDetailsContainer>
         );
     }
 }

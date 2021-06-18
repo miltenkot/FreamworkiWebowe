@@ -10,7 +10,7 @@ function newMomentDate(date: Date | string): Moment {
 
 function formatDate(date: Moment = moment(new Date()), fromNow: boolean = false): string {
     if (fromNow) {
-       return date.fromNow();
+        return date.fromNow();
     }
 
     return date.format('DD MMM YYYY') || '';

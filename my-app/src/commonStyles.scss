@@ -1,40 +1,39 @@
-@import 'variables';
 
 .header {
     &-2 {
         margin-top: 0;
-        margin-bottom: $spacing-02;
-        color: $fontColor;
+        margin-bottom: 0.5rem;
+        color: black;
     }
 
     &-3 {
-        font-size: $font-size-02;
+        font-size: 1rem;
         font-weight: normal;
         margin: 0;
-        margin-bottom: $spacing-02;
+        margin-bottom: 0.5rem;
     }
 
     &-4 {
-        font-size: $font-size-03;
-        margin: $spacing-02;
-        color: $fontColorLight;
+        font-size: 0.75rem;
+        margin: 0.5rem;
+        color: grey;
     }
 
     &-5 {
-        font-size: $font-size-03;
+        font-size: 0.75rem;
         font-weight: bold;
         margin: 0;
-        color: $fontColor;
+        color: black;
     }
 
     &-sub {
-        font-size: $font-size-02;
-        margin: $spacing-02;
-        color: $fontColor;
+        font-size: 1rem;
+        margin: 0.5rem;
+        color: black;
     }
 
     &-indent {
-        margin-left: $spacing-04;
+        margin-left: 1rem;
     }
 
     &-bold {

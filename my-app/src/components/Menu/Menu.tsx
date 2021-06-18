@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React from 'react';
 
 import UserCard from "./UserCard/UserCard";
 import styled from 'styled-components';

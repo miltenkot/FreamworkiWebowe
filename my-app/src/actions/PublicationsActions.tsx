@@ -40,7 +40,7 @@ export const publicationsFetchData = (limit?: number) => {
             .then((response) => response.json())
             .then((publicationsFetch: IPost[]) => {
                 return Promise.all(publicationsFetch.map(async (publ) => {
-                    publ.photo =  await getPhoto(publ.id);
+                    publ.photo = await getPhoto(publ.id);
 
                     return publ;
                 })).then((publs) => {

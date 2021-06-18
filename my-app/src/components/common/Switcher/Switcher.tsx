@@ -2,8 +2,66 @@ import React, { Component } from 'react';
 
 import Button from '../Button/Button';
 import { IconType } from 'react-icons';
-import cx from 'classnames';
-import styles from "./Switcher.module.scss";
+import styled from "styled-components";
+
+const SwitcherContainer = styled.div`
+    display: flex;
+`;
+
+const ButtonStyled = styled(Button)`
+        display: flex;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        color: black;
+        border: 0;
+        border: 1px solid rgba(142, 156, 229, 0.2);
+        background: transparent;
+        p {
+            font-weight: 600;
+            overflow: hidden;
+            width: 0;
+            height: 0;
+            transition: opacity 0.24s;
+                opacity: 0;
+            }
+            svg {
+                margin: 0;
+            }
+            &.active {
+            button {
+                border-color: transparent;
+                background: rgba($active, 0.2);
+                p {
+                    width: auto;
+                    height: auto;
+                    opacity: 1;
+                }
+
+                svg {
+                    margin-right: $spacing-02;
+                }
+            }
+        }
+
+        &:focus {
+            border-color: $active;
+            outline: 0;
+        }
+
+        &:first-of-type {
+            >
+            button {
+                border-radius: 4px 0 0 4px;
+            }
+        }
+
+        &:last-of-type {
+            >
+            button {
+                border-radius: 0 4px 4px 0;
+            }
+        }
+`;
 
 export interface ISwitcherOption {
     label: string,
@@ -21,21 +79,19 @@ class Switcher extends Component<P, {}> {
     static defaultProps = {
         value: false,
     }
-
     render() {
         const { options, value, onChange } = this.props;
-
         return (
-            <div className={styles.Switcher} >
-                {options.map((option, i) => <Button
+            <SwitcherContainer >
+                {options.map((option, i) => <ButtonStyled
                     key={`switcher_${i}`}
                     aria-label={option.label}
                     icon={option.icon}
                     label={option.label}
-                    className={cx(styles.SwitcherButton, option.value === value ? styles.active : null)}
+                    className={option.value === value ? 'active' : null}
                     onClick={() => onChange(option.value)}>
-                </Button>)}
-            </div>
+                </ButtonStyled>)}
+            </SwitcherContainer>
         );
     }
 }

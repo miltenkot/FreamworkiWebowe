@@ -1,4 +1,3 @@
-import { AnyAction } from "redux";
 import { IUserLocal } from "../utils/Rest";
 
 export interface UsersState {
@@ -17,7 +16,7 @@ export enum UsersActions {
     'GET' = 'GET_USER',
 }
 
-export default (state = defaultState(), action: any) => {
+const UsersReducer = (state = defaultState(), action: any) => {
     switch (action.type) {
         case UsersActions.SET: {
             let find = state.users.find(v => v.id === action.user.id);
@@ -29,11 +28,13 @@ export default (state = defaultState(), action: any) => {
         }
         case UsersActions.GET: {
             let find = state.users.find(v => v?.id === action.users.id);
-            if(!find) {
-                return { ...state, users: [...state.users, {
-                    id: action.users.id,
-                    user: action.users
-                }] };
+            if (!find) {
+                return {
+                    ...state, users: [...state.users, {
+                        id: action.users.id,
+                        user: action.users
+                    }]
+                };
             }
 
             return state;
@@ -42,3 +43,5 @@ export default (state = defaultState(), action: any) => {
             return state;
     }
 }
+
+export default UsersReducer;

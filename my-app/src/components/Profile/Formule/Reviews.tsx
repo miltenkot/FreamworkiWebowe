@@ -1,14 +1,40 @@
 import { IoAdd, IoClose } from 'react-icons/io5';
 import React, { Component } from 'react';
 
-import Button from './../../common/Button/Button';
-import Field from './../../common/Field/Field';
+import Button from '../../common/Button/Button';
+import Field from '../../common/Field/Field';
 import { IProfile } from '../../../utils/Rest';
-import parentStyles from "./../Profile.module.scss";
-import styles from "./Proposals.module.scss";
 import { v4 as uuid } from "uuid";
+import styled from "styled-components";
 
-type _keys = 'id' | 'name' | 'entity' | 'location' | 'expertise' | 'date' | 'firm';
+type _keys = 'id' | 'name' | 'entity' | 'location' | 'expertise' | 'date';
+
+const Table = styled.table`
+    border-collapse: collapse;
+    tr {
+        &:first-of-type {
+            border-bottom: 1px solid #d3d3d3;
+        }
+        
+        th, td {
+            text-align: left;
+            &:not(:last-of-type) {
+                padding: 0.25rem 0.75rem;
+                max-width: 10rem;
+                width: 10rem;
+            }
+            @include truncate();
+
+            &.empty {
+                color: #eaeaea;
+            }
+
+            input {
+                min-width: auto;
+            }
+        }
+    }
+`;
 
 interface ITable {
     columnName: string | undefined;
@@ -17,16 +43,24 @@ interface ITable {
 }
 
 type P = {
-    data: IProfile['proposals'],
+    data: IProfile['reviews'],
     formActive: boolean
 }
 
 type S = {
-    data: IProfile['proposals']
+    data: IProfile['reviews']
     expand: boolean
 }
 
-class Proposals extends Component<P, S> {
+const ReviewContainer = styled.div`
+  padding: 0.5rem 0;
+`;
+
+const DataContainer = styled.div`
+    padding-left: 1rem;
+`;
+
+class Reviews extends Component<P, S> {
 
     constructor(props: P) {
         super(props);
@@ -62,8 +96,7 @@ class Proposals extends Component<P, S> {
             entity: '',
             location: '',
             expertise: '',
-            date: '',
-            firm: ''
+            date: ''
         });
         this.setState({
             data: newState
@@ -86,7 +119,7 @@ class Proposals extends Component<P, S> {
 
         if (active) {
             return <>
-                <table className={parentStyles.table}>
+                <Table>
                     <tbody>
                         <tr>
                             {headers.map((v, i) => <th key={i}>{v}</th>)}
@@ -101,7 +134,7 @@ class Proposals extends Component<P, S> {
                             <td> <Button iconOnly icon={IoClose} onClick={() => this.removeRow(parentIndex)} /></td>
                         </tr>)}
                     </tbody>
-                </table>
+                </Table>
                 <Button label="Add new row" icon={IoAdd} onClick={() => this.addRow()} />
             </>;
         }
@@ -111,23 +144,23 @@ class Proposals extends Component<P, S> {
         }
 
         return rows.length > 0
-            ? <table className={parentStyles.table}>
+            ? <Table>
                 <tbody>
                     <tr>
                         {headers.map((v, i) => <th key={`header${i}`}>{v}</th>)}
                     </tr>
                     {rows.map((row, i) => <tr key={`tr_${i}`}>
-                        {row.map((val, chI) => <td key={`td_${i}_${chI}`} className={!val ? parentStyles.empty : ''}>{val || 'empty'}</td>)}
+                        {row.map((val, chI) => <td key={`td_${i}_${chI}`} className={!val ? "empty" : ''}>{val || 'empty'}</td>)}
                     </tr>)}
                 </tbody>
-            </table>
+            </Table>
             : <p>No items</p>;
     }
 
     getExpandBtn() {
-        const label = this.state.expand ? "See less" : "See more proposals";
+        const label = this.state.expand ? "See less" : "See more reviews";
         return (!this.props.formActive && this.state.data.length > 3) && <Button label={label} onClick={() => {
-            this.setState((prevState) =>{
+            this.setState((prevState) => {
                 return {
                     expand: !prevState.expand
                 }
@@ -156,23 +189,19 @@ class Proposals extends Component<P, S> {
             columnName: "Date",
             stateKey: 'date',
             type: "date"
-        }, {
-            columnName: "Firm",
-            stateKey: 'firm',
-            type: "string"
         }];
 
         return (
-            <div className={styles.Proposals}>
-                <h3 className="header-3">Proposals</h3>
-                <div className={styles.ProposalsData}>
+            <ReviewContainer>
+                <h3 className="header-3">Interal reviews</h3>
+                <DataContainer>
                     {this.createTable(this.props.formActive, table)}
                     {this.getExpandBtn()}
-                </div>
-            </div>
+                </DataContainer>
+            </ReviewContainer>
         );
     }
 }
 
 
-export default Proposals;
+export default Reviews;

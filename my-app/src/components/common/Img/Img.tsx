@@ -7,7 +7,7 @@ interface P extends ImgHTMLAttributes<HTMLImageElement> {
 const Img = (props: P) => {
     const { skeletonize, ...otherProps } = props;
 
-    return <img {...otherProps} className={cx(skeletonize ?'img-skeleton' : null, props.className)} alt={props.alt} />
+    return <img {...otherProps} className={cx(skeletonize ? 'img-skeleton' : null, props.className)} alt={props.alt} />
 };
 
 export default Img;

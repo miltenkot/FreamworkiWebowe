@@ -1,23 +1,115 @@
-import { AnyAction, Dispatch } from 'redux';
-import { BsArrowsAngleContract, BsArrowsAngleExpand, BsGridFill, BsList } from 'react-icons/bs';
+import { BsArrowsAngleExpand, BsGridFill, BsList } from 'react-icons/bs';
 import { Dropdown, IDropdownItem } from '../common/DropDown/Dropdown';
 import { FaSortAlphaUp, FaSortAlphaUpAlt } from 'react-icons/fa';
 import { ISwitcherOption, Switcher } from '../common/Switcher/Switcher';
 import { MdMoreHoriz, MdShare } from 'react-icons/md';
 import React, { Component } from 'react';
-import { VscFeedback, VscFilter, VscRss } from 'react-icons/vsc';
+import { VscFilter } from 'react-icons/vsc';
 
 import Button from '../common/Button/Button';
 import EntitiesFilters from './EntitiesFilters/EntitiesFilters';
 import { IFakeCompany } from '../../utils/Rest';
 import Img from '../common/Img/Img';
 import RestService from '../../utils/RestService';
-import { RiSettings3Line } from 'react-icons/ri'
 import Search from '../common/Search/Search';
 import Skeleton from '../common/Skeleton/Skeleton';
-import cx from "classnames";
 import { sortBy } from 'lodash';
-import styles from "./Entities.module.scss";
+import styled from "styled-components";
+
+const EntitiesSection = styled.section`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 1rem;
+`;
+
+const Header = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+`;
+
+const Options = styled.div`
+    display: flex;
+    align-items: center;
+    color: black;
+`;
+
+const Title = styled.h2`
+    font-size: 1rem;
+    margin: 0;
+    margin-right: 0.5rem;
+`;
+
+const EntitiesContainer = styled.div`
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 0.5rem;
+
+        &.EntitiesContainerList {
+            display: flex;
+            flex-direction: column;
+        }
+`;
+
+const Entity = styled.div`
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0.5rem;
+        border-radius: 4px;
+        background: #fff;
+`;
+
+const Photo = styled(Img)`
+    height: 4rem;
+    width: 4rem;
+    border-radius: 4px;
+    flex-shrink: 0;
+`;
+
+const Content = styled.div`
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin-left: 0.75rem;
+`;
+
+const Name = styled.h4`
+    font-size: 1rem;
+    margin: 0;
+    color: #31408a;
+`;
+
+const Adress = styled.p`
+    font-size: 0.75rem;
+    margin: 0;
+    color: rgb(162, 162, 162);
+`;
+
+const RightOption = styled.div`
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+        &.OptionButtonActive {
+            background: rgba(#31408a, 0.4); 
+        }
+    }
+`;
+
+const DropDownItem = styled.div`
+    display: flex;
+    align-items: center;
+    svg {
+        flex-shrink: 0;
+        margin-right: 0.5rem;
+    }
+`;
 
 type S = {
     listMode: boolean,
@@ -145,17 +237,17 @@ class Entities extends Component<StateProps, S> {
 
     getEntitiesUI(entities: IFakeCompany[]) {
 
-        return entities.map((ent, i) => <div key={`entity_${ent.id}`} className={styles.Entity}>
-            <Img src={ent.photo?.url} alt={ent.photo?.title} skeletonize className={styles.EntityPhoto} />
-            <div className={styles.EntityContent}>
-                <h4 className={styles.EntityName}>{ent.name}</h4>
-                <p className={styles.EntityAddress}>{ent.address}</p>
-            </div>
-        </div>);
+        return entities.map((ent, i) => <Entity key={`entity_${ent.id}`}>
+            <Photo src={ent.photo?.url} alt={ent.photo?.title} skeletonize />
+            <Content>
+                <Name>{ent.name}</Name>
+                <Adress>{ent.address}</Adress>
+            </Content>
+        </Entity>);
     }
 
     render() {
-        const { onlyMyEntities, entities, listMode, showOptions, sort, showFilters } = this.state;
+        const { onlyMyEntities, entities, listMode, sort, showFilters } = this.state;
         const switcherOptions: ISwitcherOption[] = [{
             label: 'Mosaic',
             value: false,
@@ -166,51 +258,50 @@ class Entities extends Component<StateProps, S> {
             icon: BsList
         }];
         const dropdownItems: IDropdownItem[] = [{
-            label: <div className={styles.dropdownItem}>My items</div>,
+            label: <DropDownItem>My items</DropDownItem>,
             value: true
         }, {
-            label: <div className={styles.dropdownItem}>All items</div>,
+            label: <DropDownItem>All items</DropDownItem>,
             value: false
         }];
         const fakeDropdown = {
-            label: <div className={styles.dropdownItem}> All </div>,
+            label: <DropDownItem>All</DropDownItem>,
             value: true
         }
         const dropdownValue = dropdownItems[dropdownItems.findIndex((v) => v.value === onlyMyEntities)];
         const filteredEntities = this.filterEntities(entities ? [...entities] : []);
 
         return (
-            <section className={styles.Entities}>
-                <div className={styles.EntitiesHeader}>
-                    <div className={styles.EntitiesHeaderOptions}>
-                        <h2 className={styles.title}>Entities</h2>
-                        <Button icon={RiSettings3Line} iconOnly onClick={() => this.showOptions()} className={showOptions ? styles.optionsButtonActive : ''} />
-                    </div>
+            <EntitiesSection>
+                <Header>
+                    <RightOption>
+                        <Title>Entities</Title>
+                    </RightOption>
                     <Switcher value={listMode} options={switcherOptions} onChange={(val: boolean) => this.changeUI(val)} />
-                </div>
-                {showOptions && <div className={styles.EntitiesOptions}>
-                    <div className={styles.EntitiesOptionsRight}>
+                </Header>
+                {<Options>
+                    <RightOption>
                         <Dropdown items={[]} disabled value={fakeDropdown} />
                         <Button icon={MdMoreHoriz} iconOnly />
-                        <Button icon={sort === 2 ? FaSortAlphaUpAlt : FaSortAlphaUp} className={sort > 0 ? styles.optionsButtonActive : ''} label="Sort" onClick={() => this.changeSort()} />
-                        <Button icon={VscFilter} label="Filters" onClick={() => this.toggleFilters()} className={showFilters ? styles.optionsButtonActive : ''} />
-                        <Button icon={ BsArrowsAngleExpand } iconOnly />
+                        <Button icon={sort === 2 ? FaSortAlphaUpAlt : FaSortAlphaUp} className={sort > 0 ? 'OptionButtonActive' : ''} label="Sort" onClick={() => this.changeSort()} />
+                        <Button icon={VscFilter} label="Filters" onClick={() => this.toggleFilters()} className={showFilters ? 'OptionButtonActive' : ''} />
+                        <Button icon={BsArrowsAngleExpand} iconOnly />
                         <Button icon={MdShare} label="Share" onClick={() => this.share()} />
-                    </div>
-                    <div className={styles.EntitiesOptionsRight}>
+                    </RightOption>
+                    <RightOption>
                         <Search placeholder="Filter by title..." onChange={this.changeSearch} />
                         <Dropdown items={dropdownItems} value={dropdownValue} onChange={this.onDropdownChange} />
-                    </div>
-                </div>}
-                {this.state.showFilters && this.state.showOptions && <EntitiesFilters />}
-                <div className={cx(styles.EntitiesContainer, listMode ? styles.EntitiesContainerList : null)}>
+                    </RightOption>
+                </Options>}
+                {this.state.showFilters && <EntitiesFilters />}
+                <EntitiesContainer className={listMode ? 'EntitiesContainerList' : null}>
                     {!filteredEntities && <Skeleton type="tile" count={30} />}
                     {filteredEntities && filteredEntities.length === 0
                         ? <h4 className={'header-2 header-indent'}>No matches</h4>
                         : filteredEntities && this.getEntitiesUI(filteredEntities)
                     }
-                </div>
-            </section>
+                </EntitiesContainer>
+            </EntitiesSection>
         );
     }
 }

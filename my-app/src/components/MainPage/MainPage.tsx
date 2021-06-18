@@ -13,7 +13,7 @@ function MainPage() {
   return (
     <div className="App">
       <header className="App-header">
-        <MainContainer/>
+        <MainContainer />
       </header>
     </div>
   );

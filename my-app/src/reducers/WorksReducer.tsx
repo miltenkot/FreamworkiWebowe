@@ -1,4 +1,3 @@
-import { AnyAction } from "redux";
 import { IComment } from "../utils/Rest";
 
 export interface WorksState {
@@ -14,7 +13,7 @@ export enum WorksActions {
 }
 
 
-export default (state = defaultState(), action: any) => {
+const WorksReducer = (state = defaultState(), action: any) => {
     switch (action.type) {
         case WorksActions.GET: {
             return {
@@ -26,3 +25,5 @@ export default (state = defaultState(), action: any) => {
             return state;
     }
 }
+
+export default WorksReducer;

@@ -1,14 +1,9 @@
-import React, { Component, RefObject } from 'react';
+import React from 'react';
 
-import { IconType } from 'react-icons';
 import { LightenDarkenColor } from '../../../utils/colorUtils';
-import cx from 'classnames';
-import styles from "./Button.module.scss";
-import styled , { keyframes, css } from 'styled-components';
-import { Colors } from '../../../styledHelpers/Colors';
-import { Sizes } from '../../../styledHelpers/Sizes';
+import styled from 'styled-components';
 
-const ButtonContainer = styled.div`
+const DefaultButton = styled.button`
     position: relative;
     display: flex;
     overflow: hidden;
@@ -16,16 +11,54 @@ const ButtonContainer = styled.div`
     justify-content: center;
     height: 2rem;
     cursor: pointer;
-    transition: color 0.24s, border-color 0.24s;
-    color: ${Colors.black};
-    border: 1;
-    border-radius: 3px;
+    transition: color 0.24s, #f2f2f2 0.24s;
+    color: #31408a;
+    border: 0;
+    border-radius: 4px;
     outline: 0;
-    border: 1px solid transparent;
-`;
+    background: transparent;
+    border: 2px solid transparent;
 
-const DefaultButton = styled.button`
-    
+    .p {
+        margin: 0;
+    }
+
+    &:hover {
+        background: rgba(#31408a, 0.1);
+    }
+
+    &:focus {
+        border-color: #31408a;
+        outline: 0;
+    }
+
+    &:disabled {
+        color: #fff;
+        background: #d3d3d3;
+    }
+
+    &.Border {
+        border: 1px solid black;
+        height: 1.5rem;
+
+        &:focus {
+            border-color: #31408a;
+            outline: 0;
+        }
+
+        &.ButtonIcon {
+            border-radius: 4px;
+        }
+    }
+
+    &.Icon {
+        width: 2rem;
+        border-radius: 15%;
+        svg {
+            width: 20rem;  
+            font-size: 1rem;
+        }
+    }
 `;
 
 const Button = (props: any) => {
@@ -44,26 +77,25 @@ const Button = (props: any) => {
             backgroundColor: props.theme,
             color: LightenDarkenColor(props.theme, -90),
             borderColor: props.border ? LightenDarkenColor(props.theme, -90) : ''
-        }    
+        }
     }
-//className={cx(styles.Button, props.iconOnly ? styles.ButtonIcon : null, props.border ? styles.ButtonBorder : null)} 
     return (
-    <ButtonContainer>
-     <DefaultButton className={cx(styles.Button, props.iconOnly ? styles.ButtonIcon : null, props.border ? styles.ButtonBorder : null)} style={colors} disabled={props.disabled} aria-label={props.label}  onClick={(ev) => props.onClick(ev)}>
-        {props.icon ? <Icon style={{color: colors.color}} /> : null}
-        {props.label && <p style={{color: colors.color}}>{props.label}</p>}
-     </DefaultButton>
-    </ButtonContainer>);
+        <div>
+            <DefaultButton className={`${props.iconOnly ? 'Icon' : null} ${props.border ? 'Border' : null}`} style={colors} disabled={props.disabled} aria-label={props.label} onClick={(ev) => props.onClick(ev)}>
+                {props.icon ? <Icon style={{ color: colors.color }} /> : null}
+                {props.label && <p style={{ color: colors.color }}>{props.label}</p>}
+            </DefaultButton>
+        </div>);
 };
 
-  Button.defaultProps = {
-        label: null,
-        icon: null,
-        iconOnly: false,
-        className: null,
-        disabled: false,
-        border: false,
-        onClick: () => null as Function
-  }
-  
-  export default Button;
+Button.defaultProps = {
+    label: null,
+    icon: null,
+    iconOnly: false,
+    className: null,
+    disabled: false,
+    border: false,
+    onClick: () => null as Function
+}
+
+export default Button;

@@ -3,20 +3,105 @@ import React, { Component } from 'react';
 import { RiBriefcase4Line, RiNewspaperLine } from "react-icons/ri";
 import { VscClose, VscEdit, VscSave } from "react-icons/vsc";
 
-import Button from './../../common/Button/Button';
-import Field from './../../common/Field/Field';
-import { IUserLocal } from './../../../utils/Rest';
-import Img from './../../common/Img/Img';
-import RestService from './../../../utils/RestService';
+import Button from '../../common/Button/Button';
+import Field from '../../common/Field/Field';
+import { IUserLocal } from '../../../utils/Rest';
+import Img from '../../common/Img/Img';
+import RestService from '../../../utils/RestService';
 import { connect } from 'react-redux';
-import parentStyles from "./../Profile.module.scss";
 import { set } from 'lodash';
-import { setUser } from './../../../actions/UserActions';
-import styles from "./MainInfo.module.scss";
+import { setUser } from '../../../actions/UserActions';
 import styled from 'styled-components';
+
+const MainInfoContainer = styled.div`
+    position: relative;
+    display: grid;
+    align-items: flex-end;
+    margin-top: 1rem;
+
+    grid-template-columns: 7rem 14rem 14rem;
+`;
+
+const PhotoContainer = styled.div`
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100%;
+
+        img {
+            width: 4rem;
+            height: 4rem;
+            margin-bottom: 0.25rem;
+            border-radius: 50%;
+        }
+`;
+
+const PhotoContainerPos = styled.div`
+    position: relative;
+`;
+
+const Badge = styled.div`
+                position: absolute;
+                top: 2rem;
+                right: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-sizing: border-box;                
+                width: 2rem;
+                height: 2rem;
+                border: 3px solid rgb(162, 162, 162);
+                border-radius: 50%;
+                color: white;
+                background: #31408a;
+`;
+
+const DataStyle = styled.div`
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-left: 1.0rem;
+        p {
+            margin: 0;
+            padding: 0 0.5rem;
+            border: 2px solid transparent;
+            &.keyInfo {
+                font-weight: 600;
+            }
+
+            &:not(:last-of-type) {
+                margin-bottom: 0.25rem;
+            }
+        }
+
+        .Input {
+            &:not(:last-of-type) {
+                margin-bottom: 0.25rem;
+            }
+        }
+`;
 
 const ProfileButton = styled(Button)`
     height: 1rem;
+`;
+
+const FieldInput = styled(Field)`
+    &:not(:last-of-type) {
+                margin-bottom: 0.25rem;
+            }
+`;
+
+const EditHeader = styled.div`
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        >div {
+            &:not(:last-of-type) {
+                margin-right: 0.5rem;
+            }
+        }
 `;
 
 interface IField {
@@ -100,7 +185,7 @@ class MainInfo extends Component<P, S> {
                 this.validTemp[`valid_${key}`] = val.valid;
             }
             set(newVal, newKeys, val.value);
-            
+
             return newVal;
         });
     }
@@ -108,7 +193,7 @@ class MainInfo extends Component<P, S> {
     createForm(active: boolean, fields: IField[]) {
         if (active) {
             return <form>{fields.map((field, i) =>
-                <Field key={`${field}_${i}`} required customClass={styles.Input} label={field.label} type={field.type} values={field.values} value={field.value} onChange={(e: { value: string, valid: boolean }) => this.onInputChange(e, field.stateKey)} />
+                <FieldInput key={`${field}_${i}`} required label={field.label} type={field.type} values={field.values} value={field.value} onChange={(e: { value: string, valid: boolean }) => this.onInputChange(e, field.stateKey)} />
             )}</form>
         }
 
@@ -156,33 +241,33 @@ class MainInfo extends Component<P, S> {
         const isSomeInvalid = Object.values(this.validTemp).some(v => v === false);
 
         return (
-            <div className={styles.MainInfo}>
-                <div className={parentStyles.editHeader}>
+            <MainInfoContainer>
+                <EditHeader>
                     {this.state.profileBasicEditMode
                         ? <>
                             <Button iconOnly disabled={isSomeInvalid} icon={VscSave} onClick={() => this.saveBasics()} />
                             <Button iconOnly icon={VscClose} onClick={this.cancelEdit} />
                         </>
-                        : <Button iconOnly  icon={VscEdit} onClick={this.editBasics} />}
-                </div>
-                <div className={styles.MainInfoPhoto}>
-                    <div className={styles.MainInfoPhotoCont}>
+                        : <Button iconOnly icon={VscEdit} onClick={this.editBasics} />}
+                </EditHeader>
+                <PhotoContainer>
+                    <PhotoContainerPos >
                         <Img src={profile?.photo?.url} alt={profile?.photo?.title} />
-                        <div className={styles.Badge}>
+                        <Badge>
                             {profile?.partner === "Contractor"
                                 ? <RiNewspaperLine />
                                 : <RiBriefcase4Line />}
-                        </div>
-                    </div>
+                        </Badge>
+                    </PhotoContainerPos>
                     <ProfileButton label={"See profile"} />
-                </div>
-                <div className={styles.MainInfoData}>
+                </PhotoContainer>
+                <DataStyle>
                     {this.createForm(this.state.profileBasicEditMode, basic1)}
-                </div>
-                <div className={styles.MainInfoData}>
+                </DataStyle>
+                <DataStyle>
                     {this.createForm(this.state.profileBasicEditMode, basic2)}
-                </div>
-            </div>
+                </DataStyle>
+            </MainInfoContainer>
         );
     }
 }

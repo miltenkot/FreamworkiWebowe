@@ -13,15 +13,15 @@ justify-content: center;
 `;
 
 const NavbarActions = () => {
-        return (
-            <>
-                <NavbarAction>
-                    <ActionButton icon={ImHome} disabled />
-                    <ActionButton icon={ImBubbles} />
-                    <ActionButton icon={ImBell} />
-                </NavbarAction>
-            </>
-        );
+    return (
+        <>
+            <NavbarAction>
+                <ActionButton icon={ImHome} disabled />
+                <ActionButton icon={ImBubbles} />
+                <ActionButton icon={ImBell} />
+            </NavbarAction>
+        </>
+    );
 }
 
 export default NavbarActions;

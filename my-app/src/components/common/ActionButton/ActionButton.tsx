@@ -49,10 +49,10 @@ class ActionButton extends Component<P, {}> {
         const { icon, onClick, disabled } = this.props;
         const Icon = icon;
         return (
-                <ActionButtonStyled type="button" disabled={disabled} onClick={(ev) => onClick(ev)}>
-                    {this.props.text}
-                    {Icon ? <Icon /> : null}
-                </ActionButtonStyled>
+            <ActionButtonStyled type="button" disabled={disabled} onClick={(ev) => onClick(ev)}>
+                {this.props.text}
+                {Icon ? <Icon /> : null}
+            </ActionButtonStyled>
         );
     }
 }

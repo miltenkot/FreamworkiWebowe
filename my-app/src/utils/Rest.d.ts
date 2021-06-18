@@ -80,15 +80,15 @@ export interface IProfile {
             id: string,
             value: string
         }[]
-        specialities:  {
+        specialities: {
             id: string,
             value: string
         }[]
-        admissions:  {
+        admissions: {
             id: string,
             value: string
         }[]
-        counties:  {
+        counties: {
             id: string,
             value: string
         }[]

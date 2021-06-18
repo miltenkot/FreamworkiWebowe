@@ -82,9 +82,14 @@ const UserCardContainer = styled.div`
         width: calc(100% + 1rem);
         margin-left: -0.5rem;
         border: 0;
-        border-top: 1px solid ${Colors.borderWhite}};
+        border-top: 1px solid ${Colors.borderWhite};
+    }
+
+    svg {
+        font-size: 1rem; 
     }
 `;
+
 
 const UserCardButtonsContainer = styled.div`
 display: flex;
@@ -98,6 +103,10 @@ button {
   justify-content: flex-start;
   padding-left: 0px;
   padding-right: 0px;
+
+  svg {
+        font-size: 1rem; 
+    }
 }
 
 `;
@@ -144,7 +153,7 @@ class UserCard extends Component<P> {
         this.props.history.push(route);
     }
 
-    
+
     render() {
         const user = this.props.users.find((v) => v.id === USER_ID)?.user;
 
@@ -156,31 +165,31 @@ class UserCard extends Component<P> {
                         <h3 className="Name">{user?.name}</h3>
                         <h4 className="Position">Job title - {user?.company?.name}</h4>
                     </Link >
-                    <hr/>
+                    <hr />
                     <UserCardButtonsContainer>
-                        <Button icon={IoIosPeople}/>
+                        <Button icon={IoIosPeople} />
                         <CenterButton onClick={() => this.goTo('/404')}>Your network</CenterButton>
-                        <Button iconOnly icon={IoMdPersonAdd} border/>
+                        <Button iconOnly icon={IoMdPersonAdd} border />
                     </UserCardButtonsContainer>
                     <UserCardButtonsContainer>
                         <Button icon={IoNewspaperOutline} />
                         <CenterButton onClick={() => this.goTo('/404')}>Your publications</CenterButton>
-                        <Button iconOnly icon={IoAdd} border/>
+                        <Button iconOnly icon={IoAdd} border />
                     </UserCardButtonsContainer>
                 </UserCardContainer>
                 <UserTransparentContainerMain>
-                <UserTransparentContainer>
-                    <Button  icon={IoNewspaperOutline} onClick={() => this.goTo('/404')} />
-                    <Button label="Publications"/>
-                </UserTransparentContainer>
-                <UserTransparentContainer>
-                <Button icon={GiAtom} onClick={() => this.goTo('/404')} />
-                <Button label="Ecosystem"/>
-                </UserTransparentContainer>
-                <UserTransparentContainer>  
-                    <Button icon={FaRegBuilding} onClick={() => this.goTo('/404')} />
-                    <Button label="Your Entities"/>
-                </UserTransparentContainer>
+                    <UserTransparentContainer>
+                        <Button icon={IoNewspaperOutline} onClick={() => this.goTo('/404')} />
+                        <Button label="Publications" onClick={() => this.goTo('/404')}/>
+                    </UserTransparentContainer>
+                    <UserTransparentContainer>
+                        <Button icon={GiAtom} onClick={() => this.goTo('/404')} />
+                        <Button label="Ecosystem" onClick={() => this.goTo('/404')}/>
+                    </UserTransparentContainer>
+                    <UserTransparentContainer>
+                        <Button icon={FaRegBuilding} onClick={() => this.goTo('/entities')} />
+                        <Button label="Your Entities" onClick={() => this.goTo('/entities')} />
+                    </UserTransparentContainer>
                 </UserTransparentContainerMain>
             </>
         );

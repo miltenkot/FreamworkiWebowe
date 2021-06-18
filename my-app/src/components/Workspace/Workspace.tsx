@@ -1,5 +1,4 @@
 import { FaCalendarAlt, FaRegBuilding } from 'react-icons/fa';
-import { FcBusiness, FcFlowChart, FcSurvey } from 'react-icons/fc';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import React, { Component } from 'react';
 
@@ -10,10 +9,134 @@ import Img from '../common/Img/Img';
 import RestService from '../../utils/RestService';
 import { RiSettings3Line } from 'react-icons/ri';
 import Work from '../Work/Work';
-import cx from "classnames";
-import styles from "./Workspace.module.scss";
-import styled from "styled-components";
 import { FaFileContract, FaFileArchive, FaFileCode } from 'react-icons/fa';
+import styled from 'styled-components';
+
+const WorkspaceSection = styled.section`
+        position: relative;
+        padding-top: 0.75rem;
+        color: black;
+
+        h3 {
+            display: flex;
+            justify-content: space-between;
+            color: gray;
+            font-weight: bold;
+            margin-top: 10px; 
+        }
+
+        .Head {
+            overflow: hidden;
+            padding: 0;
+            border-radius: 4px;
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(91,94,106,0.3);}
+`;
+
+const BannerImage = styled(Img)`
+            width: 100%;
+            height: 200px;
+            margin-bottom: 0.5rem;
+            object-fit: cover;
+`;
+
+const HeadInfo = styled.div`
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
+        background: white;
+
+        .tileLogo {
+                    font-size: 5rem;
+                    margin-right: 0.5rem;
+                    color: gray;
+                }
+ `;
+
+const TilesContainer = styled.div`
+        display: grid;
+        box-sizing: border-box;
+        transition: max-height 0.24s;
+
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0.75rem;
+        max-height: 20rem;
+        &[hidden] {
+            overflow: hidden;
+            max-height: 0;
+        }
+
+
+ `;
+
+const Content = styled.div`
+    p {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+        margin-bottom: 10;
+        color: grey;
+    }
+
+    h2 {
+        color: black;
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+
+        Button {
+            color: grey;
+            justify-content: space-between;
+        }
+    }
+`;
+
+const TileTitle = styled.h2`
+        font-size: 1rem;
+                font-weight: 500;
+`;
+
+const TileDesc = styled.p`
+    font-size: 0.75rem;
+`;
+
+const ButtonWithHide = styled(Button)`
+    position: absolute;
+    top: 0;
+    right: 0.75rem;
+    color: gray;
+    font-weight: bold;
+
+`;
+
+const TiledLink = styled(Link)`
+            position: relative;
+            overflow: hidden;
+            padding: 0.75rem 0.5rem;
+            color: black;
+            border-radius: 4px;
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(91,94,106,0.3);
+
+            .Ico {
+                font-size: 4rem;
+                color: #31408a;
+            }
+
+            .Icon {
+                font-size: 4rem;
+                color: #31408a;
+                &.Bg {
+                    font-size: 9rem;
+                    position: absolute;
+                    right: 1rem;
+                    bottom: 1rem;
+                    pointer-events: none;
+                    opacity: 0.05;
+                }
+            }
+`;
+
 
 interface WorkspaceParams {
     id: number;
@@ -53,7 +176,7 @@ class Workspace extends Component<RouteComponentProps, S> {
             case 'Norms': Icon = FaFileCode; break;
             default: Icon = FaFileContract; break;
         }
-        return Icon && <Icon className={styles.tileLogo} />;
+        return Icon && <Icon className='tileLogo' />;
     }
     getWorkspace(id: number) {
         const workspace = this.service.getWorkspace(id);
@@ -95,37 +218,37 @@ class Workspace extends Component<RouteComponentProps, S> {
         return tiles.map((tile, i) => {
             const Ico = tile.icon;
             const content = <>
-                <Ico className={styles.tileIcon} />
-                <h2 className={styles.tileTitle}>{tile.title}</h2>
-                <p className={styles.tileDesc}>{tile.description}</p>
+                <Ico className='Ico' />
+                <TileTitle>{tile.title}</TileTitle>
+                <TileDesc>{tile.description}</TileDesc>
             </>;
-            return <Link to={tile.route} key={`tile_${i}`} className={styles.tile}>{content}</Link>;
+            return <TiledLink to={tile.route} key={`tile_${i}`}>{content}</TiledLink>;
         });
     }
 
     render() {
         const { workspace, sectionHidden } = this.state;
         return (
-            <div className={cx(styles.Workspace)} >
-                <section className={cx(styles.WorkspaceSection, styles.head)}>
-                    <Img src={workspace?.background} className={styles.banerImage} />
-                    <div className={styles.headInfo}>
+            <div>
+                <WorkspaceSection className='Head'>
+                    <BannerImage src={workspace?.background} />
+                    <HeadInfo>
                         {this.getLogo(workspace?.type)}
-                        <div className={styles.headInfoContent}>
+                        <Content>
                             <h2 className="header-2">{workspace?.title} <Button icon={RiSettings3Line} /></h2>
-                            <p>Worckspace purpose and a bit of context. This much needed description is here to remind people where they are, if they are new or have poor memory.</p>  
-                        </div>
-                    </div>
-                </section>
-                <section className={styles.WorkspaceSection} >
-                    <h3 className={'header-3'}>Start working on what corporate matters <Button className={styles.hideBtn} label={sectionHidden ? 'Show' : 'Hide'} onClick={() => this.hideSection()} /></h3>
-                    <div className={styles.tiles} hidden={sectionHidden}>
+                            <p>Worckspace purpose and a bit of context. This much needed description is here to remind people where they are, if they are new or have poor memory.</p>
+                        </Content>
+                    </HeadInfo>
+                </WorkspaceSection>
+                <WorkspaceSection >
+                    <h3 className={'header-3'}>Start working on what corporate matters <ButtonWithHide label={sectionHidden ? 'Show' : 'Hide'} onClick={() => this.hideSection()} /></h3>
+                    <TilesContainer hidden={sectionHidden}>
                         {this.getTiles()}
-                    </div>
-                </section>
-                <section className={styles.WorkspaceSection}>
+                    </TilesContainer>
+                </WorkspaceSection>
+                <WorkspaceSection>
                     <Work uselessButtons />
-                </section>
+                </WorkspaceSection>
             </div >
         );
     }

@@ -1,4 +1,3 @@
-import { AnyAction } from "redux";
 import { IPost } from "../utils/Rest";
 
 export interface PublicationsState {
@@ -13,7 +12,7 @@ export enum PublicationsActions {
     'GET' = 'GET_PUBLICATIONS',
 }
 
-export default (state = defaultState(), action: any) => {
+const PublicationsReducer = (state = defaultState(), action: any) => {
     switch (action.type) {
         case PublicationsActions.GET: {
             return {
@@ -25,3 +24,5 @@ export default (state = defaultState(), action: any) => {
             return state;
     }
 }
+
+export default PublicationsReducer;

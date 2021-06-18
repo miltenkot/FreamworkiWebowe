@@ -5,8 +5,43 @@ import Button from '../../common/Button/Button';
 import { Component } from 'react';
 import Field from '../../common/Field/Field';
 import { set } from 'lodash';
-import styles from "./EntitiesFilters.module.scss";
 import { v4 as uuid } from "uuid";
+import styled from "styled-components";
+
+const EntitiesFiltersContainer = styled.section`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.25rem;
+    border-radius: 4px;
+    background: #fff;
+    box-sizing: border-box;
+    &::after {
+        position: absolute;
+        top: -8px;
+        left: 17.8rem;
+        height: 0;
+        content: '';
+    }
+`;
+
+const EntitiesRow = styled.div`
+    display: flex;
+    margin: 0 0.25rem 0.25rem;
+    gap: 0.5rem;
+`;
+
+const Condition = styled.p`
+    color: #31408a;
+    margin: 0;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    margin-top: -1px;
+`;
 
 interface IFilter {
     id: string,
@@ -43,10 +78,10 @@ class EntitiesFilters extends Component<{}, S> {
         })
     }
 
-    onFilterChange(value: {value: string}, key: string, index: number) {
+    onFilterChange(value: { value: string }, key: string, index: number) {
         this.setState((prevState) => {
             const modifiedFilters = prevState.filtersList;
-            if(value.value) {
+            if (value.value) {
                 set(modifiedFilters[index], [key], value.value);
             } else {
                 set(modifiedFilters[index], [key], value || value);
@@ -79,8 +114,8 @@ class EntitiesFilters extends Component<{}, S> {
     removeFilter(index: number) {
         this.setState((prevState) => {
             const newFilters = prevState.filtersList;
-            newFilters.splice(index,1);
-            return  {
+            newFilters.splice(index, 1);
+            return {
                 filtersList: newFilters
             }
         })
@@ -114,24 +149,24 @@ class EntitiesFilters extends Component<{}, S> {
             value: 'Not in',
         }];
 
-        return this.state.filtersList.map((val, i) => <div className={styles.EntitiesRow} key={val.id}>
+        return this.state.filtersList.map((val, i) => <EntitiesRow key={val.id}>
             <Button iconOnly icon={RiCloseFill} onClick={() => this.removeFilter(i)} />
-            <p className={styles.condition}>{val.type}</p>
-            <Dropdown items={targetDropdownItems} value={targetDropdownItems[targetDropdownItems.findIndex((v) => v.value === val.target)]} onChange={(e: {value: string}) => this.onFilterChange(e, 'target', i)} />
-            <Dropdown items={conditionDropdownItems} value={conditionDropdownItems[conditionDropdownItems.findIndex((v) => v.value === val.condition)]} onChange={(e: {value: string}) => this.onFilterChange(e, 'condition', i)} />
-            {val.condition === 'Contains' && <Field type="string" label="Type..." value={val.typeValue} onChange={(e: {value: string}) => this.onFilterChange(e, 'typeValue', i)} />}
+            <Condition>{val.type}</Condition>
+            <Dropdown items={targetDropdownItems} value={targetDropdownItems[targetDropdownItems.findIndex((v) => v.value === val.target)]} onChange={(e: { value: string }) => this.onFilterChange(e, 'target', i)} />
+            <Dropdown items={conditionDropdownItems} value={conditionDropdownItems[conditionDropdownItems.findIndex((v) => v.value === val.condition)]} onChange={(e: { value: string }) => this.onFilterChange(e, 'condition', i)} />
+            {val.condition === 'Contains' && <Field type="string" label="Type..." value={val.typeValue} onChange={(e: { value: string }) => this.onFilterChange(e, 'typeValue', i)} />}
             {val.condition === 'Is' && <>
-                <Field type="string" label="Type..." value={val.typeValue} onChange={(e: {value: string}) => this.onFilterChange(e, 'typeValue', i)}/>
-                <Dropdown items={secondCoditionDropdown} value={secondCoditionDropdown[secondCoditionDropdown.findIndex((v) => v.value === val.secondCodition)]} onChange={(e: {value: string}) => this.onFilterChange(e, 'secondCodition', i)} />
-                <Field type="string" label="Entity..." value={val.entity} onChange={(e: {value: string}) => this.onFilterChange(e, 'entity', i)}/>
+                <Field type="string" label="Type..." value={val.typeValue} onChange={(e: { value: string }) => this.onFilterChange(e, 'typeValue', i)} />
+                <Dropdown items={secondCoditionDropdown} value={secondCoditionDropdown[secondCoditionDropdown.findIndex((v) => v.value === val.secondCodition)]} onChange={(e: { value: string }) => this.onFilterChange(e, 'secondCodition', i)} />
+                <Field type="string" label="Entity..." value={val.entity} onChange={(e: { value: string }) => this.onFilterChange(e, 'entity', i)} />
             </>}
             {val.condition === 'Ends before' && <>
-                <Field type="date" label="Date..." value={val.entity} onChange={(e: {value: string}) => this.onFilterChange(e, 'date', i)} />
-                <Dropdown items={secondCoditionDropdown} value={secondCoditionDropdown[secondCoditionDropdown.findIndex((v) => v.value === val.secondCodition)]} onChange={(e: {value: string}) => this.onFilterChange(e, 'secondCodition', i)} />
-                <Field type="string" label="Entity..." value={val.entity} onChange={(e: {value: string}) => this.onFilterChange(e, 'entity', i)} />
+                <Field type="date" label="Date..." value={val.entity} onChange={(e: { value: string }) => this.onFilterChange(e, 'date', i)} />
+                <Dropdown items={secondCoditionDropdown} value={secondCoditionDropdown[secondCoditionDropdown.findIndex((v) => v.value === val.secondCodition)]} onChange={(e: { value: string }) => this.onFilterChange(e, 'secondCodition', i)} />
+                <Field type="string" label="Entity..." value={val.entity} onChange={(e: { value: string }) => this.onFilterChange(e, 'entity', i)} />
             </>}
 
-        </div>)
+        </EntitiesRow>)
     }
 
     getActionRow() {
@@ -145,19 +180,19 @@ class EntitiesFilters extends Component<{}, S> {
         }];
         const dropdownValue = dropdownItems[dropdownItems.findIndex((v) => v.value === dropdownVal)];
 
-        return <div className={styles.EntitiesRow}>
+        return <EntitiesRow>
             <Button label="Add filter" icon={RiAddFill} onClick={this.addNewFilter} />
             <Dropdown items={dropdownItems} value={dropdownValue} onChange={this.onDropdownChange} />
-        </div>
+        </EntitiesRow>
     }
 
     render() {
         return (
-            <section className={styles.EntitiesFilters}>
+            <EntitiesFiltersContainer>
                 <h5 className="header-4">Rows are <b>not</b> filtered by the following conditions starting from the top</h5>
                 {this.getFilterRows()}
                 {this.getActionRow()}
-            </section>
+            </EntitiesFiltersContainer>
         );
     }
 }

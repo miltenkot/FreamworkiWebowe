@@ -155,14 +155,14 @@ class Work extends Component<P, S> {
                 </div>
                 {this.props.uselessButtons &&
                     <div className="buttons">
-                        <Button label="All" theme="#b2bec3"/>
+                        <Button label="All" theme="#b2bec3" />
                         <Button label="SAS" icon={BiBuildings} theme="#6c5ce7" />
                         <Button label="SARL" icon={BiBuildings} theme="#00cec9" />
                         <Button label="Secondary business" icon={BiBuildings} theme="#ffeaa7" />
                         <Button label="Communities" icon={MdPeopleOutline} theme="#ff7675" />
                         <Button label="POA" icon={IoMdPaper} theme="#d63031" />
-                        <Button label="Survey" icon={RiSurveyLine} theme="#fdcb6e"/>
-                        <Button label="..." theme="#b2bec3"/>
+                        <Button label="Survey" icon={RiSurveyLine} theme="#fdcb6e" />
+                        <Button label="..." theme="#b2bec3" />
                     </div>
                 }
                 <div >

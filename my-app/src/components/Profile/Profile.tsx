@@ -6,22 +6,73 @@ import { inputDate, newMomentDate } from '../../utils/dateUtils';
 
 import { BsBriefcase } from "react-icons/bs";
 import Button from '../common/Button/Button';
-import Fees from './Fees/Fees';
+import Fees from './Formule/Fees';
 import { FiMessageCircle } from "react-icons/fi";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import { IProfile } from '../../utils/Rest';
 import { IStore } from '../../store';
-import MainInfo from './MainInfo/MainInfo';
-import PanellInformations from './PanellInformations/PanellInformations';
-import ProfileDetails from './ProfileDetails/ProfileDetails';
-import Proposals from './Proposals/Proposals';
+import MainInfo from './Formule/MainInfo';
+import PanellInformations from './Formule/PanellInformations';
+import ProfileDetails from './Formule/ProfileDetails';
+import Proposals from './Formule/Proposals';
 import RestService from '../../utils/RestService';
-import Reviews from './Reviews/Reviews';
+import Reviews from './Formule/Reviews';
 import { UsersState } from '../../reducers/UsersReducer';
 import { connect } from 'react-redux';
-import styles from "./Profile.module.scss";
 import { usersFetchData } from '../../actions/UserActions';
 import { v4 as uuid } from "uuid";
+import styled from 'styled-components';
+import { Sizes } from '../../styledHelpers/Sizes';
+
+const ProfileContainer = styled.section`
+    padding: ${Sizes.spacing2} ${Sizes.spacing3};
+    color: black;
+    border-radius: 4px;
+    background: #eaeaea;
+    margin-bottom: ${Sizes.spacing4};
+`;
+
+const Header = styled.div`
+    display: flex;
+    justify-content: flex-end;
+`;
+
+const ButtonStyled = styled(Button)`
+    margin-right: ${Sizes.spacing2};
+`;
+
+const ButtonEdit = styled(Button)`
+    position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+`;
+
+const EditHeader = styled.div`
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        >div {
+            &:not(:last-of-type) {
+                margin-right: ${Sizes.spacing2};
+            }
+        }
+`;
+
+const Content = styled.div`
+    position: relative;
+    :global {
+        .header-3 {
+            margin-bottom: ${Sizes.spacing5};
+        }
+    }
+`;
+
+const StyledHr = styled.hr`
+    border-top: 0;
+    border-bottom: 1px solid #d3d3d3;
+`;
 
 interface ProfileParams {
     userId: number;
@@ -57,7 +108,7 @@ class Profile extends Component<P, S> {
                 panelInformations: {
                     hourlyFee: "610$/hour (Negociated)",
                     terms: "Attachement_lorem.jpg",
-                    correspondants: [{ id: uuid(), value: "Lorem Kowalski" }, { id: uuid(), value: "Ipsum Nowak"}]
+                    correspondants: [{ id: uuid(), value: "Lorem Kowalski" }, { id: uuid(), value: "Ipsum Nowak" }]
                 },
                 proposals: [{
                     id: uuid(),
@@ -196,34 +247,34 @@ class Profile extends Component<P, S> {
         const profile = this.props.users.find(v => v.id === userId)?.user;
 
         return profile
-            ? <section className={styles.Profile}>
-                <div className={styles.ProfileHeader}>
-                    <Button className={styles.ProfileHeaderButton} label={"Message"} icon={FiMessageCircle} />
-                    <Button className={styles.ProfileHeaderButton} label={"Create a request"} icon={HiOutlineDocumentText} />
-                    <Button className={styles.ProfileHeaderButton} label={"Add to cluster"} icon={BsBriefcase} />
-                </div>
-                <MainInfo profile={profile} changeState={this.changeState} />
-                <hr />
-                <div className={styles.ProfileContent}>
-                    <div className={styles.editHeader}>
+            ? <ProfileContainer>
+                <Header>
+                    <ButtonStyled label={"Message"} icon={FiMessageCircle} />
+                    <ButtonStyled label={"Create a request"} icon={HiOutlineDocumentText} />
+                    <ButtonStyled label={"Add to cluster"} icon={BsBriefcase} />
+                </Header>
+                <MainInfo profile={profile} changeState={this.changeState}></MainInfo>
+                <StyledHr />
+                <Content>
+                    <EditHeader>
                         {this.state.profileEdit
                             ? <>
-                                <Button iconOnly className={styles.editButton} disabled={false} icon={VscSave} onClick={() => this.saveProfile()} />
-                                <Button iconOnly className={styles.editButton} icon={VscClose} onClick={this.cancelEdit} />
+                                <ButtonEdit iconOnly disabled={false} icon={VscSave} onClick={() => this.saveProfile()} />
+                                <ButtonEdit iconOnly icon={VscClose} onClick={this.cancelEdit} />
                             </>
-                            : <Button iconOnly className={styles.editButton} icon={VscEdit} onClick={this.editProfile} />}
-                    </div>
+                            : <ButtonEdit iconOnly icon={VscEdit} onClick={this.editProfile} />}
+                    </EditHeader>
                     <ProfileDetails data={this.state.profileForm.details} formActive={this.state.profileEdit} />
-                    <hr />
+                    <StyledHr />
                     <PanellInformations data={this.state.profileForm.panelInformations} formActive={this.state.profileEdit} />
-                    <hr />
+                    <StyledHr />
                     <Proposals data={this.state.profileForm.proposals} formActive={this.state.profileEdit} />
-                    <hr />
+                    <StyledHr />
                     <Reviews data={this.state.profileForm.reviews} formActive={this.state.profileEdit} />
-                    <hr />
+                    <StyledHr />
                     <Fees data={this.state.profileForm.fees} formActive={this.state.profileEdit} />
-                </div>
-            </section>
+                </Content>
+            </ProfileContainer>
             : <div></div>;
     }
 }
