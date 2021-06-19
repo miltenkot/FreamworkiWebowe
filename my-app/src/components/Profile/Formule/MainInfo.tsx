@@ -12,12 +12,13 @@ import { connect } from 'react-redux';
 import { set } from 'lodash';
 import { setUser } from '../../../actions/UserActions';
 import styled from 'styled-components';
+import { Sizes } from '../../../styledHelpers/Sizes';
 
 const MainInfoContainer = styled.div`
     position: relative;
     display: grid;
     align-items: flex-end;
-    margin-top: 1rem;
+    margin-top: ${Sizes.spacing4};
 
     grid-template-columns: 7rem 14rem 14rem;
 `;
@@ -32,7 +33,7 @@ const PhotoContainer = styled.div`
         img {
             width: 4rem;
             height: 4rem;
-            margin-bottom: 0.25rem;
+            margin-bottom: ${Sizes.spacing1};
             border-radius: 50%;
         }
 `;
@@ -64,31 +65,31 @@ const DataStyle = styled.div`
         margin-left: 1.0rem;
         p {
             margin: 0;
-            padding: 0 0.5rem;
+            padding: 0 ${Sizes.spacing2};
             border: 2px solid transparent;
             &.keyInfo {
                 font-weight: 600;
             }
 
             &:not(:last-of-type) {
-                margin-bottom: 0.25rem;
+                margin-bottom: ${Sizes.spacing1};
             }
         }
 
         .Input {
             &:not(:last-of-type) {
-                margin-bottom: 0.25rem;
+                margin-bottom: ${Sizes.spacing1};
             }
         }
 `;
 
 const ProfileButton = styled(Button)`
-    height: 1rem;
+    height: ${Sizes.spacing4};
 `;
 
 const FieldInput = styled(Field)`
     &:not(:last-of-type) {
-                margin-bottom: 0.25rem;
+                margin-bottom: ${Sizes.spacing1};
             }
 `;
 
@@ -99,7 +100,7 @@ const EditHeader = styled.div`
         display: flex;
         >div {
             &:not(:last-of-type) {
-                margin-right: 0.5rem;
+                margin-right: ${Sizes.spacing2};
             }
         }
 `;

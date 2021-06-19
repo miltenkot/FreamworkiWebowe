@@ -2,7 +2,7 @@ import { AnyAction, Dispatch } from 'redux';
 import React, { Component } from 'react';
 
 import Button from '../../common/Button/Button';
-import { IStore } from '../../../store';
+import { Store } from '../../../store';
 import { Link } from "react-router-dom";
 import { PublicationsState } from '../../../reducers/PublicationsReducer';
 import Skeleton from './../../common/Skeleton/Skeleton';
@@ -141,7 +141,7 @@ class Publications extends Component<P> {
     }
 }
 
-const mapStateToProps = (state: IStore) => {
+const mapStateToProps = (state: Store) => {
     return {
         publications: state.publications.publications,
     };

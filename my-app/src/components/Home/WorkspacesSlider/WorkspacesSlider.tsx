@@ -7,14 +7,15 @@ import { Link } from 'react-router-dom';
 import RestService from '../../../utils/RestService';
 import { FaFileContract, FaFileArchive, FaFileCode } from 'react-icons/fa';
 import styled from "styled-components";
+import { Sizes } from '../../../styledHelpers/Sizes';
 
 const WorkspaceContainer = styled.section`
     display: flex;
     overflow-x: auto;
     box-sizing: border-box;
     width: 100%;
-    padding: 0.5rem;
-    gap: 0.75rem;
+    padding: ${Sizes.spacing2};
+    gap: ${Sizes.spacing3};
    
 `;
 
@@ -42,8 +43,8 @@ const LinkWithTitle = styled(Link)`
         .Logo {
             width: 5rem;
             height: 5rem;
-            margin-right: 0.75rem;
-            padding: 0.5rem;
+            margin-right: ${Sizes.spacing3};
+            padding: ${Sizes.spacing2};
             border-radius: 4px;
             background: #fff;
         }
@@ -76,7 +77,7 @@ const Content = styled.div`
             width: 100%;
             height: auto;
             margin-top: 3rem;
-            padding: 0.5rem;
+            padding: ${Sizes.spacing2};
             color: gray;
             
 
@@ -92,18 +93,18 @@ const Info = styled.div`
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            margin: 0.5rem 0;
+            margin: ${Sizes.spacing2} 0;
             color: grey;
             >
             svg {
-                margin-right: 0.5rem;
+                margin-right: ${Sizes.spacing2};
             }
 `;
 
 const Seperator = styled.div`
                 width: 4px;
                 height: 4px;
-                margin: 0 0.5rem;
+                margin: 0 ${Sizes.spacing2};
                 border-radius: 2px;
                 background: #a2a2a2
 `;

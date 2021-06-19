@@ -4,24 +4,25 @@ import { formatDate, getRandomDate } from '../../../utils/dateUtils';
 import { IComment } from './../../../utils/Rest';
 import UserSignature from './..//UserSignature/UserSignature';
 import styled from "styled-components";
+import { Sizes } from '../../../styledHelpers/Sizes';
 
 const WorkTileContainer = styled.div`
-    margin-bottom: 0.5rem;
+    margin-bottom: ${Sizes.spacing2};
     margin-right: 50px;
     height: 80px;
-    padding: 0.5rem 0.75rem;
+    padding: ${Sizes.spacing2} ${Sizes.spacing3};
     border-radius: 4px;
     background: #fff;
 `;
 
 const Name = styled.h3`
     font-size: 1.0rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: ${Sizes.spacing1};
     color: #31408a;
 `;
 
 const Body = styled.p`
-    font-size: 0.75rem;
+    font-size: ${Sizes.spacing3};
     color: black;
 `;
 

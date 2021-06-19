@@ -15,19 +15,20 @@ import Search from '../common/Search/Search';
 import Skeleton from '../common/Skeleton/Skeleton';
 import { sortBy } from 'lodash';
 import styled from "styled-components";
+import { Sizes } from '../../styledHelpers/Sizes';
 
 const EntitiesSection = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    padding-bottom: 1rem;
+    padding-bottom: ${Sizes.spacing4};
 `;
 
 const Header = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.75rem;
+    margin-bottom: ${Sizes.spacing3};
 `;
 
 const Options = styled.div`
@@ -37,16 +38,16 @@ const Options = styled.div`
 `;
 
 const Title = styled.h2`
-    font-size: 1rem;
+    font-size: ${Sizes.spacing4};
     margin: 0;
-    margin-right: 0.5rem;
+    margin-right: ${Sizes.spacing2};
 `;
 
 const EntitiesContainer = styled.div`
         display: grid;
         width: 100%;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-gap: 0.5rem;
+        grid-gap: ${Sizes.spacing2};
 
         &.EntitiesContainerList {
             display: flex;
@@ -58,7 +59,7 @@ const Entity = styled.div`
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding: 0.5rem;
+        padding: ${Sizes.spacing2};
         border-radius: 4px;
         background: #fff;
 `;
@@ -76,24 +77,24 @@ const Content = styled.div`
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    margin-left: 0.75rem;
+    margin-left: ${Sizes.spacing3};
 `;
 
 const Name = styled.h4`
-    font-size: 1rem;
+    font-size: ${Sizes.spacing4};
     margin: 0;
     color: #31408a;
 `;
 
 const Adress = styled.p`
-    font-size: 0.75rem;
+    font-size: ${Sizes.spacing3};
     margin: 0;
     color: rgb(162, 162, 162);
 `;
 
 const RightOption = styled.div`
     display: flex;
-    gap: 0.5rem;
+    gap: ${Sizes.spacing2};
 
     button {
         &.OptionButtonActive {
@@ -107,7 +108,7 @@ const DropDownItem = styled.div`
     align-items: center;
     svg {
         flex-shrink: 0;
-        margin-right: 0.5rem;
+        margin-right: ${Sizes.spacing2};
     }
 `;
 

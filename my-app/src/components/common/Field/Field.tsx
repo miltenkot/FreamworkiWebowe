@@ -47,7 +47,7 @@ const FieldContainer = styled.div`
         }
 
         &:invalid {
-            border-color: $danger;
+            border-color: red;
             background: red, 0.05);
         }
     }

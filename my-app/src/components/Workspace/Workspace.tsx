@@ -11,10 +11,11 @@ import { RiSettings3Line } from 'react-icons/ri';
 import Work from '../Work/Work';
 import { FaFileContract, FaFileArchive, FaFileCode } from 'react-icons/fa';
 import styled from 'styled-components';
+import { Sizes } from '../../styledHelpers/Sizes';
 
 const WorkspaceSection = styled.section`
         position: relative;
-        padding-top: 0.75rem;
+        padding-top: ${Sizes.spacing3};
         color: black;
 
         h3 {
@@ -36,7 +37,7 @@ const WorkspaceSection = styled.section`
 const BannerImage = styled(Img)`
             width: 100%;
             height: 200px;
-            margin-bottom: 0.5rem;
+            margin-bottom: ${Sizes.spacing2};
             object-fit: cover;
 `;
 
@@ -44,12 +45,12 @@ const HeadInfo = styled.div`
         position: relative;
         display: flex;
         align-items: center;
-        padding: 0.75rem;
+        padding: ${Sizes.spacing3};
         background: white;
 
         .tileLogo {
                     font-size: 5rem;
-                    margin-right: 0.5rem;
+                    margin-right: ${Sizes.spacing2};
                     color: gray;
                 }
  `;
@@ -60,7 +61,7 @@ const TilesContainer = styled.div`
         transition: max-height 0.24s;
 
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 0.75rem;
+        gap: ${Sizes.spacing3};
         max-height: 20rem;
         &[hidden] {
             overflow: hidden;
@@ -72,8 +73,8 @@ const TilesContainer = styled.div`
 
 const Content = styled.div`
     p {
-        font-size: 1rem;
-        margin-top: 0.5rem;
+        font-size: ${Sizes.spacing4};
+        margin-top: ${Sizes.spacing2};
         margin-bottom: 10;
         color: grey;
     }
@@ -92,18 +93,18 @@ const Content = styled.div`
 `;
 
 const TileTitle = styled.h2`
-        font-size: 1rem;
+        font-size: ${Sizes.spacing4};
                 font-weight: 500;
 `;
 
 const TileDesc = styled.p`
-    font-size: 0.75rem;
+    font-size: ${Sizes.spacing3};
 `;
 
 const ButtonWithHide = styled(Button)`
     position: absolute;
     top: 0;
-    right: 0.75rem;
+    right: ${Sizes.spacing3};
     color: gray;
     font-weight: bold;
 
@@ -112,7 +113,7 @@ const ButtonWithHide = styled(Button)`
 const TiledLink = styled(Link)`
             position: relative;
             overflow: hidden;
-            padding: 0.75rem 0.5rem;
+            padding: ${Sizes.spacing3} ${Sizes.spacing2};
             color: black;
             border-radius: 4px;
             background: #fff;
@@ -129,8 +130,8 @@ const TiledLink = styled(Link)`
                 &.Bg {
                     font-size: 9rem;
                     position: absolute;
-                    right: 1rem;
-                    bottom: 1rem;
+                    right: ${Sizes.spacing4};
+                    bottom: ${Sizes.spacing4};
                     pointer-events: none;
                     opacity: 0.05;
                 }
@@ -236,7 +237,7 @@ class Workspace extends Component<RouteComponentProps, S> {
                         {this.getLogo(workspace?.type)}
                         <Content>
                             <h2 className="header-2">{workspace?.title} <Button icon={RiSettings3Line} /></h2>
-                            <p>Worckspace purpose and a bit of context. This much needed description is here to remind people where they are, if they are new or have poor memory.</p>
+                            <p>Workspace purpose and a bit of context. This much needed description is here to remind people where they are, if they are new or have poor memory.</p>
                         </Content>
                     </HeadInfo>
                 </WorkspaceSection>

@@ -1,7 +1,7 @@
 const API = 'https://jsonplaceholder.typicode.com';
 
-function argsToString(args: object): string {
-    let argsString: string = '?';
+const argsToString = (args: object): string => {
+    let argsString = '?';
     for (const [key, value] of Object.entries(args)) {
         if (value) {
             argsString += `${key}=${value}${argsString.length > 1 ? '&' : ''}`;
@@ -11,7 +11,4 @@ function argsToString(args: object): string {
     return argsString.length > 1 ? argsString : '';
 }
 
-export {
-    API,
-    argsToString,
-};
+export {API, argsToString};

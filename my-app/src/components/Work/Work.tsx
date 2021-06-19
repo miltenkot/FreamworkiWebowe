@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { BiBuildings } from "react-icons/bi";
 import Button from '../common/Button/Button';
 import { IComment } from '../../utils/Rest';
-import { IStore } from '../../store';
+import { Store } from '../../store';
 import { IoMdPaper } from 'react-icons/io';
 import { MdPeopleOutline } from "react-icons/md";
 import Pagination from '../common/Pagination/Pagination';
@@ -176,7 +176,7 @@ class Work extends Component<P, S> {
     }
 }
 
-const mapStateToProps = (state: IStore) => {
+const mapStateToProps = (state: Store) => {
     return {
         works: state.works.works,
     };

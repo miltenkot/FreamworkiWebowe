@@ -40,7 +40,7 @@ border-radius: 4px;
 `;
 
 const SearchButton = styled.button`
-font-size: 1rem;
+font-size: ${Sizes.spacing4};
 position: absolute;
 top: 0;
 right: 0;

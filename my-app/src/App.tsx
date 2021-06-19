@@ -1,10 +1,6 @@
 import "./App.scss";
 
-import {
-  Route,
-  HashRouter as Router,
-  Switch
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import Entities from "./components/Entities/Entities";
 import Home from './components/Home/Home';
@@ -34,7 +30,6 @@ const routes = [
     component: Entities
   },
   {
-    path: "/*",
     component: NotFound
   }
 ];

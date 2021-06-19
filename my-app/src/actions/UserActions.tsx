@@ -2,7 +2,7 @@ import { UsersActions, UsersState } from "../reducers/UsersReducer";
 
 import { API } from "../utils/restUtils";
 import { Dispatch } from "redux";
-import { IStore } from "../store";
+import { Store } from "../store";
 import { IUserLocal } from "../utils/Rest";
 
 export const usersFetchDataSuccess = (users: IUserLocal) => {
@@ -26,7 +26,7 @@ const getUserPhoto = (id: number): Promise<any> => {
 
 export const usersFetchData = (id: number) => {
     return (dispatch: Dispatch, stateF: any) => {
-        const state = stateF() as IStore;
+        const state = stateF() as Store;
         let user: IUserLocal = null;
         const usersLocal = state.users as UsersState;
         const userById = usersLocal.users.find(v => v.id === id);

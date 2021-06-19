@@ -6,7 +6,7 @@ import workspaces from './../assets/workspaces.json'
 class RestService {
 
     private _argsToString(args: object): string {
-        let argsString: string = '?';
+        let argsString = '?';
         for (const [key, value] of Object.entries(args)) {
             if (value) {
                 argsString += `${key}=${value}${argsString.length > 1 ? '&' : ''}`;

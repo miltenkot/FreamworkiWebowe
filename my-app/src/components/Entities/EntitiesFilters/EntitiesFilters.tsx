@@ -7,6 +7,7 @@ import Field from '../../common/Field/Field';
 import { set } from 'lodash';
 import { v4 as uuid } from "uuid";
 import styled from "styled-components";
+import { Sizes } from '../../../styledHelpers/Sizes';
 
 const EntitiesFiltersContainer = styled.section`
     position: relative;
@@ -14,8 +15,8 @@ const EntitiesFiltersContainer = styled.section`
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    margin-bottom: 0.5rem;
-    padding: 0.25rem;
+    margin-bottom: ${Sizes.spacing2};
+    padding: ${Sizes.spacing1};
     border-radius: 4px;
     background: #fff;
     box-sizing: border-box;
@@ -30,8 +31,8 @@ const EntitiesFiltersContainer = styled.section`
 
 const EntitiesRow = styled.div`
     display: flex;
-    margin: 0 0.25rem 0.25rem;
-    gap: 0.5rem;
+    margin: 0 ${Sizes.spacing1} ${Sizes.spacing1};
+    gap: ${Sizes.spacing2};
 `;
 
 const Condition = styled.p`

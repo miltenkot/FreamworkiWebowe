@@ -6,6 +6,7 @@ import Field from '../../common/Field/Field';
 import { IProfile } from '../../../utils/Rest';
 import { v4 as uuid } from "uuid";
 import styled from 'styled-components';
+import { Sizes } from '../../../styledHelpers/Sizes';
 
 type _keys = 'id' | 'year' | 'costCenter' | 'totalAmount' | 'firm';
 
@@ -19,7 +20,7 @@ const Table = styled.table`
         th, td {
             text-align: left;
             &:not(:last-of-type) {
-                padding: 0.25rem 0.75rem;
+                padding: ${Sizes.spacing1} ${Sizes.spacing3};
                 max-width: 10rem;
                 width: 10rem;
             }
@@ -37,11 +38,11 @@ const Table = styled.table`
 `;
 
 const FeesContainer = styled.div`
-padding: 0.5rem 0;
+padding: ${Sizes.spacing2} 0;
 `;
 
 const ContentContainer = styled.div`
- padding-left: 1rem;
+ padding-left: ${Sizes.spacing4};
 `;
 
 interface ITable {

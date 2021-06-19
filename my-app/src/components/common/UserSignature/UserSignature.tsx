@@ -1,10 +1,9 @@
 import { AnyAction, Dispatch } from 'redux';
 import React, { Component } from 'react';
 import { formatDate, getRandomDate } from '../../../utils/dateUtils';
-import { getRandomNumber, isPrime } from '../../../utils/mathUtils';
 
 import { BiBuilding } from "react-icons/bi";
-import { IStore } from '../../../store';
+import { Store } from '../../../store';
 import Img from '../Img/Img';
 import { Link } from 'react-router-dom';
 import { RiNewspaperLine } from "react-icons/ri";
@@ -12,6 +11,7 @@ import { UsersState } from '../../../reducers/UsersReducer';
 import { connect } from 'react-redux';
 import { usersFetchData } from './../../../actions/UserActions';
 import styled from 'styled-components';
+import { Sizes } from '../../../styledHelpers/Sizes';
 
 interface StateProps {
     users: UsersState['users']
@@ -28,7 +28,7 @@ type P = {
 } & StateProps & DispatchProps
 
 const UserSignatureCont = styled.div`
-    font-size: 0.75rem;
+    font-size: ${Sizes.spacing3};
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -39,7 +39,7 @@ const CompanyCont = styled.div`
     align-items: center;
 
     svg {
-        margin-right: 0.25rem;
+        margin-right: ${Sizes.spacing1};
     }
 `;
 
@@ -47,10 +47,10 @@ const LinkCont = styled(Link)`
 display: flex;
 align-items: center;
 border-radius: 3px;
-padding-right: 0.25rem;
-margin: 0 0.25rem;
+padding-right: ${Sizes.spacing1};
+margin: 0 ${Sizes.spacing1};
 .UserAvatar {
-    margin: 0 0.25rem;
+    margin: 0 ${Sizes.spacing1};
 }
 
 &:hover {
@@ -61,7 +61,7 @@ margin: 0 0.25rem;
 const UserAvatarCont = styled(Img)`
 width: 15px;
 height: 15px;
-margin: 0 0.5rem;
+margin: 0 ${Sizes.spacing2};
 border-radius: 50%;
 
 object-fit: cover;
@@ -76,7 +76,7 @@ class UserSignature extends Component<P, {}> {
         super(props);
         this.props.fetchData(props.userId);
         if (props.type === 'company') {
-            this.isCompany = isPrime(getRandomNumber());
+            this.isCompany = true;
         }
     }
 
@@ -143,7 +143,7 @@ class UserSignature extends Component<P, {}> {
     }
 }
 
-const mapStateToProps = (state: IStore) => {
+const mapStateToProps = (state: Store) => {
     return {
         users: state.users.users,
     };

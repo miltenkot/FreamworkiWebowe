@@ -8,6 +8,7 @@ import Field from '../../common/Field/Field';
 import { IProfile } from '../../../utils/Rest';
 import { v4 as uuid } from "uuid";
 import styled from 'styled-components';
+import { Sizes } from '../../../styledHelpers/Sizes';
 
 type _keys = 'hourlyFee' | 'terms' | 'correspondants';
 
@@ -21,26 +22,26 @@ type S = {
 }
 
 const PanelCont = styled.div`
-    padding: 0.5rem 0;
+    padding: ${Sizes.spacing2} 0;
 `;
 
 const PanelData = styled.div`
     :global {
             .header-5 {
-                font-size: 0.5rem;
-                margin-left: 0.5rem;
+                font-size: ${Sizes.spacing2};
+                margin-left: ${Sizes.spacing2};
             }
         }
 `;
 
 const Value = styled.p`
-        margin-top: 0.25rem;
-        margin-left: 0.5rem;
+        margin-top: ${Sizes.spacing1};
+        margin-left: ${Sizes.spacing2};
 `;
 
 const FileField = styled(Field)`
-    margin-top: 0.25rem;
-        margin-bottom: 1rem;
+    margin-top: ${Sizes.spacing1};
+        margin-bottom: ${Sizes.spacing4};
         margin-left: 0.5.rem;
         padding: 0.5.rem;
         border-radius: 4px;
@@ -52,8 +53,8 @@ const FileField = styled(Field)`
 `;
 
 const FileFieldP = styled.p`
-    margin-top: 0.25rem;
-        margin-bottom: 1rem;
+    margin-top: ${Sizes.spacing1};
+        margin-bottom: ${Sizes.spacing4};
         margin-left: 0.5.rem;
         padding: 0.5.rem;
         border-radius: 4px;
@@ -67,8 +68,8 @@ const FileFieldP = styled.p`
 const UserContainer = styled.div`
         display: flex;
         align-items: center;
-        margin: 0.25rem 0.5rem;
-        padding: 0.25rem 0.5rem;
+        margin: ${Sizes.spacing1} ${Sizes.spacing2};
+        padding: ${Sizes.spacing1} ${Sizes.spacing2};
         border-radius: 4px;
         background-color: rgba(#31408a, 0.1);
         justify-content: space-between;

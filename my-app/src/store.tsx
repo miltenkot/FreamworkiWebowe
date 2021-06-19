@@ -7,7 +7,7 @@ import { PublicationsState } from './reducers/PublicationsReducer';
 import reducer from './reducers';
 
 
-export interface IStore {
+export interface Store {
     fetchData: Function,
     works: WorksState,
     users: UsersState,

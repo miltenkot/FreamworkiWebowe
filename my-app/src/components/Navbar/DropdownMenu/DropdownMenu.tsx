@@ -14,10 +14,11 @@ import { AnyAction, Dispatch } from 'redux';
 import Search from '../../common/Search/Search';
 import Button from '../../common/Button/Button';
 import { FiLogOut } from 'react-icons/fi';
-import { IStore } from '../../../store';
+import { Store } from '../../../store';
 import { connect } from 'react-redux';
 import { usersFetchData } from '../../../actions/UserActions';
 import styled from 'styled-components';
+import { Sizes } from '../../../styledHelpers/Sizes';
 
 const DropDMenuBtn = styled.button`
     font-size: 0.85rem;
@@ -28,7 +29,7 @@ const DropDMenuBtn = styled.button`
     justify-content: space-between;
     min-width: 14rem;
     height: 2rem;
-    padding: 0.25rem 0.5rem;
+    padding: ${Sizes.spacing1} ${Sizes.spacing2};
     cursor: pointer;
     color: #31408a;
     outline: 0;
@@ -37,10 +38,10 @@ const DropDMenuBtn = styled.button`
 
     
     svg {
-        font-size: 1rem;
+        font-size: ${Sizes.spacing4};
         flex-shrink: 0;
         flex-shrink: 0;
-        margin-left: 0.25rem;
+        margin-left: ${Sizes.spacing1};
         color: black;
     }
 
@@ -53,7 +54,7 @@ const DropDMenuBtn = styled.button`
 
 const Container = styled.div`
     position: relative;
-    margin-left: 1rem;;
+    margin-left: ${Sizes.spacing4};;
 `;
 
 const LinkWithDisable = styled(Link)`
@@ -65,7 +66,7 @@ const LinkWithDisable = styled(Link)`
         display: flex;
         align-items: center;
         width: auto;
-        padding: 0.25rem;
+        padding: ${Sizes.spacing1};
         cursor: pointer;
         color: black;
         border: 0;
@@ -93,23 +94,23 @@ const LinkWithDisable = styled(Link)`
 `;
 
 const Description = styled.span`
-    font-size: 0.75rem;
+    font-size: ${Sizes.spacing3};
     color: #31408a;
 `;
 
 const ImageWithPhoto = styled(Img)`
     width: 1.5rem;
         height: 1.5rem;
-        margin-right: 0.75rem;
+        margin-right: ${Sizes.spacing3};
         border-radius: 50%;
 `;
 
 const Section = styled.div`
-    padding: 0.25rem;
+    padding: ${Sizes.spacing1};
 `;
 
 const Values = styled.div`
-        font-size: 1rem;
+        font-size: ${Sizes.spacing4};
         position: absolute;
         z-index: 1;
         right: 0;
@@ -134,7 +135,7 @@ const Values = styled.div`
 `;
 
 const SearchStyled = styled(Search)`
-    margin: 0.25rem 0.25rem 0;
+    margin: ${Sizes.spacing1} ${Sizes.spacing1} 0;
 `;
 
 const ValuesContainer = styled.div`
@@ -357,7 +358,7 @@ class DropdownMenu extends Component<P, S>{
     }
 }
 
-const mapStateToProps = (state: IStore) => {
+const mapStateToProps = (state: Store) => {
     return {
         users: state.users.users,
     };

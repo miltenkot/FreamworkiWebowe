@@ -3,7 +3,7 @@ import { IComment, IPost } from "../utils/Rest";
 import { WorksActions, WorksState } from "../reducers/WorksReducer";
 
 import { Dispatch } from "redux";
-import { IStore } from "../store";
+import { Store } from "../store";
 import { UsersState } from "../reducers/UsersReducer";
 
 export const worksFetchDataSuccess = (works: IComment[]) => {
@@ -13,7 +13,7 @@ export const worksFetchDataSuccess = (works: IComment[]) => {
     };
 }
 
-async function getPost(id: number, state: IStore) {
+async function getPost(id: number, state: Store) {
     const post: IPost = await fetch(`${API}/posts/${id}`).then(response => response.json());
     const users = state.users as UsersState;
     const userById = users.users.find(v => v.id === post.userId);
@@ -27,7 +27,7 @@ export const worksFetchData = (limit?: number) => {
     };
     const argString = argsToString(args);
     return (dispatch: Dispatch, stateF: any) => {
-        const state = stateF() as IStore;
+        const state = stateF() as Store;
         const worksLocal = state.works as WorksState;
         const users = state.users as UsersState;
         if (worksLocal.works.length > 0) {

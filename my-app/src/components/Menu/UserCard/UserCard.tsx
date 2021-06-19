@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import Button from '../../common/Button/Button';
 import { FaRegBuilding } from 'react-icons/fa'
 import { GiAtom } from 'react-icons/gi'
-import { IStore } from './../../../store';
+import { Store } from './../../../store';
 import Img from '../../common/Img/Img';
 import { UsersState } from '../../../reducers/UsersReducer';
 import { connect } from 'react-redux';
@@ -79,14 +79,14 @@ const UserCardContainer = styled.div`
     }
 
     hr {
-        width: calc(100% + 1rem);
-        margin-left: -0.5rem;
+        width: calc(100% + ${Sizes.spacing4});
+        margin-left: -${Sizes.spacing2};
         border: 0;
         border-top: 1px solid ${Colors.borderWhite};
     }
 
     svg {
-        font-size: 1rem; 
+        font-size: ${Sizes.spacing4}; 
     }
 `;
 
@@ -105,7 +105,7 @@ button {
   padding-right: 0px;
 
   svg {
-        font-size: 1rem; 
+        font-size: ${Sizes.spacing4}; 
     }
 }
 
@@ -196,7 +196,7 @@ class UserCard extends Component<P> {
     }
 }
 
-const mapStateToProps = (state: IStore) => {
+const mapStateToProps = (state: Store) => {
     return {
         users: state.users.users,
     };

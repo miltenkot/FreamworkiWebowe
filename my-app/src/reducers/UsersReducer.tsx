@@ -36,7 +36,6 @@ const UsersReducer = (state = defaultState(), action: any) => {
                     }]
                 };
             }
-
             return state;
         }
         default:

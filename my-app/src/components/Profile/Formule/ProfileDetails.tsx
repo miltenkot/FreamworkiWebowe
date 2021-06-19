@@ -6,6 +6,7 @@ import Field from '../../common/Field/Field';
 import { IProfile } from '../../../utils/Rest';
 import { v4 as uuid } from "uuid";
 import styled from 'styled-components';
+import { Sizes } from '../../../styledHelpers/Sizes';
 
 type _keys = 'expertise' | 'specialities' | 'admissions' | 'counties';
 
@@ -28,13 +29,13 @@ type S = {
 }
 
 const ProfileDetailsContainer = styled.div`
-    padding: 0.5rem 0;
+    padding: ${Sizes.spacing2} 0;
 `;
 
 const DataStyle = styled.div`
         .Input {
             &:not(:last-of-type) {
-                margin-bottom: 0.25rem;
+                margin-bottom: ${Sizes.spacing1};
             }
         }
 `;
@@ -44,13 +45,13 @@ const ItemsStyle = styled.form`
         align-items: center;
         flex-wrap: wrap;
         justify-content: flex-start;
-        padding: 0 0.5rem;
+        padding: 0 ${Sizes.spacing2};
 
-        gap: 0.5rem;
-        row-gap: 0.25rem;
+        gap: ${Sizes.spacing2};
+        row-gap: ${Sizes.spacing1};
         p {
             margin: 0;
-            padding: 2px 0.25rem;
+            padding: 2px ${Sizes.spacing1};
             color: #7d91a1;
             border-radius: 4px;
             background-color: #e2f2ff;

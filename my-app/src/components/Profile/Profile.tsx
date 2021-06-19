@@ -10,7 +10,7 @@ import Fees from './Formule/Fees';
 import { FiMessageCircle } from "react-icons/fi";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import { IProfile } from '../../utils/Rest';
-import { IStore } from '../../store';
+import { Store } from '../../store';
 import MainInfo from './Formule/MainInfo';
 import PanellInformations from './Formule/PanellInformations';
 import ProfileDetails from './Formule/ProfileDetails';
@@ -279,7 +279,7 @@ class Profile extends Component<P, S> {
     }
 }
 
-const mapStateToProps = (state: IStore) => {
+const mapStateToProps = (state: Store) => {
     return {
         users: state.users.users,
     };

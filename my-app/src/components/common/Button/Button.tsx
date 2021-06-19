@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { LightenDarkenColor } from '../../../utils/colorUtils';
 import styled from 'styled-components';
+import { Sizes } from '../../../styledHelpers/Sizes';
 
 const DefaultButton = styled.button`
     position: relative;
@@ -56,7 +56,7 @@ const DefaultButton = styled.button`
         border-radius: 15%;
         svg {
             width: 20rem;  
-            font-size: 1rem;
+            font-size: ${Sizes.spacing4};
         }
     }
 `;
@@ -75,8 +75,8 @@ const Button = (props: any) => {
     if (props.theme) {
         colors = {
             backgroundColor: props.theme,
-            color: LightenDarkenColor(props.theme, -90),
-            borderColor: props.border ? LightenDarkenColor(props.theme, -90) : ''
+            color: '#31408a',
+            borderColor: props.border ? props.theme : ''
         }
     }
     return (

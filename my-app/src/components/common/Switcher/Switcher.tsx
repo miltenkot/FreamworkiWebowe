@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Button from '../Button/Button';
 import { IconType } from 'react-icons';
 import styled from "styled-components";
+import { Sizes } from '../../../styledHelpers/Sizes';
 
 const SwitcherContainer = styled.div`
     display: flex;
@@ -11,7 +12,7 @@ const SwitcherContainer = styled.div`
 const ButtonStyled = styled(Button)`
         display: flex;
         align-items: center;
-        padding: 0.25rem 0.5rem;
+        padding: ${Sizes.spacing1} ${Sizes.spacing2};
         color: black;
         border: 0;
         border: 1px solid rgba(142, 156, 229, 0.2);

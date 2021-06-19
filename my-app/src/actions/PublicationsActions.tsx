@@ -3,7 +3,7 @@ import { PublicationsActions, PublicationsState } from "../reducers/Publications
 
 import { Dispatch } from "redux";
 import { IPost } from "../utils/Rest";
-import { IStore } from "../store";
+import { Store } from "../store";
 import { UsersState } from "../reducers/UsersReducer";
 
 export const publicationsFetchDataSuccess = (publications: IPost[]) => {
@@ -25,7 +25,7 @@ export const publicationsFetchData = (limit?: number) => {
     const argString = argsToString(args);
 
     return (dispatch: Dispatch, stateF: any) => {
-        const state = stateF() as IStore;
+        const state = stateF() as Store;
         const publicationsLocal = state.publications as PublicationsState;
         const users = state.users as UsersState;
         if (publicationsLocal.publications.length > 0) {
