@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { formatDate, getRandomDate } from '../../../utils/dateUtils';
 
-import { IComment } from './../../../utils/Rest';
+import { Comment } from './../../../utils/Rest';
 import UserSignature from './..//UserSignature/UserSignature';
 import styled from "styled-components";
 import { Sizes } from '../../../styledHelpers/Sizes';
@@ -27,7 +27,7 @@ const Body = styled.p`
 `;
 
 type P = {
-    work: IComment,
+    work: Comment,
 }
 
 class WorkTile extends Component<P, {}> {

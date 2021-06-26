@@ -1,9 +1,9 @@
-import { IUserLocal } from "../utils/Rest";
+import { UserLocal } from "../utils/Rest";
 
 export interface UsersState {
     users: {
         id: number,
-        user: IUserLocal
+        user: UserLocal
     }[]
 };
 

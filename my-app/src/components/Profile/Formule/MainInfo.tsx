@@ -5,7 +5,7 @@ import { VscClose, VscEdit, VscSave } from "react-icons/vsc";
 
 import Button from '../../common/Button/Button';
 import Field from '../../common/Field/Field';
-import { IUserLocal } from '../../../utils/Rest';
+import { UserLocal } from '../../../utils/Rest';
 import Img from '../../common/Img/Img';
 import RestService from '../../../utils/RestService';
 import { connect } from 'react-redux';
@@ -114,16 +114,16 @@ interface IField {
 }
 
 interface DispatchProps {
-    setUser: (id: IUserLocal) => void
+    setUser: (id: UserLocal) => void
 }
 
 type P = {
-    profile: IUserLocal,
+    profile: UserLocal,
     changeState: Function
 } & DispatchProps
 
 type S = {
-    profile: IUserLocal,
+    profile: UserLocal,
     profileBasicEditMode: boolean,
 }
 
@@ -276,7 +276,7 @@ class MainInfo extends Component<P, S> {
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     return {
-        setUser: (user: IUserLocal) => dispatch(setUser(user) as unknown as AnyAction)
+        setUser: (user: UserLocal) => dispatch(setUser(user) as unknown as AnyAction)
     };
 };
 

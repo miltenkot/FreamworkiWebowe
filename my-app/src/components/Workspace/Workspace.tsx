@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 import Button from '../common/Button/Button';
 import { VscSymbolStructure } from 'react-icons/all';
-import { IWorkspace } from '../../utils/Rest';
+import { Workspace } from '../../utils/Rest';
 import Img from '../common/Img/Img';
 import RestService from '../../utils/RestService';
 import { RiSettings3Line } from 'react-icons/ri';
@@ -143,10 +143,10 @@ interface WorkspaceParams {
     id: number;
 }
 type S = {
-    workspace: IWorkspace | null
+    workspace: Workspace | null
     sectionHidden: boolean
 }
-class Workspace extends Component<RouteComponentProps, S> {
+class Workspaces extends Component<RouteComponentProps, S> {
     service = new RestService();
 
     constructor(props: RouteComponentProps) {
@@ -169,7 +169,7 @@ class Workspace extends Component<RouteComponentProps, S> {
         }
     }
 
-    getLogo(type: IWorkspace['type'] | undefined) {
+    getLogo(type: Workspace['type'] | undefined) {
         let Icon;
         switch (type) {
             case 'Contract': Icon = FaFileContract; break;
@@ -255,4 +255,4 @@ class Workspace extends Component<RouteComponentProps, S> {
     }
 }
 
-export default Workspace;
+export default Workspaces;

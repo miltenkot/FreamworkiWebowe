@@ -1,63 +1,39 @@
-import { IFakeCompany, IPhoto, Post, IUser, IWorkspace } from "./Rest";
+import { FCompany, Photo, User, Workspace } from "./Rest";
 
-import { API } from "./restUtils";
+import { API } from "./api";
 import workspaces from './../assets/workspaces.json'
 
 class RestService {
-
-    private _argsToString(args: object): string {
-        let argsString = '?';
-        for (const [key, value] of Object.entries(args)) {
-            if (value) {
-                argsString += `${key}=${value}${argsString.length > 1 ? '&' : ''}`;
-            }
-        }
-
-        return argsString.length > 1 ? argsString : '';
-    }
-
-    async getUserPhoto(id: number): Promise<IPhoto> {
+    async getUserPhoto(id: number): Promise<Photo> {
         return fetch(`${API}/photos/${id}`)
             .then(response => response.json())
+            .catch(error => console.log(error))
     }
 
-    async getUserProfile(id?: number): Promise<IUser> {
-        const user: IUser = await fetch(`${API}/users/${id}`).then(response => response.json());
-        if (Object.keys(user).length !== 0) {
-            const photo = await this.getUserPhoto(user.id)
-            user.photo = photo;
-        }
+    async getUserProfile(id?: number): Promise<User> {
+        const user: User = await fetch(`${API}/users/${id}`)
+        .then(response => response.json());
+        const photo = await this.getUserPhoto(user.id)
+        user.photo = photo;
 
         return user;
     }
 
-    async getPublications(limit?: number): Promise<Array<Post>> {
-        const args = {
-            '_limit': limit
-        };
-        const argString = this._argsToString(args);
-        const posts: Array<Post> = await fetch(`${API}/posts${argString}`).then(response => response.json());
-        const postsWithRel = Promise.all(posts.map(async (post) => {
-            post.user = await this.getUserProfile(post.userId).then(response => response);
-            post.photo = await this.getUserPhoto(post.userId).then(response => response);
-
-            return post;
-        }));
-
-        return postsWithRel;
-    }
-
-    async getFakeCompanies(): Promise<Array<IFakeCompany>> {
-        let users: Array<IUser> = await fetch(`${API}/users`).then(response => response.json());
+    async getCompanies(): Promise<Array<FCompany>> {
+        let users: User[] = await fetch(`${API}/users`)
+        .then(response => response.json())
+        .catch(error => console.log(error));
         users = [...users, ...users, ...users];
         let address = Promise.all(users.map(async (user, i) => {
-            const newAddress: IFakeCompany = {
+            const newAddress: FCompany = {
                 id: i,
                 address: `${user.address.street} ${user.address.suite}, ${user.address.city}`,
                 name: user.company.name
             }
 
-            newAddress.photo = await this.getUserPhoto(user.id).then(response => response);
+            newAddress.photo = await this.getUserPhoto(user.id)
+            .then(response => response)
+            .catch(error => console.log(error));
 
             return newAddress;
         }));
@@ -65,11 +41,11 @@ class RestService {
         return address;
     }
 
-    getWorkspace(id: number): IWorkspace | undefined {
+    getWorkspace(id: number): Workspace | undefined {
         return workspaces.find((v) => v.id === id);
     }
 
-    getWorkspaces(): IWorkspace[] {
+    getWorkspaces(): Workspace[] {
         return workspaces;
     }
 }

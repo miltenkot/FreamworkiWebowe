@@ -1,12 +1,12 @@
-import { API, argsToString } from "../utils/restUtils";
-import { IComment, Post } from "../utils/Rest";
+import { API } from "../utils/api";
+import { Comment, Post } from "../utils/Rest";
 import { WorksActions, WorksState } from "../reducers/WorksReducer";
 
 import { Dispatch } from "redux";
 import { Store } from "../store";
 import { UsersState } from "../reducers/UsersReducer";
 
-export const worksFetchDataSuccess = (works: IComment[]) => {
+export const worksFetchDataSuccess = (works: Comment[]) => {
     return {
         type: WorksActions.GET,
         works
@@ -21,11 +21,7 @@ async function getPost(id: number, state: Store) {
     return post;
 }
 
-export const worksFetchData = (limit?: number) => {
-    const args = {
-        '_limit': limit
-    };
-    const argString = argsToString(args);
+export const worksFetchData = () => {
     return (dispatch: Dispatch, stateF: any) => {
         const state = stateF() as Store;
         const worksLocal = state.works as WorksState;
@@ -40,9 +36,9 @@ export const worksFetchData = (limit?: number) => {
             });
             return dispatch(worksFetchDataSuccess(works));
         }
-        fetch(`${API}/comments${argString}`)
+        fetch(`${API}/comments?_limit=100`)
             .then((response) => response.json())
-            .then(async (worksFetch: IComment[]) => {
+            .then(async (worksFetch: Comment[]) => {
                 return Promise.all(worksFetch.map(async (work) => {
                     const post = await (await getPost(work.postId, state).then(resp => resp));
                     work.post = post;
@@ -52,5 +48,6 @@ export const worksFetchData = (limit?: number) => {
                     return dispatch(worksFetchDataSuccess(works));
                 });
             })
+            .catch(error => console.log(error))
     };
 }

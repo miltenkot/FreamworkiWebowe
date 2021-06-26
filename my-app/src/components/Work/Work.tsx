@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 import { BiBuildings } from "react-icons/bi";
 import Button from '../common/Button/Button';
-import { IComment } from '../../utils/Rest';
+import { Comment } from '../../utils/Rest';
 import { Store } from '../../store';
 import { IoMdPaper } from 'react-icons/io';
 import { MdPeopleOutline } from "react-icons/md";
@@ -106,7 +106,7 @@ class Work extends Component<P, S> {
         })
     }
 
-    filterRows(works: IComment[]): IComment[] {
+    filterRows(works: Comment[]): Comment[] {
         let worksFiltered = [...works];
         if (this.state.searchValue !== '') {
             const filterString = this.state.searchValue.toLowerCase();
@@ -119,7 +119,7 @@ class Work extends Component<P, S> {
         return worksFiltered;
     }
 
-    getWorks(filteredWorks: IComment[]) {
+    getWorks(filteredWorks: Comment[]) {
         const { works } = this.props;
         const range = this.state.currentPage * PAGE_SIZE;
 
@@ -184,7 +184,7 @@ const mapStateToProps = (state: Store) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     return {
-        fetchData: (id: number) => dispatch(worksFetchData(id) as unknown as AnyAction)
+        fetchData: (id: number) => dispatch(worksFetchData() as unknown as AnyAction)
     };
 };
 

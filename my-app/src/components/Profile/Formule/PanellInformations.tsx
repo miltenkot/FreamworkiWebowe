@@ -5,7 +5,7 @@ import { BiMessage } from 'react-icons/bi';
 import Button from '../../common/Button/Button';
 import { FaUser } from 'react-icons/fa';
 import Field from '../../common/Field/Field';
-import { IProfile } from '../../../utils/Rest';
+import { Profile } from '../../../utils/Rest';
 import { v4 as uuid } from "uuid";
 import styled from 'styled-components';
 import { Sizes } from '../../../styledHelpers/Sizes';
@@ -13,12 +13,12 @@ import { Sizes } from '../../../styledHelpers/Sizes';
 type _keys = 'hourlyFee' | 'terms' | 'correspondants';
 
 type P = {
-    data: IProfile['panelInformations'],
+    data: Profile['panelInformations'],
     formActive: boolean
 }
 
 type S = {
-    data: IProfile['panelInformations']
+    data: Profile['panelInformations']
 }
 
 const PanelCont = styled.div`

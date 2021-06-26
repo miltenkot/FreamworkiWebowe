@@ -9,7 +9,7 @@ import Button from '../common/Button/Button';
 import Fees from './Formule/Fees';
 import { FiMessageCircle } from "react-icons/fi";
 import { HiOutlineDocumentText } from "react-icons/hi";
-import { IProfile } from '../../utils/Rest';
+import { Profile } from '../../utils/Rest';
 import { Store } from '../../store';
 import MainInfo from './Formule/MainInfo';
 import PanellInformations from './Formule/PanellInformations';
@@ -87,14 +87,14 @@ interface DispatchProps {
 }
 type P = RouteComponentProps & StateProps & DispatchProps;
 type S = {
-    profileForm: IProfile
+    profileForm: Profile
     profileEdit: boolean
 }
 
-class Profile extends Component<P, S> {
+class Profiles extends Component<P, S> {
     service = new RestService();
     validTemp: any = {};
-    tempProfile: IProfile | null = null;
+    tempProfile: Profile | null = null;
     constructor(props: P) {
         super(props);
         this.state = {
@@ -230,7 +230,7 @@ class Profile extends Component<P, S> {
     cancelEdit() {
         this.setState({
             profileEdit: false,
-            profileForm: this.tempProfile as IProfile
+            profileForm: this.tempProfile as Profile
         }, () => {
             this.tempProfile = null;
         });
@@ -291,4 +291,4 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profiles));

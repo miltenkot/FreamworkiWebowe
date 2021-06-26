@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import Button from '../../common/Button/Button';
 import Field from '../../common/Field/Field';
-import { IProfile } from '../../../utils/Rest';
+import { Profile } from '../../../utils/Rest';
 import { v4 as uuid } from "uuid";
 import styled from 'styled-components';
 import { Sizes } from '../../../styledHelpers/Sizes';
@@ -17,12 +17,12 @@ interface ITable {
 }
 
 type P = {
-    data: IProfile['proposals'],
+    data: Profile['proposals'],
     formActive: boolean
 }
 
 type S = {
-    data: IProfile['proposals']
+    data: Profile['proposals']
     expand: boolean
 }
 

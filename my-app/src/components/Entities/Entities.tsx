@@ -8,7 +8,7 @@ import { VscFilter } from 'react-icons/vsc';
 
 import Button from '../common/Button/Button';
 import EntitiesFilters from './EntitiesFilters/EntitiesFilters';
-import { IFakeCompany } from '../../utils/Rest';
+import { FCompany } from '../../utils/Rest';
 import Img from '../common/Img/Img';
 import RestService from '../../utils/RestService';
 import Search from '../common/Search/Search';
@@ -119,7 +119,7 @@ type S = {
     searchValue: string,
     sort: number,
     onlyMyEntities: boolean,
-    entities: IFakeCompany[] | []
+    entities: FCompany[] | []
 }
 
 interface StateProps {
@@ -155,7 +155,7 @@ class Entities extends Component<StateProps, S> {
 
 
     getEntities() {
-        this.service.getFakeCompanies().then(entities => {
+        this.service.getCompanies().then(entities => {
             this.setState({
                 entities: entities
             })
@@ -203,7 +203,7 @@ class Entities extends Component<StateProps, S> {
         });
     }
 
-    filterEntities(entities: IFakeCompany[]) {
+    filterEntities(entities: FCompany[]) {
         if (entities.length === 0) {
             return null;
         }
@@ -236,7 +236,7 @@ class Entities extends Component<StateProps, S> {
         })
     }
 
-    getEntitiesUI(entities: IFakeCompany[]) {
+    getEntitiesUI(entities: FCompany[]) {
 
         return entities.map((ent, i) => <Entity key={`entity_${ent.id}`}>
             <Photo src={ent.photo?.url} alt={ent.photo?.title} skeletonize />

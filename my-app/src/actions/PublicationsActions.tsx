@@ -1,4 +1,4 @@
-import { API, argsToString } from "../utils/restUtils";
+import { API } from "../utils/api";
 import { PublicationsActions, PublicationsState } from "../reducers/PublicationsReducer";
 
 import { Dispatch } from "redux";
@@ -16,14 +16,10 @@ export const publicationsFetchDataSuccess = (publications: Post[]) => {
 const getPhoto = (id: number): Promise<any> => {
     return fetch(`${API}/photos/${id}`)
         .then(response => response.json())
+        .catch(error => console.log(error))
 }
 
-export const publicationsFetchData = (limit?: number) => {
-    const args = {
-        '_limit': limit
-    };
-    const argString = argsToString(args);
-
+export const publicationsFetchData = () => {
     return (dispatch: Dispatch, stateF: any) => {
         const state = stateF() as Store;
         const publicationsLocal = state.publications as PublicationsState;
@@ -36,7 +32,7 @@ export const publicationsFetchData = (limit?: number) => {
             });
             return dispatch(publicationsFetchDataSuccess(pubs));
         }
-        fetch(`${API}/posts${argString}`)
+        fetch(`${API}/posts?_limit=4`)
             .then((response) => response.json())
             .then((publicationsFetch: Post[]) => {
                 return Promise.all(publicationsFetch.map(async (publ) => {

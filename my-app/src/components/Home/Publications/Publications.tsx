@@ -149,7 +149,7 @@ const mapStateToProps = (state: Store) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     return {
-        fetchData: (id: number) => dispatch(publicationsFetchData(id) as unknown as AnyAction)
+        fetchData: (id: number) => dispatch(publicationsFetchData() as unknown as AnyAction)
     };
 };
 

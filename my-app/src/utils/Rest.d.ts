@@ -7,7 +7,7 @@ export interface Post {
     photo?: IPhoto
 }
 
-export interface IAddress {
+export interface Address {
     street: string,
     suite: string,
     city: string,
@@ -18,13 +18,13 @@ export interface IAddress {
     }
 }
 
-export interface ICompany {
+export interface Company {
     name: string,
     catchPhrase: string,
     bs: string
 }
 
-export interface IPhoto {
+export interface Photo {
     albumId: number,
     id: number,
     thumbnailUrl: string
@@ -32,7 +32,7 @@ export interface IPhoto {
     url: string
 }
 
-export interface IUser {
+export interface User {
     id: number,
     name: string,
     username: string,
@@ -41,14 +41,14 @@ export interface IUser {
     phone: string,
     website: string,
     company: ICompany,
-    photo?: IPhoto
+    photo?: Photo
 }
 
-export interface IUserLocal extends IUser {
+export interface UserLocal extends User {
     partner: 'Partner' | 'Contractor'
 }
 
-export interface IComment {
+export interface Comment {
     id: number,
     postId: number,
     name: string,
@@ -58,14 +58,14 @@ export interface IComment {
     post?: Post
 }
 
-export interface IFakeCompany {
+export interface FCompany {
     id: number,
     address: string,
     name: string,
     photo?: IPhoto
 }
 
-export interface IWorkspace {
+export interface Workspace {
     id: number,
     title: string,
     type: string,
@@ -74,7 +74,7 @@ export interface IWorkspace {
     background: string
 }
 
-export interface IProfile {
+export interface Profile {
     details: {
         expertise: {
             id: string,

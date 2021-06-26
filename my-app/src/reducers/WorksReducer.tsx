@@ -1,7 +1,7 @@
-import { IComment } from "../utils/Rest";
+import { Comment } from "../utils/Rest";
 
 export interface WorksState {
-    works: IComment[]
+    works: Comment[]
 };
 
 const defaultState = (): WorksState => ({

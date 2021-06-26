@@ -2,7 +2,7 @@ import React, { Component, RefObject } from 'react';
 import { formatDate, newMomentDate } from '../../../utils/dateUtils';
 
 import { FiUsers } from "react-icons/fi";
-import { IWorkspace } from '../../../utils/Rest';
+import { Workspace } from '../../../utils/Rest';
 import { Link } from 'react-router-dom';
 import RestService from '../../../utils/RestService';
 import { FaFileContract, FaFileArchive, FaFileCode } from 'react-icons/fa';
@@ -110,7 +110,7 @@ const Seperator = styled.div`
 `;
 
 type S = {
-    workspaces: Array<IWorkspace> | null
+    workspaces: Array<Workspace> | null
 }
 
 
@@ -184,7 +184,7 @@ class WorkspacesSlider extends Component<{}, S> {
         }, 0);
     };
 
-    getLogo(type: IWorkspace['type']) {
+    getLogo(type: Workspace['type']) {
         let Icon;
         switch (type) {
             case 'Contract': Icon = FaFileContract; break;
@@ -195,7 +195,7 @@ class WorkspacesSlider extends Component<{}, S> {
         return FaFileContract && <Icon className={'Logo'} />;
     }
 
-    getIcon(type: IWorkspace['type']) {
+    getIcon(type: Workspace['type']) {
         let Icon;
         switch (type) {
             case 'Contract': Icon = FaFileContract; break;
@@ -206,7 +206,7 @@ class WorkspacesSlider extends Component<{}, S> {
         return FaFileContract && <Icon />;
     }
 
-    getWorkspaceTile(work: IWorkspace) {
+    getWorkspaceTile(work: Workspace) {
         return <LinkWithTitle to={`/workspace/${work.id}`} key={`ws_${work.id}`}>
             <div>
                 <BG style={{ backgroundImage: `url(${work.background})` }}></BG>
