@@ -1,4 +1,4 @@
-export interface IPost {
+export interface Post {
     id: number,
     userId: number
     body: string,
@@ -55,7 +55,7 @@ export interface IComment {
     email: string,
     body: string,
     user?: IUser
-    post?: IPost
+    post?: Post
 }
 
 export interface IFakeCompany {

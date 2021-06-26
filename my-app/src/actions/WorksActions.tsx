@@ -1,5 +1,5 @@
 import { API, argsToString } from "../utils/restUtils";
-import { IComment, IPost } from "../utils/Rest";
+import { IComment, Post } from "../utils/Rest";
 import { WorksActions, WorksState } from "../reducers/WorksReducer";
 
 import { Dispatch } from "redux";
@@ -14,7 +14,7 @@ export const worksFetchDataSuccess = (works: IComment[]) => {
 }
 
 async function getPost(id: number, state: Store) {
-    const post: IPost = await fetch(`${API}/posts/${id}`).then(response => response.json());
+    const post: Post = await fetch(`${API}/posts/${id}`).then(response => response.json());
     const users = state.users as UsersState;
     const userById = users.users.find(v => v.id === post.userId);
     post.user = userById?.user;

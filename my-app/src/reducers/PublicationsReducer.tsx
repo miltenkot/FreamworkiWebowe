@@ -1,7 +1,7 @@
-import { IPost } from "../utils/Rest";
+import { Post } from "../utils/Rest";
 
 export interface PublicationsState {
-    publications: IPost[];
+    publications: Post[];
 }
 
 const defaultState = (): PublicationsState => ({

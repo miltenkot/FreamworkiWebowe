@@ -2,11 +2,11 @@ import { API, argsToString } from "../utils/restUtils";
 import { PublicationsActions, PublicationsState } from "../reducers/PublicationsReducer";
 
 import { Dispatch } from "redux";
-import { IPost } from "../utils/Rest";
+import { Post } from "../utils/Rest";
 import { Store } from "../store";
 import { UsersState } from "../reducers/UsersReducer";
 
-export const publicationsFetchDataSuccess = (publications: IPost[]) => {
+export const publicationsFetchDataSuccess = (publications: Post[]) => {
     return {
         type: PublicationsActions.GET,
         publications
@@ -38,7 +38,7 @@ export const publicationsFetchData = (limit?: number) => {
         }
         fetch(`${API}/posts${argString}`)
             .then((response) => response.json())
-            .then((publicationsFetch: IPost[]) => {
+            .then((publicationsFetch: Post[]) => {
                 return Promise.all(publicationsFetch.map(async (publ) => {
                     publ.photo = await getPhoto(publ.id);
 

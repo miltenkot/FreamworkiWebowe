@@ -1,4 +1,4 @@
-import { IFakeCompany, IPhoto, IPost, IUser, IWorkspace } from "./Rest";
+import { IFakeCompany, IPhoto, Post, IUser, IWorkspace } from "./Rest";
 
 import { API } from "./restUtils";
 import workspaces from './../assets/workspaces.json'
@@ -31,12 +31,12 @@ class RestService {
         return user;
     }
 
-    async getPublications(limit?: number): Promise<Array<IPost>> {
+    async getPublications(limit?: number): Promise<Array<Post>> {
         const args = {
             '_limit': limit
         };
         const argString = this._argsToString(args);
-        const posts: Array<IPost> = await fetch(`${API}/posts${argString}`).then(response => response.json());
+        const posts: Array<Post> = await fetch(`${API}/posts${argString}`).then(response => response.json());
         const postsWithRel = Promise.all(posts.map(async (post) => {
             post.user = await this.getUserProfile(post.userId).then(response => response);
             post.photo = await this.getUserPhoto(post.userId).then(response => response);
